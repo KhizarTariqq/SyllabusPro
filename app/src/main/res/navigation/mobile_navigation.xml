@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_calendar">
+
+    <fragment
+        android:id="@+id/navigation_goals"
+        android:name="com.example.navtest.ui.goals.GoalsFragment"
+        android:label="@string/title_goals"
+        tools:layout="@layout/fragment_goals" />
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="com.example.navtest.ui.calendar.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
+
+    <fragment
+        android:id="@+id/navigation_manage"
+        android:name="com.example.navtest.ui.manage.ManageFragment"
+        android:label="@string/title_manage"
+        tools:layout="@layout/fragment_manage" />
+
+    <fragment
+        android:id="@+id/navigation_tasks"
+        android:name="com.example.navtest.tasks"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/fragment_tasks" />
+</navigation>
