@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.navtest"
+    package="com.example.syllabuspro"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -19,7 +19,7 @@
         android:testOnly="true"
         android:theme="@style/Theme.NavTest" >
         <activity
-            android:name="com.example.navtest.MainActivity"
+            android:name="com.example.syllabuspro.MainActivity"
             android:exported="true"
             android:label="@string/app_name" >
             <intent-filter>
@@ -31,7 +31,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.navtest.androidx-startup"
+            android:authorities="com.example.syllabuspro.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"

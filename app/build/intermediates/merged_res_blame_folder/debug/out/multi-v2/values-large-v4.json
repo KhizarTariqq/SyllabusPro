@@ -1,33 +1,35 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\StudentPlanner\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
+            "outputFile": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\WhatsAnOutside\\.gradle\\caches\\transforms-3\\46d15f5c58a469270eeba15db4463d05\\transformed\\appcompat-1.4.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\b6f0d187be5c9a123a53118d219dfb77\\transformed\\material-1.5.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "from": {
+                        "startLines": "2,3,4,10",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,177,311,752",
+                        "endLines": "2,3,9,15",
+                        "endColumns": "121,133,10,10",
+                        "endOffsets": "172,306,747,1190"
+                    },
+                    "to": {
+                        "startLines": "11,12,13,19",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "752,874,1008,1449",
+                        "endLines": "11,12,18,24",
+                        "endColumns": "121,133,10,10",
+                        "endOffsets": "869,1003,1444,1887"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\f6843108b9a7662eb82e231f217b661f\\transformed\\appcompat-1.4.1\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
                         "startOffsets": "55,114,185,256,326,396,464,532,636",
                         "endColumns": "58,70,70,69,69,67,67,103,115",
                         "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\WhatsAnOutside\\.gradle\\caches\\transforms-3\\1508bc0f4d67cb1fb46dec23183d0585\\transformed\\material-1.4.0\\res\\values-large-v4\\values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,177",
-                        "endColumns": "121,133",
-                        "endOffsets": "172,306"
-                    },
-                    "to": {
-                        "startLines": "11,12",
-                        "startColumns": "4,4",
-                        "startOffsets": "752,874",
-                        "endColumns": "121,133",
-                        "endOffsets": "869,1003"
                     }
                 }
             ]
