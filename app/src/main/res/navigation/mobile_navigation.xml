@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_tasks"
-        android:name="com.example.syllabuspro.tasks"
+        android:name="com.example.syllabuspro.ui.tasks.TasksFragment"
         android:label="@string/title_tasks"
         tools:layout="@layout/fragment_tasks" />
 </navigation>

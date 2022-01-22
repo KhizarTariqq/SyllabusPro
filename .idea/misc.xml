@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_calendar.xml" value="0.15572916666666667" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_dashboard.xml" value="0.15572916666666667" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_goals.xml" value="0.18125" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_manage.xml" value="0.36231884057971014" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_tasks.xml" value="0.22" />
       </map>
     </option>
   </component>

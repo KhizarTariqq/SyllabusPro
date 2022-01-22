@@ -4,13 +4,15 @@ package com.example.navtest.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.navtest.R;
+import com.google.android.material.appbar.AppBarLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -20,11 +22,20 @@ public final class FragmentGoalsBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView textHome;
+  public final Button addGoalButton;
 
-  private FragmentGoalsBinding(@NonNull ConstraintLayout rootView, @NonNull TextView textHome) {
+  @NonNull
+  public final AppBarLayout appBarLayout;
+
+  @NonNull
+  public final Toolbar goalsToolbar;
+
+  private FragmentGoalsBinding(@NonNull ConstraintLayout rootView, @NonNull Button addGoalButton,
+      @NonNull AppBarLayout appBarLayout, @NonNull Toolbar goalsToolbar) {
     this.rootView = rootView;
-    this.textHome = textHome;
+    this.addGoalButton = addGoalButton;
+    this.appBarLayout = appBarLayout;
+    this.goalsToolbar = goalsToolbar;
   }
 
   @Override
@@ -54,13 +65,26 @@ public final class FragmentGoalsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.text_home;
-      TextView textHome = ViewBindings.findChildViewById(rootView, id);
-      if (textHome == null) {
+      id = R.id.add_goal_button;
+      Button addGoalButton = ViewBindings.findChildViewById(rootView, id);
+      if (addGoalButton == null) {
         break missingId;
       }
 
-      return new FragmentGoalsBinding((ConstraintLayout) rootView, textHome);
+      id = R.id.appBarLayout;
+      AppBarLayout appBarLayout = ViewBindings.findChildViewById(rootView, id);
+      if (appBarLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.goals_toolbar;
+      Toolbar goalsToolbar = ViewBindings.findChildViewById(rootView, id);
+      if (goalsToolbar == null) {
+        break missingId;
+      }
+
+      return new FragmentGoalsBinding((ConstraintLayout) rootView, addGoalButton, appBarLayout,
+          goalsToolbar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -4,13 +4,15 @@ package com.example.navtest.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.navtest.R;
+import com.google.android.material.appbar.AppBarLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -20,12 +22,21 @@ public final class FragmentCalendarBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final TextView textDashboard;
+  public final AppBarLayout appBarLayout;
+
+  @NonNull
+  public final Toolbar calendarToolbar;
+
+  @NonNull
+  public final Button filterButton;
 
   private FragmentCalendarBinding(@NonNull ConstraintLayout rootView,
-      @NonNull TextView textDashboard) {
+      @NonNull AppBarLayout appBarLayout, @NonNull Toolbar calendarToolbar,
+      @NonNull Button filterButton) {
     this.rootView = rootView;
-    this.textDashboard = textDashboard;
+    this.appBarLayout = appBarLayout;
+    this.calendarToolbar = calendarToolbar;
+    this.filterButton = filterButton;
   }
 
   @Override
@@ -55,13 +66,26 @@ public final class FragmentCalendarBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.text_dashboard;
-      TextView textDashboard = ViewBindings.findChildViewById(rootView, id);
-      if (textDashboard == null) {
+      id = R.id.appBarLayout;
+      AppBarLayout appBarLayout = ViewBindings.findChildViewById(rootView, id);
+      if (appBarLayout == null) {
         break missingId;
       }
 
-      return new FragmentCalendarBinding((ConstraintLayout) rootView, textDashboard);
+      id = R.id.calendar_toolbar;
+      Toolbar calendarToolbar = ViewBindings.findChildViewById(rootView, id);
+      if (calendarToolbar == null) {
+        break missingId;
+      }
+
+      id = R.id.filter_button;
+      Button filterButton = ViewBindings.findChildViewById(rootView, id);
+      if (filterButton == null) {
+        break missingId;
+      }
+
+      return new FragmentCalendarBinding((ConstraintLayout) rootView, appBarLayout, calendarToolbar,
+          filterButton);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -27,6 +27,13 @@ public class Deadline {
         this.Alternative = alternative;
     }
 
+    public Deadline(String deadline)
+    {
+        int year = Integer.parseInt(deadline.substring(0, 4));
+        int month = Integer.parseInt(deadline.substring(5, 7));
+        int day = Integer.parseInt(deadline.substring(8, 10));
+    }
+
     public String toString()
     {
         if (this.Alternative != null)

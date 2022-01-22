@@ -1,4 +1,11 @@
 package com.example.syllabuspro;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.DocumentsContract;
+import android.view.Window;
+import android.view.WindowManager;
+import androidx.annotation.RequiresApi;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -15,10 +22,7 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.Events;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
@@ -53,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
+         getSupportActionBar().hide();
+
+         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+         WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         // on app installation
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
 
@@ -60,11 +70,23 @@ public class MainActivity extends AppCompatActivity {
         {
             SharedPreferences.Editor editor = prefs.edit();
 
-            // ArrayList
-            ArrayList<String> courses = new ArrayList<String>(0);
+            // Courses ArrayList
+            ArrayList<Course> courses = new ArrayList<Course>(0);
             Gson gson = new Gson();
             String json = gson.toJson(courses);
             editor.putString("courses", json);
+
+            // Tasks ArrayList
+            ArrayList<Task> Tasks = new ArrayList<Task>(0);
+            Gson gson2 = new Gson();
+            String json2 = gson2.toJson(courses);
+            editor.putString("courses", json2);
+
+            // Goals ArrayList
+            ArrayList<Goal> goals = new ArrayList<Goal>(0);
+            Gson gson3 = new Gson();
+            String json3 = gson3.toJson(courses);
+            editor.putString("courses", json3);
 
             // set first time boolean
             editor.putBoolean("firstTime", true);
@@ -87,16 +109,46 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void openDirectory(Uri uriToLoad)
+    {
+        // Choose a directory using the system's file picker.
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        final int PICK_PDF_FILE = 2;
+        // Optionally, specify a URI for the directory that should be opened in
+        // the system file picker when it loads.
+        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, uriToLoad);
+
+        startActivityForResult(intent, PICK_PDF_FILE);
+    }
+
+    private String getTextreadTextFromUri(Uri uri) throws IOException
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (InputStream inputStream =
+            getContentResolver().openInputStream(uri);
+            BufferedReader reader = new BufferedReader(
+            new InputStreamReader(Objects.requireNonNull(inputStream))))
+            {
+                String line;
+                while ((line = reader.readLine()) != null)
+                {
+                    stringBuilder.append(line);
+                }
+            }
+        return stringBuilder.toString();
+    }
+
     public String getText()
     {
+        // Uri uri = new Uri();
+
         // get PDF text
         // get PDF from user TODO
         String extractedText = "";
+
         try
         {
-            Log.d("test", "test");
-            // myToast.show();
-
             // creating a variable for pdf reader and passing our PDF file in it.
             PdfReader reader = new PdfReader("res/raw/syllabus.pdf");
 
@@ -117,128 +169,14 @@ public class MainActivity extends AppCompatActivity {
 
         catch (Exception e)
         {
-            System.out.println("test");
             // for handling error while extracting the text file.
             extractedTV.setText("Error found is : \n" + e);
         }
         return "";
     }
 
-    public void addCourse(View view)
-    {
-        // Get ArrayList of courses
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString("courses", null);
-        Type arrayType = new TypeToken<ArrayList<String>>() {}.getType();
-
-        // add course
-        ArrayList<Course> courseList = gson.fromJson(json, arrayType);
-        Course course = new Course("MAT232");
-        courseList.add(course);
-
-        String extractedText = getText();
-
-        // begin deadline process
-        // set booleans
-        boolean taskComplete = false;
-        boolean tableFound = false;
-        boolean deadlinesFound = false;
-
-        Scanner scanner = new Scanner(extractedText);
-
-        // start task
-        while (!taskComplete)
-        {
-            // find table
-            while (!tableFound)
-            {
-                // Math department mode
-                String line = scanner.nextLine();
-                String[] wordsLoop = line.split(" ");
-                int findTableIndex = 0;
-
-                // Log.d("customtext", Integer.toString(wordsLoop.length - 1));
-                while (findTableIndex < wordsLoop.length - 1)
-                {
-                    // Log.d("customtext", Arrays.toString(wordsLoop));
-                    // Log.d("customtext", Integer.toString(findTableIndex));
-                    if (wordsLoop[findTableIndex].toLowerCase().contains("assessment") || wordsLoop[findTableIndex].toLowerCase().contains("deadlines"))
-                    {
-                        tableFound = true;
-                    }
-                    findTableIndex += 1;
-                }
-            }
-
-            scanner.nextLine();
-
-            // collect lines until the end of table
-            while (!deadlinesFound)
-            {
-                String line = scanner.nextLine();
-                String[] wordsLoop = line.split(" ");
-                int findEndTableIndex = 0;
-                boolean percentFound = false;
-                boolean totalFound = false;
-
-                // collect syllabus items
-                Log.d("customtext", line);
-
-                // Check if end of table is reached
-                while (findEndTableIndex != wordsLoop.length)
-                {
-                    if (wordsLoop[findEndTableIndex].trim().equals("Total"))
-                    {
-
-                        Log.d("percentpog", "Percent found");
-                        totalFound = true;
-                        break;
-                    }
-
-                    else
-                    {
-                        char[] charArray = wordsLoop[findEndTableIndex].toCharArray();
-
-                        for (char character : charArray)
-                        {
-                            if (character == '%')
-                            {
-                                percentFound = true;
-                            }
-                        }
-                    }
-                    findEndTableIndex += 1;
-                }
-
-                if (!percentFound || totalFound)
-                {
-                    Log.d("customtext", "end of table");
-
-                    deadlinesFound = true;
-                    taskComplete = true;
-                }
-
-                else
-                {
-                    SyllabusItem item = createSyllabusItem(wordsLoop);
-                    course.addSyllabusItem(item);
-                }
-            }
-        }
-
-        // print courses
-
-        Log.d("testingtext", course.getSyllabusItems().get(0).toString());
-        for (SyllabusItem item : course.getSyllabusItems())
-        {
-            Log.d("testingtext", item.toString());
-        }
-    }
-
     private Pair<SyllabusItem.Type, Boolean> findType(String[] words)
     {
-        Log.d("testingtext", words[0]);
         SyllabusItem.Type type = null;
         if (words[0].equals("Quiz"))
         {
@@ -290,6 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
         while (getNameWordIndex < words.length)
         {
+            // detect tba/ongoing
             int wordLength = words[getNameWordIndex].length();
             int getNameCharIndex = 0;
 
@@ -327,17 +266,10 @@ public class MainActivity extends AppCompatActivity {
                     deadlineFound = true;
 
                     // create deadline
-                    int year = Integer.parseInt(words[getNameWordIndex].substring(0, 4));
-                    int month = Integer.parseInt(words[getNameWordIndex].substring(5, 7));
-                    int day = Integer.parseInt(words[getNameWordIndex].substring(8, 10));
-                    deadline = new Deadline(year, month, day);
+                    deadline = new Deadline(words[getNameWordIndex]);
 
                     break;
                 }
-
-                // detect tba/ongoing
-
-
                 getNameCharIndex += 1;
             }
 
@@ -353,6 +285,7 @@ public class MainActivity extends AppCompatActivity {
         getNameWordIndex -= 1;
         char[] charArray = words[getNameWordIndex].toCharArray();
         int weight = 0;
+
         if (Character.isDigit(charArray[0]) && Character.isDigit(charArray[1]))
         {
             weight = Integer.parseInt(words[getNameWordIndex].substring(0, 2));
@@ -363,11 +296,8 @@ public class MainActivity extends AppCompatActivity {
             weight = Integer.parseInt(words[getNameWordIndex].substring(0, 1));
         }
 
-
-        getNameWordIndex += 1;
         String name = nameBuilder.toString();
         String trimName = name.substring(1, name.length());
-        Log.d("STRINGTEST", name);
 
         if (deadline == null)
         {
@@ -380,5 +310,140 @@ public class MainActivity extends AppCompatActivity {
             SyllabusItem item = new SyllabusItem(type, trimName, weight, deadline);
             return item;
         }
+    }
+
+    public void addCourse(View view)
+    {
+        // Get ArrayList of courses
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("courses", null);
+        Type arrayType = new TypeToken<ArrayList<Course>>() {}.getType();
+
+        // add course
+        ArrayList<Course> courseList = gson.fromJson(json, arrayType);
+        Course course = new Course("MAT232");
+        courseList.add(course);
+
+        String extractedText = getText();
+
+        // begin deadline process
+        // set booleans
+        boolean taskComplete = false;
+        boolean tableFound = false;
+        boolean deadlinesFound = false;
+
+        Scanner scanner = new Scanner(extractedText);
+
+        // start task
+        while (!taskComplete)
+        {
+            // find table
+            while (!tableFound)
+            {
+                // Math department mode
+                String line = scanner.nextLine();
+                String[] wordsLoop = line.split(" ");
+                int findTableIndex = 0;
+
+                while (findTableIndex < wordsLoop.length - 1)
+                {
+                    if (wordsLoop[findTableIndex].toLowerCase().contains("assessment") || wordsLoop[findTableIndex].toLowerCase().contains("deadlines"))
+                    {
+                        tableFound = true;
+                    }
+                    findTableIndex += 1;
+                }
+            }
+
+            scanner.nextLine();
+
+            // collect lines until the end of table
+            while (!deadlinesFound)
+            {
+                String line = scanner.nextLine();
+                String[] wordsLoop = line.split(" ");
+                int findEndTableIndex = 0;
+                boolean percentFound = false;
+                boolean totalFound = false;
+
+                // Check if end of table is reached
+                while (findEndTableIndex != wordsLoop.length)
+                {
+                    if (wordsLoop[findEndTableIndex].trim().equals("Total"))
+                    {
+                        totalFound = true;
+                        break;
+                    }
+
+                    else
+                    {
+                        char[] charArray = wordsLoop[findEndTableIndex].toCharArray();
+
+                        for (char character : charArray)
+                        {
+                            if (character == '%')
+                            {
+                                percentFound = true;
+                            }
+                        }
+                    }
+                    findEndTableIndex += 1;
+                }
+
+                // to end of table of reached
+                if (!percentFound || totalFound)
+                {
+                    deadlinesFound = true;
+                    taskComplete = true;
+                }
+
+                // if valid collect syllabus items
+                else
+                {
+                    SyllabusItem item = createSyllabusItem(wordsLoop);
+                    course.addSyllabusItem(item);
+                }
+            }
+        }
+
+        // print courses
+        Log.d("testingtext", course.getSyllabusItems().get(0).toString());
+        for (SyllabusItem item : course.getSyllabusItems())
+        {
+            Log.d("testingtext", item.toString());
+        }
+
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson2 = new Gson();
+        String json2 = gson.toJson(courseList);
+        editor.putString("courses", json);
+        editor.apply();
+    }
+
+    public void addTask(View view)
+    {
+        // Get ArrayList of tasks
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("tasks", null);
+        Type arrayType = new TypeToken<ArrayList<Task>>() {}.getType();
+
+        // add task
+        ArrayList<Task> taskList = gson.fromJson(json, arrayType);
+
+    }
+
+    public void addGoal(View view)
+    {
+        // Get ArrayList of goals
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("goals", null);
+        Type arrayType = new TypeToken<ArrayList<Goal>>() {}.getType();
+
+        // add goal
+        ArrayList<Goal> goalList = gson.fromJson(json, arrayType);
+
     }
 }

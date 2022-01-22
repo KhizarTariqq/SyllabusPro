@@ -2609,7 +2609,9 @@ int id action_text 0x7f080043
 int id actions 0x7f080044
 int id activity_chooser_view_content 0x7f080045
 int id add 0x7f080046
-int id add_button 0x7f080047
+int id add_course_button 0x7f0801e9
+int id add_goal_button 0x7f0801ed
+int id add_task_button 0x7f0801ea
 int id alertTitle 0x7f080048
 int id aligned 0x7f080049
 int id all 0x7f08004a
@@ -2619,6 +2621,7 @@ int id animateToEnd 0x7f08004d
 int id animateToStart 0x7f08004e
 int id antiClockwise 0x7f08004f
 int id anticipate 0x7f080050
+int id appBarLayout 0x7f0801ec
 int id arc 0x7f080051
 int id asConfigured 0x7f080052
 int id async 0x7f080053
@@ -2639,6 +2642,7 @@ int id bounceEnd 0x7f080061
 int id bounceStart 0x7f080062
 int id buttonPanel 0x7f080063
 int id cache_measures 0x7f080064
+int id calendar_toolbar 0x7f0801f1
 int id callMeasure 0x7f080065
 int id cancel_button 0x7f080066
 int id carryVelocity 0x7f080067
@@ -2725,6 +2729,7 @@ int id fill 0x7f0800b7
 int id fill_horizontal 0x7f0800b8
 int id fill_vertical 0x7f0800b9
 int id filled 0x7f0800ba
+int id filter_button 0x7f0801f2
 int id fitToContents 0x7f0800bb
 int id fixed 0x7f0800bc
 int id flip 0x7f0800bd
@@ -2734,6 +2739,7 @@ int id fragment_container_view_tag 0x7f0800c0
 int id frost 0x7f0800c1
 int id ghost_view 0x7f0800c2
 int id ghost_view_holder 0x7f0800c3
+int id goals_toolbar 0x7f0801ee
 int id gone 0x7f0800c4
 int id graph 0x7f0800c5
 int id graph_wrap 0x7f0800c6
@@ -2776,6 +2782,7 @@ int id line3 0x7f0800ea
 int id linear 0x7f0800eb
 int id listMode 0x7f0800ec
 int id list_item 0x7f0800ed
+int id manage_toolbar 0x7f0801ef
 int id masked 0x7f0800ee
 int id match_constraint 0x7f0800ef
 int id match_parent 0x7f0800f0
@@ -2966,6 +2973,7 @@ int id tag_transition_group 0x7f0801a8
 int id tag_unhandled_key_event_manager 0x7f0801a9
 int id tag_unhandled_key_listeners 0x7f0801aa
 int id tag_window_insets_animation_callback 0x7f0801ab
+int id tasks_toolbar 0x7f0801f0
 int id test_checkbox_android_button_tint 0x7f0801ac
 int id test_checkbox_app_button_tint 0x7f0801ad
 int id test_radiobutton_android_button_tint 0x7f0801ae
@@ -3248,7 +3256,9 @@ int string app_name 0x7f11001c
 int string appbar_scrolling_view_behavior 0x7f11001d
 int string bottom_sheet_behavior 0x7f11001e
 int string bottomsheet_action_expand_halfway 0x7f11001f
-int string button_add 0x7f110020
+int string button_add_course 0x7f11008c
+int string button_add_goal 0x7f11008e
+int string button_add_task 0x7f11008d
 int string character_counter_content_description 0x7f110021
 int string character_counter_overflowed_content_description 0x7f110022
 int string character_counter_pattern 0x7f110023
@@ -3258,6 +3268,7 @@ int string error_icon_content_description 0x7f110026
 int string exposed_dropdown_menu_content_description 0x7f110027
 int string fab_transformation_scrim_behavior 0x7f110028
 int string fab_transformation_sheet_behavior 0x7f110029
+int string filter_button 0x7f11008f
 int string hello_blank_fragment 0x7f11002a
 int string hide_bottom_view_on_scroll_behavior 0x7f11002b
 int string icon_content_description 0x7f11002c
