@@ -1,31 +1,19 @@
 package com.example.syllabuspro;
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.view.Window;
 import android.view.WindowManager;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
-import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
-import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
-import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.client.util.DateTime;
-import com.google.api.client.util.store.FileDataStoreFactory;
-import com.google.api.services.calendar.Calendar;
-import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.Events;
 
 import java.io.*;
-import java.security.GeneralSecurityException;
-import java.util.Collections;
-import java.util.List;
+import java.net.URISyntaxException;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -34,7 +22,6 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.navtest.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -54,6 +41,7 @@ import java.util.*;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private TextView extractedTV;
+    private String directory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
         // on app installation
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+
+        openSomeActivityForResult(findViewById(R.id.navigation_manage));
 
         if(!prefs.getBoolean("firstTime", false))
         {
@@ -93,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }
 
+
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -110,19 +101,83 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void openDirectory(Uri uriToLoad)
+
+    // Request code for selecting a PDF document.
+    private static final int PICK_PDF_FILE = 2;
+
+    private void openFile(Uri pickerInitialUri)
     {
-        // Choose a directory using the system's file picker.
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-        final int PICK_PDF_FILE = 2;
-        // Optionally, specify a URI for the directory that should be opened in
-        // the system file picker when it loads.
-        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, uriToLoad);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/pdf");
+
+        // Optionally, specify a URI for the file that should appear in the
+        // system file picker when it loads.
+        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
 
         startActivityForResult(intent, PICK_PDF_FILE);
     }
 
-    private String getTextreadTextFromUri(Uri uri) throws IOException
+    private void readTextFromUri(Uri uri) throws IOException
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        try (InputStream inputStream = getContentResolver().openInputStream(uri);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream))))
+             {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        }
+        this.directory = stringBuilder.toString();
+    }
+
+    public void openSomeActivityForResult(View view)
+    {
+        ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        // There are no request codes
+                        Intent data = result.getData();
+                        Log.d("result", result.toString());
+                        try {
+                            openDirectory(data.getData());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        // Uri uri = data.getData();
+
+                        // Log.d("testing in turn", uri.getPath());
+                        // getText(uri.getPath());
+                        // try {
+                        //     readTextFromUri(uri);
+                        // } catch (IOException e) {
+                        //     e.printStackTrace();
+                        // }
+                    }
+                }
+            });
+
+        //Create Intent
+
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("application/pdf");
+
+        // Optionally, specify a URI for the file that should appear in the
+        // system file picker when it loads.
+        // intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
+
+        // Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        // intent.setType("image/jpg");
+        // intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
+        //Launch activity to get result
+        someActivityResultLauncher.launch(intent);
+  }
+    private void openDirectory(Uri uri) throws IOException
     {
         StringBuilder stringBuilder = new StringBuilder();
         try (InputStream inputStream =
@@ -136,10 +191,16 @@ public class MainActivity extends AppCompatActivity {
                     stringBuilder.append(line);
                 }
             }
-        return stringBuilder.toString();
+        Log.d("testingintent1", "directory");
+        this.directory = stringBuilder.toString();
     }
 
-    public String getText()
+    public void getText2()
+    {
+        File file = new File(new URI(path));
+    }
+
+    public void getText(String directory)
     {
         // Uri uri = new Uri();
 
@@ -150,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             // creating a variable for pdf reader and passing our PDF file in it.
-            PdfReader reader = new PdfReader("res/raw/syllabus.pdf");
+            PdfReader reader = new PdfReader(directory);
 
             // below line is for getting number of pages of PDF file.
             int n = reader.getNumberOfPages();
@@ -164,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
 
             // below line is used for closing reader.
             reader.close();
-            return extractedText;
+            this.directory = extractedText;
         }
 
         catch (Exception e)
@@ -172,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
             // for handling error while extracting the text file.
             extractedTV.setText("Error found is : \n" + e);
         }
-        return "";
     }
 
     private Pair<SyllabusItem.Type, Boolean> findType(String[] words)
@@ -312,8 +372,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void addCourse(View view)
-    {
+    public void addCourse(View view) throws IOException, URISyntaxException {
         // Get ArrayList of courses
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -325,15 +384,24 @@ public class MainActivity extends AppCompatActivity {
         Course course = new Course("MAT232");
         courseList.add(course);
 
-        String extractedText = getText();
+        // Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        // intent.addCategory(Intent.CATEGORY_OPENABLE);
+        // intent.setType("application/pdf");
+        // Log.d("testingintent", String.valueOf(intent == null));
 
+        Log.d("testingintent", String.valueOf(this.directory == null));
+        Log.d("testingintent", String.valueOf(this.directory == ""));
+        // someActivityResultLauncher.launch(intent);
+
+        // Uri uri = new Uri();
         // begin deadline process
         // set booleans
         boolean taskComplete = false;
         boolean tableFound = false;
         boolean deadlinesFound = false;
 
-        Scanner scanner = new Scanner(extractedText);
+        Log.d("testingintent", this.directory);
+        Scanner scanner = new Scanner(this.directory);
 
         // start task
         while (!taskComplete)
