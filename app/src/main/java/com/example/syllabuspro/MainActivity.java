@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // on app installation
+        Intent openPDF = new Intent();
+        openPDF.launch()
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
 
         openSomeActivityForResult(findViewById(R.id.navigation_manage));
