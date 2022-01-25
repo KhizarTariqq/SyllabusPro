@@ -13,6 +13,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 
 import java.io.*;
+import java.net.URI;
 import java.net.URISyntaxException;
 
 import android.content.Context;
@@ -144,12 +145,8 @@ public class MainActivity extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
                         Intent data = result.getData();
+                        getText(data.getData().toString());
                         Log.d("result", result.toString());
-                        try {
-                            openDirectory(data.getData());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
                         // Uri uri = data.getData();
 
                         // Log.d("testing in turn", uri.getPath());
@@ -199,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getText2()
     {
-        File file = new File(new URI(path));
+        // File file = new File(new URI(path));
     }
 
     public void getText(String directory)
