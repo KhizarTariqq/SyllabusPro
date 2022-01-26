@@ -1,6 +1,8 @@
 package com.example.syllabuspro;
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
@@ -24,6 +26,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import com.example.navtest.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,11 +42,35 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import java.lang.reflect.Type;
 import java.util.*;
 
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private TextView extractedTV;
     private String directory;
+    private File file;
+    private boolean fileSelected = false;
 
+    // GetContent creates an ActivityResultLauncher<String> to allow you to pass
+    // in the mime type you'd like to allow the user to select
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+    new ActivityResultCallback<Uri>() {
+        @Override
+        public void onActivityResult(Uri uri) {
+            // Handle the returned Uri
+            Log.d("manage", "test");
+            String fullFilePath = UriUtils.getPathFromUri(getApplicationContext(), uri);
+            try {
+                File file = new File(uri.getPath());
+                setDirectory(fullFilePath, file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            Log.d("manage", fullFilePath);
+        }
+});
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
@@ -53,11 +80,8 @@ public class MainActivity extends AppCompatActivity {
          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         // on app installation
-        Intent openPDF = new Intent();
-        openPDF.launch()
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
 
-        openSomeActivityForResult(findViewById(R.id.navigation_manage));
 
         if(!prefs.getBoolean("firstTime", false))
         {
@@ -108,6 +132,14 @@ public class MainActivity extends AppCompatActivity {
     // Request code for selecting a PDF document.
     private static final int PICK_PDF_FILE = 2;
 
+    private void setDirectory(String directory, File file) throws IOException, URISyntaxException {
+        this.directory = directory;
+        // this.fileSelected = true;
+        this.file = file;
+
+        addCourse();
+    }
+
     private void openFile(Uri pickerInitialUri)
     {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -145,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                     if (result.getResultCode() == Activity.RESULT_OK) {
                         // There are no request codes
                         Intent data = result.getData();
-                        getText(data.getData().toString());
+                        // getText(data.getData().toString());
                         Log.d("result", result.toString());
                         // Uri uri = data.getData();
 
@@ -175,7 +207,8 @@ public class MainActivity extends AppCompatActivity {
         // intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         //Launch activity to get result
         someActivityResultLauncher.launch(intent);
-  }
+    }
+
     private void openDirectory(Uri uri) throws IOException
     {
         StringBuilder stringBuilder = new StringBuilder();
@@ -199,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
         // File file = new File(new URI(path));
     }
 
-    public void getText(String directory)
+    public String getText()
     {
         // Uri uri = new Uri();
 
@@ -207,10 +240,21 @@ public class MainActivity extends AppCompatActivity {
         // get PDF from user TODO
         String extractedText = "";
 
+    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+    if (permission != PackageManager.PERMISSION_GRANTED) {
+        // We don't have permission so prompt the user
+        ActivityCompat.requestPermissions(
+            this,
+            READ_EXTERNAL_STORAGE,
+            REQUEST_EXTERNAL_STORAGE
+        );
+    }
         try
         {
             // creating a variable for pdf reader and passing our PDF file in it.
-            PdfReader reader = new PdfReader(directory);
+            Log.d("Directory string", directory);
+            PdfReader reader = new PdfReader(new FileInputStream(this.directory));
 
             // below line is for getting number of pages of PDF file.
             int n = reader.getNumberOfPages();
@@ -224,14 +268,17 @@ public class MainActivity extends AppCompatActivity {
 
             // below line is used for closing reader.
             reader.close();
-            this.directory = extractedText;
+            return extractedText;
         }
 
         catch (Exception e)
         {
             // for handling error while extracting the text file.
-            extractedTV.setText("Error found is : \n" + e);
+            // extractedTV.setText("Error found is : \n" + e);
+
+            Log.d("manage","Error found is : \n" + e);
         }
+        return extractedText;
     }
 
     private Pair<SyllabusItem.Type, Boolean> findType(String[] words)
@@ -371,7 +418,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void addCourse(View view) throws IOException, URISyntaxException {
+    public void launchPDFSelector(View view) throws IOException, URISyntaxException {
+        mGetContent.launch("application/pdf");
+        if (this.fileSelected)
+        {
+
+            Log.d("manage", "void started");
+            addCourse();
+        }
+    }
+
+    public void addCourse() throws IOException, URISyntaxException
+    {
         // Get ArrayList of courses
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -388,6 +446,7 @@ public class MainActivity extends AppCompatActivity {
         // intent.setType("application/pdf");
         // Log.d("testingintent", String.valueOf(intent == null));
 
+        //openSomeActivityForResult(findViewById(R.id.navigation_manage));
         Log.d("testingintent", String.valueOf(this.directory == null));
         Log.d("testingintent", String.valueOf(this.directory == ""));
         // someActivityResultLauncher.launch(intent);
@@ -399,8 +458,9 @@ public class MainActivity extends AppCompatActivity {
         boolean tableFound = false;
         boolean deadlinesFound = false;
 
-        Log.d("testingintent", this.directory);
-        Scanner scanner = new Scanner(this.directory);
+        String extractedText = getText();
+        Log.d("testingintent", extractedText);
+        Scanner scanner = new Scanner(extractedText);
 
         // start task
         while (!taskComplete)

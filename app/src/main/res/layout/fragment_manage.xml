@@ -7,17 +7,17 @@
     tools:context="com.example.syllabuspro.ui.manage.ManageFragment">
 
     <Button
-        android:id="@+id/add_course_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/button_add_course"
-        android:onClick="addCourse"
-        android:backgroundTint="@color/purple_200"
+            android:id="@+id/add_course_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/button_add_course"
+            android:onClick="launchPDFSelector"
+            android:backgroundTint="@color/purple_200"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

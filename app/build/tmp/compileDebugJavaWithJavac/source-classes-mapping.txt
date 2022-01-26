@@ -26,6 +26,8 @@ com/example/navtest/databinding/FragmentNotificationsBinding.java
  com.example.navtest.databinding.FragmentNotificationsBinding
 com/example/syllabuspro/ui/calendar/CalendarFragment.java
  com.example.syllabuspro.ui.calendar.CalendarFragment
+com/example/syllabuspro/UriUtils.java
+ com.example.syllabuspro.UriUtils
 com/example/syllabuspro/ui/goals/GoalsFragment.java
  com.example.syllabuspro.ui.goals.GoalsFragment
 com/example/navtest/databinding/FragmentCalendarBinding.java
@@ -51,3 +53,4 @@ com/example/syllabuspro/MainActivity.java
  com.example.syllabuspro.MainActivity$2
  com.example.syllabuspro.MainActivity$3
  com.example.syllabuspro.MainActivity$4
+ com.example.syllabuspro.MainActivity$5
