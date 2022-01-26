@@ -1,21 +1,17 @@
 package com.example.syllabuspro;
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.DocumentsContract;
+import android.os.Environment;
+import android.provider.Settings;
 import android.view.Window;
 import android.view.WindowManager;
-import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.RequiresApi;
 
 import java.io.*;
-import java.net.URI;
 import java.net.URISyntaxException;
 
 import android.content.Context;
@@ -26,7 +22,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.core.app.ActivityCompat;
 import com.example.navtest.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -42,37 +37,32 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import java.lang.reflect.Type;
 import java.util.*;
 
-import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private TextView extractedTV;
     private String directory;
-    private File file;
-    private boolean fileSelected = false;
 
-    // GetContent creates an ActivityResultLauncher<String> to allow you to pass
-    // in the mime type you'd like to allow the user to select
+    // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
     new ActivityResultCallback<Uri>() {
         @Override
         public void onActivityResult(Uri uri) {
             // Handle the returned Uri
-            Log.d("manage", "test");
             String fullFilePath = UriUtils.getPathFromUri(getApplicationContext(), uri);
-            try {
-                File file = new File(uri.getPath());
-                setDirectory(fullFilePath, file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (URISyntaxException e) {
+            try
+            {
+                setDirectory(fullFilePath);
+            }
+
+            catch (IOException | URISyntaxException e)
+            {
                 e.printStackTrace();
             }
-            Log.d("manage", fullFilePath);
         }
-});
+    });
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
          getSupportActionBar().hide();
 
@@ -110,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
         }
 
-
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -127,134 +116,31 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-
-    // Request code for selecting a PDF document.
-    private static final int PICK_PDF_FILE = 2;
-
-    private void setDirectory(String directory, File file) throws IOException, URISyntaxException {
+    private void setDirectory(String directory) throws IOException, URISyntaxException
+    {
+        /**
+         * This method runs once a file is selected.
+         * This sets the directory of the chosen file
+         * and launches addCourse.
+         */
         this.directory = directory;
-        // this.fileSelected = true;
-        this.file = file;
-
         addCourse();
-    }
-
-    private void openFile(Uri pickerInitialUri)
-    {
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/pdf");
-
-        // Optionally, specify a URI for the file that should appear in the
-        // system file picker when it loads.
-        intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
-
-        startActivityForResult(intent, PICK_PDF_FILE);
-    }
-
-    private void readTextFromUri(Uri uri) throws IOException
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (InputStream inputStream = getContentResolver().openInputStream(uri);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(inputStream))))
-             {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-        }
-        this.directory = stringBuilder.toString();
-    }
-
-    public void openSomeActivityForResult(View view)
-    {
-        ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        // There are no request codes
-                        Intent data = result.getData();
-                        // getText(data.getData().toString());
-                        Log.d("result", result.toString());
-                        // Uri uri = data.getData();
-
-                        // Log.d("testing in turn", uri.getPath());
-                        // getText(uri.getPath());
-                        // try {
-                        //     readTextFromUri(uri);
-                        // } catch (IOException e) {
-                        //     e.printStackTrace();
-                        // }
-                    }
-                }
-            });
-
-        //Create Intent
-
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/pdf");
-
-        // Optionally, specify a URI for the file that should appear in the
-        // system file picker when it loads.
-        // intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri);
-
-        // Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        // intent.setType("image/jpg");
-        // intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
-        //Launch activity to get result
-        someActivityResultLauncher.launch(intent);
-    }
-
-    private void openDirectory(Uri uri) throws IOException
-    {
-        StringBuilder stringBuilder = new StringBuilder();
-        try (InputStream inputStream =
-            getContentResolver().openInputStream(uri);
-            BufferedReader reader = new BufferedReader(
-            new InputStreamReader(Objects.requireNonNull(inputStream))))
-            {
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    stringBuilder.append(line);
-                }
-            }
-        Log.d("testingintent1", "directory");
-        this.directory = stringBuilder.toString();
-    }
-
-    public void getText2()
-    {
-        // File file = new File(new URI(path));
     }
 
     public String getText()
     {
-        // Uri uri = new Uri();
+        /**
+         * This method sets the extractedText string to the contents of the selected PDF.
+         */
 
         // get PDF text
-        // get PDF from user TODO
         String extractedText = "";
 
-    int permission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-    if (permission != PackageManager.PERMISSION_GRANTED) {
-        // We don't have permission so prompt the user
-        ActivityCompat.requestPermissions(
-            this,
-            READ_EXTERNAL_STORAGE,
-            REQUEST_EXTERNAL_STORAGE
-        );
-    }
         try
         {
             // creating a variable for pdf reader and passing our PDF file in it.
-            Log.d("Directory string", directory);
-            PdfReader reader = new PdfReader(new FileInputStream(this.directory));
+            File file = new File(this.directory);
+            PdfReader reader = new PdfReader(new FileInputStream(file.getPath()));
 
             // below line is for getting number of pages of PDF file.
             int n = reader.getNumberOfPages();
@@ -283,6 +169,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Pair<SyllabusItem.Type, Boolean> findType(String[] words)
     {
+        /**
+         * This method finds the SyllabusItem.Type of a syllabus item
+         * @param words A line of words representing a syllabus item.
+         * @return A pair that contains the syllabus item type and a
+         * boolean that represents if the type is one or two words.
+         */
+
         SyllabusItem.Type type = null;
         if (words[0].equals("Quiz"))
         {
@@ -310,7 +203,14 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    private SyllabusItem createSyllabusItem(String[] words) {
+    private SyllabusItem createSyllabusItem(String[] words)
+    {
+        /**
+         * This method returns a SyllabusItem object given a line representing a syllabus item.
+         * @param words A line of words representing a syllabus item.
+         * @return The SyllabusItem object represented by the parameter.
+         */
+
         StringBuilder nameBuilder = new StringBuilder();
         boolean deadlineFound = false;
         boolean weightFound = false;
@@ -358,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
                 // detect XXXX-XX-XX or tba/ongoing
                 // detect XXXX-XX-XX
                 if (charArray.length >= 10 &&
-
                     Character.isDigit(charArray[0]) && Character.isDigit(charArray[1]) &&
                     Character.isDigit(charArray[2]) && Character.isDigit(charArray[3]) &&
                     charArray[4] == '-' &&
@@ -367,8 +266,6 @@ public class MainActivity extends AppCompatActivity {
                     Character.isDigit(charArray[8]) && Character.isDigit(charArray[9])
                     )
                 {
-                    Log.d("Finding deadline", "Deadline found");
-
                     deadlineFound = true;
 
                     // create deadline
@@ -418,18 +315,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void launchPDFSelector(View view) throws IOException, URISyntaxException {
-        mGetContent.launch("application/pdf");
-        if (this.fileSelected)
-        {
+    public void launchPDFSelector(View view) throws IOException, URISyntaxException
+    {
+        /**
+         * This is a click listener for the add course button,
+         * this gets storage permission and then launches file selector
+         */
+        // Get storage permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager())
+            {
+                mGetContent.launch("application/pdf");
+            }
 
-            Log.d("manage", "void started");
-            addCourse();
+            else
+            {
+                // Request for the permission
+                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                intent.setData(uri);
+                startActivity(intent);
+            }
         }
     }
 
     public void addCourse() throws IOException, URISyntaxException
     {
+        /**
+         * After a PDF file is selected, this method performs the actions
+         * of getting the course list and adds the course to the list.
+         * Then scans the content of the file and adds the according
+         * syllabus items to the course.
+         */
+
         // Get ArrayList of courses
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
         Gson gson = new Gson();
@@ -441,17 +359,6 @@ public class MainActivity extends AppCompatActivity {
         Course course = new Course("MAT232");
         courseList.add(course);
 
-        // Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-        // intent.addCategory(Intent.CATEGORY_OPENABLE);
-        // intent.setType("application/pdf");
-        // Log.d("testingintent", String.valueOf(intent == null));
-
-        //openSomeActivityForResult(findViewById(R.id.navigation_manage));
-        Log.d("testingintent", String.valueOf(this.directory == null));
-        Log.d("testingintent", String.valueOf(this.directory == ""));
-        // someActivityResultLauncher.launch(intent);
-
-        // Uri uri = new Uri();
         // begin deadline process
         // set booleans
         boolean taskComplete = false;
@@ -459,7 +366,8 @@ public class MainActivity extends AppCompatActivity {
         boolean deadlinesFound = false;
 
         String extractedText = getText();
-        Log.d("testingintent", extractedText);
+        // Log.d("testingintent", extractedText);
+
         Scanner scanner = new Scanner(extractedText);
 
         // start task

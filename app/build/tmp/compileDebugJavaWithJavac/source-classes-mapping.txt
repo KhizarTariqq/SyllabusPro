@@ -53,4 +53,3 @@ com/example/syllabuspro/MainActivity.java
  com.example.syllabuspro.MainActivity$2
  com.example.syllabuspro.MainActivity$3
  com.example.syllabuspro.MainActivity$4
- com.example.syllabuspro.MainActivity$5

@@ -10,66 +10,76 @@
 9        android:targetSdkVersion="32" />
 9-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml
 10
-11    <application
-11-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:5:5-22:19
-12        android:allowBackup="true"
-12-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:6:9-35
-13        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-13-->[androidx.core:core:1.7.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107b48ead489d4dd0a48badb09d9592d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
-14        android:debuggable="true"
-15        android:extractNativeLibs="false"
-16        android:icon="@mipmap/ic_launcher"
-16-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:7:9-43
-17        android:label="@string/app_name"
-17-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:8:9-41
-18        android:roundIcon="@mipmap/ic_launcher_round"
-18-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:9:9-54
-19        android:supportsRtl="true"
-19-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:10:9-35
-20        android:testOnly="true"
-21        android:theme="@style/Theme.NavTest" >
-21-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:11:9-45
-22        <activity
-22-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:12:9-21:20
-23            android:name="com.example.syllabuspro.MainActivity"
-23-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:13:13-64
-24            android:exported="true"
-24-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:14:13-36
-25            android:label="@string/app_name" >
-25-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:15:13-45
-26            <intent-filter>
-26-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:16:13-20:29
-27                <action android:name="android.intent.action.MAIN" />
-27-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:17:17-69
-27-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:17:25-66
-28
-29                <category android:name="android.intent.category.LAUNCHER" />
-29-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:19:17-77
-29-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:19:27-74
-30            </intent-filter>
-31        </activity>
+11    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+11-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:5:5-80
+11-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:5:22-77
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:6:5-80
+12-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:6:22-78
+13    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+13-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:7:5-81
+13-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:7:22-79
+14
+15    <application
+15-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:8:5-25:19
+16        android:allowBackup="true"
+16-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:9:9-35
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.7.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107b48ead489d4dd0a48badb09d9592d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+18        android:debuggable="true"
+19        android:extractNativeLibs="false"
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:10:9-43
+21        android:label="@string/app_name"
+21-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:11:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:12:9-54
+23        android:supportsRtl="true"
+23-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:13:9-35
+24        android:testOnly="true"
+25        android:theme="@style/Theme.NavTest" >
+25-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:14:9-45
+26        <activity
+26-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:15:9-24:20
+27            android:name="com.example.syllabuspro.MainActivity"
+27-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:16:13-64
+28            android:exported="true"
+28-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:17:13-36
+29            android:label="@string/app_name" >
+29-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:18:13-45
+30            <intent-filter>
+30-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:19:13-23:29
+31                <action android:name="android.intent.action.MAIN" />
+31-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:20:17-69
+31-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:20:25-66
 32
-33        <provider
-33-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-34            android:name="androidx.startup.InitializationProvider"
-34-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
-35            android:authorities="com.example.syllabuspro.androidx-startup"
-35-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
-36            android:exported="false" >
-36-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
-37            <meta-data
-37-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-38                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-38-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
-39                android:value="androidx.startup" />
-39-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
-40            <meta-data
-40-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-41                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-41-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-42                android:value="androidx.startup" />
-42-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-43        </provider>
-44    </application>
-45
-46</manifest>
+33                <category android:name="android.intent.category.LAUNCHER" />
+33-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:22:17-77
+33-->C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:22:27-74
+34            </intent-filter>
+35        </activity>
+36
+37        <provider
+37-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+38            android:name="androidx.startup.InitializationProvider"
+38-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+39            android:authorities="com.example.syllabuspro.androidx-startup"
+39-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+40            android:exported="false" >
+40-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+41            <meta-data
+41-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+42                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+42-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+43                android:value="androidx.startup" />
+43-->[androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+44            <meta-data
+44-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+45                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+45-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+46                android:value="androidx.startup" />
+46-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+47        </provider>
+48    </application>
+49
+50</manifest>
