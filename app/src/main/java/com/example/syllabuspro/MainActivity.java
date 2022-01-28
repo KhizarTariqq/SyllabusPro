@@ -22,6 +22,8 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,15 +39,20 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import java.lang.reflect.Type;
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
     private ActivityMainBinding binding;
     private String directory;
+    private RecyclerView recyclerView;
+    ArrayList <Course> courseList = new ArrayList<Course>();
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-    new ActivityResultCallback<Uri>() {
+    new ActivityResultCallback<Uri>()
+    {
         @Override
-        public void onActivityResult(Uri uri) {
+        public void onActivityResult(Uri uri)
+        {
             // Handle the returned Uri
             String fullFilePath = UriUtils.getPathFromUri(getApplicationContext(), uri);
             try
@@ -99,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
             editor.putBoolean("firstTime", true);
             editor.commit();
         }
+
+        updateCourseList();
 
         super.onCreate(savedInstanceState);
 
@@ -170,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     private Pair<SyllabusItem.Type, Boolean> findType(String[] words)
     {
         /**
-         * This method finds the SyllabusItem.Type of a syllabus item
+         * This method finds the SyllabusCores.Type of a syllabus item
          * @param words A line of words representing a syllabus item.
          * @return A pair that contains the syllabus item type and a
          * boolean that represents if the type is one or two words.
@@ -208,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * This method returns a SyllabusItem object given a line representing a syllabus item.
          * @param words A line of words representing a syllabus item.
-         * @return The SyllabusItem object represented by the parameter.
+         * @return The SyllabusCores object represented by the parameter.
          */
 
         StringBuilder nameBuilder = new StringBuilder();
@@ -339,6 +348,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void updateCourseList()
+    {
+        // Get ArrayList of courses
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("courses", null);
+        Type arrayType = new TypeToken<ArrayList<Course>>() {}.getType();
+
+        // add course
+        this.courseList = gson.fromJson(json, arrayType);
+    }
+
+    public ArrayList<Course> getCourseList()
+    {
+        return this.courseList;
+    }
+
     public void addCourse() throws IOException, URISyntaxException
     {
         /**
@@ -355,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
         Type arrayType = new TypeToken<ArrayList<Course>>() {}.getType();
 
         // add course
-        ArrayList<Course> courseList = gson.fromJson(json, arrayType);
+        this.courseList = gson.fromJson(json, arrayType);
         Course course = new Course("MAT232");
         courseList.add(course);
 

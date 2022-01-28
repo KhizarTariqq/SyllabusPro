@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.example.navtest.R;
@@ -30,12 +31,17 @@ public final class FragmentManageBinding implements ViewBinding {
   @NonNull
   public final Toolbar manageToolbar;
 
+  @NonNull
+  public final RecyclerView recyclerView;
+
   private FragmentManageBinding(@NonNull ConstraintLayout rootView, @NonNull Button addCourseButton,
-      @NonNull AppBarLayout appBarLayout, @NonNull Toolbar manageToolbar) {
+      @NonNull AppBarLayout appBarLayout, @NonNull Toolbar manageToolbar,
+      @NonNull RecyclerView recyclerView) {
     this.rootView = rootView;
     this.addCourseButton = addCourseButton;
     this.appBarLayout = appBarLayout;
     this.manageToolbar = manageToolbar;
+    this.recyclerView = recyclerView;
   }
 
   @Override
@@ -83,8 +89,14 @@ public final class FragmentManageBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.recyclerView;
+      RecyclerView recyclerView = ViewBindings.findChildViewById(rootView, id);
+      if (recyclerView == null) {
+        break missingId;
+      }
+
       return new FragmentManageBinding((ConstraintLayout) rootView, addCourseButton, appBarLayout,
-          manageToolbar);
+          manageToolbar, recyclerView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

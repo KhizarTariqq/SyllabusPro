@@ -387,6 +387,25 @@
                     }
                 },
                 {
+                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\5ce26b959b85c2c336811905ac82da78\\transformed\\recyclerview-1.2.1\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,111,170,218,274,349,425,497,563",
+                        "endLines": "2,3,4,5,6,7,8,9,38",
+                        "endColumns": "55,58,47,55,74,75,71,65,24",
+                        "endOffsets": "106,165,213,269,344,420,492,558,2084"
+                    },
+                    "to": {
+                        "startLines": "448,971,972,973,981,982,983,1453,11469",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "22003,56349,56408,56456,57123,57198,57274,88627,717523",
+                        "endLines": "448,971,972,973,981,982,983,1453,11497",
+                        "endColumns": "55,58,47,55,74,75,71,65,24",
+                        "endOffsets": "22054,56403,56451,56507,57193,57269,57341,88688,719044"
+                    }
+                },
+                {
                     "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
                         "startLines": "7,2,3,4,5,6,8",
@@ -420,25 +439,6 @@
                         "endLines": "5707",
                         "endColumns": "12",
                         "endOffsets": "390969"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\af07ceebc9ddad3887a8cc2866511b22\\transformed\\recyclerview-1.1.0\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,111,170,218,274,349,425,497,563",
-                        "endLines": "2,3,4,5,6,7,8,9,38",
-                        "endColumns": "55,58,47,55,74,75,71,65,24",
-                        "endOffsets": "106,165,213,269,344,420,492,558,2084"
-                    },
-                    "to": {
-                        "startLines": "448,971,972,973,981,982,983,1453,11469",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "22003,56349,56408,56456,57123,57198,57274,88627,717523",
-                        "endLines": "448,971,972,973,981,982,983,1453,11497",
-                        "endColumns": "55,58,47,55,74,75,71,65,24",
-                        "endOffsets": "22054,56403,56451,56507,57193,57269,57341,88688,719044"
                     }
                 }
             ]
