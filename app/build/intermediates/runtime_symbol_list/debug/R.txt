@@ -2759,7 +2759,6 @@ int id ifRoom 0x7f0800d3
 int id ignore 0x7f0800d4
 int id ignoreRequest 0x7f0800d5
 int id image 0x7f0800d6
-int id imageView 0x7f0801f4
 int id immediateStop 0x7f0800d7
 int id included 0x7f0800d8
 int id info 0x7f0800d9
@@ -2770,6 +2769,8 @@ int id item1 0x7f0800dd
 int id item2 0x7f0800de
 int id item3 0x7f0800df
 int id item4 0x7f0800e0
+int id item_age 0x7f0801f7
+int id item_name 0x7f0801f8
 int id item_touch_helper_previous_elevation 0x7f0800e1
 int id jumpToEnd 0x7f0800e2
 int id jumpToStart 0x7f0800e3
@@ -2987,7 +2988,6 @@ int id textSpacerNoButtons 0x7f0801b3
 int id textSpacerNoTitle 0x7f0801b4
 int id textStart 0x7f0801b5
 int id textTop 0x7f0801b6
-int id textView 0x7f0801f6
 int id text_dashboard 0x7f0801b7
 int id text_home 0x7f0801b8
 int id text_input_end_icon 0x7f0801b9

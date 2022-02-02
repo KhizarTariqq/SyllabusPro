@@ -1,6 +1,7 @@
 package com.example.syllabuspro.ui.manage;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,26 +27,24 @@ public class ManageFragment extends Fragment {
 
     private ManageViewModel manageViewModel;
     private FragmentManageBinding binding;
-    private ArrayList <Course> courseList = new ArrayList<Course>();
+    private ArrayList <Course> courseList;
+    private RecyclerView recyclerView;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        manageViewModel =
-                new ViewModelProvider(this).get(ManageViewModel.class);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        manageViewModel = new ViewModelProvider(this).get(ManageViewModel.class);
         binding = FragmentManageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        Log.d("Manage fragment", "testing");
         // Initializing list view with the custom adapter
         // ArrayList <Course> itemList = new ArrayList<Course>();
+        this.courseList = MainActivity.courseList;
 
-
-        RecyclerView recyclerView = (RecyclerView) root.findViewById(R.id.recyclerView);
+        recyclerView = root.findViewById(R.id.recyclerView);
         CustomAdapter adapter = new CustomAdapter(courseList);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        // recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false));
         // final TextView textView = binding.textNotifications;
         // manageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
         //     @Override

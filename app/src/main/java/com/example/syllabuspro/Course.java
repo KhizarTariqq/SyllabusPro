@@ -45,16 +45,21 @@ public class Course {
         return this.syllabusItems;
     }
 
+    public String getName()
+    {
+        return this.name;
+    }
+
     public String toString()
     {
         String string = "";
-        string += "Course: " + this.name;
+        string += "Course: " + this.name + " ";
 
         int syllabusItemsIndex = 0;
 
         for (SyllabusItem item : this.syllabusItems)
         {
-            string += item.toString();
+            string += item.toString() + " " ;
         }
 
         return string;

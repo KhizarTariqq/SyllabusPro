@@ -3,6 +3,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,13 +26,13 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
+import com.example.navtest.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.example.navtest.databinding.ActivityMainBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.pdf.PdfReader;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     private ActivityMainBinding binding;
     private String directory;
     private RecyclerView recyclerView;
-    ArrayList <Course> courseList = new ArrayList<Course>();
+    public static ArrayList <Course> courseList;
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -76,38 +77,40 @@ public class MainActivity extends AppCompatActivity
          this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        // on app installation
         SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
 
-
+        // On first time app installation create the directories to store courses, tasks, and goals
         if(!prefs.getBoolean("firstTime", false))
         {
+            Log.d("first time", "1");
             SharedPreferences.Editor editor = prefs.edit();
 
             // Courses ArrayList
             ArrayList<Course> courses = new ArrayList<Course>(0);
-            Gson gson = new Gson();
-            String json = gson.toJson(courses);
-            editor.putString("courses", json);
+            saveArrayList(courses, "courses");
 
             // Tasks ArrayList
-            ArrayList<Task> Tasks = new ArrayList<Task>(0);
-            Gson gson2 = new Gson();
-            String json2 = gson2.toJson(courses);
-            editor.putString("courses", json2);
+            ArrayList<Task> tasks = new ArrayList<Task>(0);
+            saveArrayList(tasks, "tasks");
 
             // Goals ArrayList
             ArrayList<Goal> goals = new ArrayList<Goal>(0);
-            Gson gson3 = new Gson();
-            String json3 = gson3.toJson(courses);
-            editor.putString("courses", json3);
+            saveArrayList(goals, "goals");
 
             // set first time boolean
             editor.putBoolean("firstTime", true);
-            editor.commit();
+            editor.apply();
         }
 
-        updateCourseList();
+        // if it's not the first time installing the app, get the list of courses, task, and goals.
+        else
+        {
+            Log.d("first time", "2");
+
+            // Get ArrayList of courses
+            courseList = (ArrayList<Course>) getArrayList("courses");
+            Log.d("first time", courseList.toString());
+        }
 
         super.onCreate(savedInstanceState);
 
@@ -123,6 +126,26 @@ public class MainActivity extends AppCompatActivity
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+
+    public void saveArrayList(ArrayList<?> list, String key)
+    {
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        editor.putString(key, json);
+        editor.apply();     // This line is IMPORTANT !!!
+    }
+
+    public ArrayList<?> getArrayList(String key)
+    {
+        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString(key, null);
+        Type type = new TypeToken<ArrayList<Course>>() {}.getType();
+        return gson.fromJson(json, type);
     }
 
     private void setDirectory(String directory) throws IOException, URISyntaxException
@@ -348,18 +371,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void updateCourseList()
-    {
-        // Get ArrayList of courses
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString("courses", null);
-        Type arrayType = new TypeToken<ArrayList<Course>>() {}.getType();
-
-        // add course
-        this.courseList = gson.fromJson(json, arrayType);
-    }
-
     public ArrayList<Course> getCourseList()
     {
         return this.courseList;
@@ -374,14 +385,6 @@ public class MainActivity extends AppCompatActivity
          * syllabus items to the course.
          */
 
-        // Get ArrayList of courses
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString("courses", null);
-        Type arrayType = new TypeToken<ArrayList<Course>>() {}.getType();
-
-        // add course
-        this.courseList = gson.fromJson(json, arrayType);
         Course course = new Course("MAT232");
         courseList.add(course);
 
@@ -475,11 +478,9 @@ public class MainActivity extends AppCompatActivity
             Log.d("testingtext", item.toString());
         }
 
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson2 = new Gson();
-        String json2 = gson.toJson(courseList);
-        editor.putString("courses", json);
-        editor.apply();
+
+        Log.d("in method", courseList.toString());
+        saveArrayList(courseList, "courses");
     }
 
     public void addTask(View view)

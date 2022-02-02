@@ -29,9 +29,9 @@ public class Deadline {
 
     public Deadline(String deadline)
     {
-        int year = Integer.parseInt(deadline.substring(0, 4));
-        int month = Integer.parseInt(deadline.substring(5, 7));
-        int day = Integer.parseInt(deadline.substring(8, 10));
+        this.year = Integer.parseInt(deadline.substring(0, 4));
+        this.month = Integer.parseInt(deadline.substring(5, 7));
+        this.day = Integer.parseInt(deadline.substring(8, 10));
     }
 
     public String toString()
