@@ -13,8 +13,18 @@
             android:padding="8dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent" android:onClick="viewSyllabusItem"/>
+    <Button
+            android:text="@string/course_item_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button"
+            android:padding="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95" app:layout_constraintVertical_bias="1.0"/>
 
+    <!--
     <TextView
             android:id="@+id/item_age"
             android:layout_width="match_parent"
@@ -24,6 +34,7 @@
             android:layout_below="@id/item_name" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/item_name" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+    -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

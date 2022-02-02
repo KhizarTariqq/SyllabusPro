@@ -26,6 +26,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
+import com.example.syllabuspro.ui.manage.ManageFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.navtest.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity
     private String directory;
     private RecyclerView recyclerView;
     public static ArrayList <Course> courseList = new ArrayList<Course>();
+    public static ArrayList <Task> taskList = new ArrayList<Task>();
+    public static ArrayList <Goal> goalList = new ArrayList<Goal>();
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -109,7 +112,13 @@ public class MainActivity extends AppCompatActivity
 
             // Get ArrayList of courses
             courseList = (ArrayList<Course>) getArrayList("courses");
-            Log.d("first time", courseList.toString());
+            Log.d("first: courses", courseList.toString());
+
+            taskList = (ArrayList<Task>) getArrayList("tasks");
+            Log.d("first: tasks", taskList.toString());
+
+            goalList = (ArrayList<Goal>) getArrayList("goals");
+            Log.d("first: goals", goalList.toString());
         }
 
         super.onCreate(savedInstanceState);
@@ -118,7 +127,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
+        // Passing each menu ID as a set of Ids becourses each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_calendar, R.id.navigation_goals, R.id.navigation_manage, R.id.navigation_tasks)
@@ -478,34 +487,35 @@ public class MainActivity extends AppCompatActivity
             Log.d("testingtext", item.toString());
         }
 
-
         Log.d("in method", courseList.toString());
         saveArrayList(courseList, "courses");
+
+
+        // Update RecyclerView
+        this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
+        CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+        adapter.notifyDataSetChanged();
+        adapter.setSelectedCourse(course);
     }
 
     public void addTask(View view)
     {
-        // Get ArrayList of tasks
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString("tasks", null);
-        Type arrayType = new TypeToken<ArrayList<Task>>() {}.getType();
-
         // add task
-        ArrayList<Task> taskList = gson.fromJson(json, arrayType);
+        Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
+        taskList.add(task);
 
     }
 
     public void addGoal(View view)
     {
-        // Get ArrayList of goals
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString("goals", null);
-        Type arrayType = new TypeToken<ArrayList<Goal>>() {}.getType();
-
         // add goal
-        ArrayList<Goal> goalList = gson.fromJson(json, arrayType);
+        Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
+        Goal goal = new Goal(new Deadline(0, 0, 0), task, "test goal");
+        goalList.add(goal);
+    }
 
+    public void viewSyllabusItem(View view)
+    {
+        CustomAdapter adapter = (CustomAdapter) this.recyclerView.getAdapter();
     }
 }

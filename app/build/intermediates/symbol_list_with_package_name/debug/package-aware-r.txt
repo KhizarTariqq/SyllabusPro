@@ -2641,6 +2641,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id button
 id buttonPanel
 id cache_measures
 id calendar_toolbar
@@ -2770,7 +2771,6 @@ id item1
 id item2
 id item3
 id item4
-id item_age
 id item_name
 id item_touch_helper_previous_elevation
 id jumpToEnd
@@ -3269,6 +3269,7 @@ string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
+string course_item_button
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior

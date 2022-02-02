@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
@@ -42,9 +43,15 @@ public class ManageFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.recyclerView);
         CustomAdapter adapter = new CustomAdapter(courseList);
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+             mLayoutManager.getOrientation());
+        recyclerView.addItemDecoration(mDividerItemDecoration);
+
         // recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(mLayoutManager);
 
         return root;
     }

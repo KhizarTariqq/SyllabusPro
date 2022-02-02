@@ -2640,6 +2640,7 @@ int id bounce 0x7f080062
 int id bounceBoth 0x7f080063
 int id bounceEnd 0x7f080064
 int id bounceStart 0x7f080065
+int id button 0x7f0801f4
 int id buttonPanel 0x7f080066
 int id cache_measures 0x7f080067
 int id calendar_toolbar 0x7f080068
@@ -2769,7 +2770,6 @@ int id item1 0x7f0800e3
 int id item2 0x7f0800e4
 int id item3 0x7f0800e5
 int id item4 0x7f0800e6
-int id item_age 0x7f0800e7
 int id item_name 0x7f0800e8
 int id item_touch_helper_previous_elevation 0x7f0800e9
 int id jumpToEnd 0x7f0800ea
@@ -3268,6 +3268,7 @@ int string character_counter_overflowed_content_description 0x7f110024
 int string character_counter_pattern 0x7f110025
 int string chip_text 0x7f110026
 int string clear_text_end_icon_content_description 0x7f110027
+int string course_item_button 0x7f11008f
 int string error_icon_content_description 0x7f110028
 int string exposed_dropdown_menu_content_description 0x7f110029
 int string fab_transformation_scrim_behavior 0x7f11002a

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>
 {
     private ArrayList<Course> courseList = new ArrayList<Course>();
+    private Course selectedCourse;
 
     public CustomAdapter(ArrayList<Course> courseList)
     {
@@ -26,14 +27,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType)
     {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.text_row_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.course_row_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
         holder.name.setText(this.courseList.get(position).getName());
-        holder.age.setText(this.courseList.get(position).getName());
+        // holder.age.setText(this.courseList.get(position).getName());
     }
 
     @Override
@@ -49,7 +50,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         {
              super(itemView);
              name = itemView.findViewById(R.id.item_name);
-             age = itemView.findViewById(R.id.item_age);
+             // age = itemView.findViewById(R.id.item_age);
         }
+    }
+
+    public void setSelectedCourse(Course selectedCourse)
+    {
+        this.selectedCourse = selectedCourse;
+    }
+
+    public Course getSelectedCourse()
+    {
+        return this.selectedCourse;
     }
 }
