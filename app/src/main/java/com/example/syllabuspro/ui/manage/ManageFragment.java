@@ -45,13 +45,6 @@ public class ManageFragment extends Fragment {
         // recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false));
-        // final TextView textView = binding.textNotifications;
-        // manageViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-        //     @Override
-        //     public void onChanged(@Nullable String s) {
-        //         textView.setText(s);
-        //     }
-        // });
 
         return root;
     }

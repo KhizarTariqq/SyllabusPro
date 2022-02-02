@@ -51,5 +51,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
              name = itemView.findViewById(R.id.item_name);
              age = itemView.findViewById(R.id.item_age);
         }
-  }
+    }
 }

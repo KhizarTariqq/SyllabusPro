@@ -26,8 +26,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
-import com.example.navtest.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.navtest.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
     private ActivityMainBinding binding;
     private String directory;
     private RecyclerView recyclerView;
-    public static ArrayList <Course> courseList;
+    public static ArrayList <Course> courseList = new ArrayList<Course>();
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),

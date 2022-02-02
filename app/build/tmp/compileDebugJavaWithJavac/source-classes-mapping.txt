@@ -25,31 +25,31 @@ com/example/navtest/databinding/FragmentTasksBinding.java
  com.example.navtest.databinding.FragmentTasksBinding
 com/example/navtest/databinding/TextRowItemBinding.java
  com.example.navtest.databinding.TextRowItemBinding
-com/example/syllabuspro/Course.java
- com.example.syllabuspro.Course
-com/example/syllabuspro/ui/goals/HomeViewModel.java
- com.example.syllabuspro.ui.goals.HomeViewModel
-com/example/navtest/databinding/FragmentHomeBinding.java
- com.example.navtest.databinding.FragmentHomeBinding
-com/example/syllabuspro/UriUtils.java
- com.example.syllabuspro.UriUtils
-com/example/navtest/databinding/FragmentManageBinding.java
- com.example.navtest.databinding.FragmentManageBinding
-com/example/syllabuspro/ui/calendar/CalendarViewModel.java
- com.example.syllabuspro.ui.calendar.CalendarViewModel
-com/example/syllabuspro/ui/calendar/CalendarFragment.java
- com.example.syllabuspro.ui.calendar.CalendarFragment
-com/example/syllabuspro/CustomAdapter.java
- com.example.syllabuspro.CustomAdapter
- com.example.syllabuspro.CustomAdapter$ViewHolder
 com/example/syllabuspro/Goal.java
  com.example.syllabuspro.Goal
 com/example/syllabuspro/Deadline.java
  com.example.syllabuspro.Deadline
  com.example.syllabuspro.Deadline$Alternative
+com/example/navtest/databinding/FragmentHomeBinding.java
+ com.example.navtest.databinding.FragmentHomeBinding
+com/example/syllabuspro/Course.java
+ com.example.syllabuspro.Course
+com/example/navtest/databinding/FragmentManageBinding.java
+ com.example.navtest.databinding.FragmentManageBinding
 com/example/syllabuspro/SyllabusItem.java
  com.example.syllabuspro.SyllabusItem
  com.example.syllabuspro.SyllabusItem$Type
+com/example/syllabuspro/ui/calendar/CalendarFragment.java
+ com.example.syllabuspro.ui.calendar.CalendarFragment
+com/example/syllabuspro/ui/goals/HomeViewModel.java
+ com.example.syllabuspro.ui.goals.HomeViewModel
+com/example/syllabuspro/UriUtils.java
+ com.example.syllabuspro.UriUtils
+com/example/syllabuspro/ui/calendar/CalendarViewModel.java
+ com.example.syllabuspro.ui.calendar.CalendarViewModel
+com/example/syllabuspro/CustomAdapter.java
+ com.example.syllabuspro.CustomAdapter
+ com.example.syllabuspro.CustomAdapter$ViewHolder
 com/example/syllabuspro/ui/manage/ManageFragment.java
  com.example.syllabuspro.ui.manage.ManageFragment
 com/example/syllabuspro/MainActivity.java
