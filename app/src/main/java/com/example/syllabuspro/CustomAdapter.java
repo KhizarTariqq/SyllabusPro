@@ -56,6 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public void setSelectedCourse(Course selectedCourse)
     {
+        Log.d("view items 2", selectedCourse.toString());
         this.selectedCourse = selectedCourse;
     }
 

@@ -12,8 +12,12 @@
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\text_row_item.xml",
-        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\text_row_item.xml"
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_items_view.xml",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_items_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\course_row_item.xml",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\course_row_item.xml"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_calendar.xml",

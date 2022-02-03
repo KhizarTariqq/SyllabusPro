@@ -494,8 +494,9 @@ public class MainActivity extends AppCompatActivity
         // Update RecyclerView
         this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
-        adapter.notifyDataSetChanged();
         adapter.setSelectedCourse(course);
+        adapter.notifyDataSetChanged();
+        adapter.
     }
 
     public void addTask(View view)
@@ -516,6 +517,23 @@ public class MainActivity extends AppCompatActivity
 
     public void viewSyllabusItem(View view)
     {
-        CustomAdapter adapter = (CustomAdapter) this.recyclerView.getAdapter();
+
+        this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
+        int itemPosition = this.recyclerView.getChildAdapterPosition()
+                ;
+
+        CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+
+        // Log.d("view items", String.valueOf(adapter.getSelectedCourse()));
+
+        Log.d("new method", Integer.toString(itemPosition));
+        ArrayList<SyllabusItem> syllabusItems = courseList.get(itemPosition).getSyllabusItems();
+        // add new fragment for items
+        ItemsViewFragment nextFrag= new ItemsViewFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, nextFrag, "findThisFragment")
+                .addToBackStack(null)
+                .commit();
+
     }
 }

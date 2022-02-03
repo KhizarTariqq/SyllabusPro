@@ -1,15 +1,15 @@
 [
     {
-        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\drawable_ic_launcher_background.xml.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.webp.flat",
@@ -18,10 +18,6 @@
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.webp"
-    },
-    {
-        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_text_row_item.xml.flat",
-        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\text_row_item.xml"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
@@ -34,6 +30,10 @@
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_notifications.xml.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
+    },
+    {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_course_row_item.xml.flat",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\course_row_item.xml"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.webp.flat",
@@ -70,6 +70,10 @@
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_tasks.xml.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_tasks.xml"
+    },
+    {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_items_view.xml.flat",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_items_view.xml"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_dashboard.xml.flat",
