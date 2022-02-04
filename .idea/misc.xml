@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/blank_fragment.xml" value="0.36231884057971014" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/course_row_item.xml" value="0.36231884057971014" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_calendar.xml" value="0.15572916666666667" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_dashboard.xml" value="0.15572916666666667" />
@@ -12,6 +13,8 @@
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_manage.xml" value="0.23837209302325582" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_syllabus_items.xml" value="0.36231884057971014" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_tasks.xml" value="0.22" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/items_view_fragment.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/task_view_fragment.xml" value="0.36231884057971014" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/text_row_item.xml" value="0.5" />
       </map>
     </option>

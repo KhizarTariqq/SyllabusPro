@@ -1,4 +1,5 @@
 package com.example.syllabuspro;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -23,6 +24,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
@@ -496,7 +498,6 @@ public class MainActivity extends AppCompatActivity
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
         adapter.setSelectedCourse(course);
         adapter.notifyDataSetChanged();
-        adapter.
     }
 
     public void addTask(View view)
@@ -519,19 +520,37 @@ public class MainActivity extends AppCompatActivity
     {
 
         this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
-        int itemPosition = this.recyclerView.getChildAdapterPosition()
-                ;
+        // int itemPosition = this.recyclerView.getChildAdapterPosition();
 
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+        TextView item_name = binding.getRoot().findViewById(R.id.item_name);
+        String courseName = (String) item_name.getText();
 
+        ArrayList<SyllabusItem> itemsList = null;
+        for (Course course : courseList)
+        {
+            if (course.getName().equals(courseName))
+            {
+                itemsList = course.getSyllabusItems();
+            }
+        }
+
+        Log.d("new method", courseName);
         // Log.d("view items", String.valueOf(adapter.getSelectedCourse()));
 
-        Log.d("new method", Integer.toString(itemPosition));
-        ArrayList<SyllabusItem> syllabusItems = courseList.get(itemPosition).getSyllabusItems();
+        // Log.d("new method", Integer.toString(itemPosition));
+        // ArrayList<SyllabusItem> syllabusItems = courseList.get(itemPosition).getSyllabusItems();
         // add new fragment for items
-        ItemsViewFragment nextFrag= new ItemsViewFragment();
+
+        ItemsViewFragment itemsViewFragment= new ItemsViewFragment();
+        // itemsViewFragment.setItemsList(itemsList);
+
+
+        // Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbar);
+        // toolbar.setTitle("Syllabus items for " + courseName);
+        // getSupportActionBar().setTitle("Syllabus items for " + courseName);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, nextFrag, "findThisFragment")
+                .replace(R.id.container, itemsViewFragment, "findThisFragment")
                 .addToBackStack(null)
                 .commit();
 

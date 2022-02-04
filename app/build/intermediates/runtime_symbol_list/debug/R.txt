@@ -2793,6 +2793,7 @@ int id linear 0x7f0800f3
 int id listMode 0x7f0800f4
 int id list_item 0x7f0800f5
 int id manage_toolbar 0x7f0800f6
+int id manage_toolbarz 0x7f0801fb
 int id masked 0x7f0800f7
 int id match_constraint 0x7f0800f8
 int id match_parent 0x7f0800f9
@@ -3135,6 +3136,7 @@ int layout abc_search_view 0x7f0b0019
 int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
 int layout activity_main 0x7f0b001c
+int layout blank_fragment 0x7f0b0087
 int layout course_row_item 0x7f0b007c
 int layout custom_dialog 0x7f0b001d
 int layout design_bottom_navigation_item 0x7f0b001e
@@ -3156,10 +3158,10 @@ int layout fragment_calendar 0x7f0b002d
 int layout fragment_dashboard 0x7f0b002e
 int layout fragment_goals 0x7f0b002f
 int layout fragment_home 0x7f0b0030
-int layout fragment_items_view 0x7f0b007d
 int layout fragment_manage 0x7f0b0031
 int layout fragment_notifications 0x7f0b0032
 int layout fragment_tasks 0x7f0b0033
+int layout items_view_fragment 0x7f0b0088
 int layout m3_alert_dialog 0x7f0b0034
 int layout m3_alert_dialog_actions 0x7f0b0035
 int layout m3_alert_dialog_title 0x7f0b0036

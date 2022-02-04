@@ -1,27 +1,47 @@
 package com.example.syllabuspro;
 
+import android.util.Log;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.navtest.R;
+import com.example.navtest.databinding.ItemsViewFragmentBinding;
+
+public class ItemsViewFragment extends Fragment {
+
+    private ItemsViewViewModel mViewModel;
+    private ItemsViewFragmentBinding binding;
 
 
-public class ItemsViewFragment extends Fragment
-{
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
+    public static ItemsViewFragment newInstance() {
+        return new ItemsViewFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState)
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_items_view, container, false);
+        Log.d("New fragment", "testing");
+        binding = ItemsViewFragmentBinding.inflate(inflater, container, false);
+        Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbarz);
+        toolbar.setTitle("Syllabus items for " + "TestCourse");
+
+        // return inflater.inflate(R.layout.items_view_fragment, container, false);
+        return binding.getRoot();
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(ItemsViewViewModel.class);
+        // TODO: Use the ViewModel
+    }
+
 }

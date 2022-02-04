@@ -2794,6 +2794,7 @@ id linear
 id listMode
 id list_item
 id manage_toolbar
+id manage_toolbarz
 id masked
 id match_constraint
 id match_parent
@@ -3136,6 +3137,7 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout blank_fragment
 layout course_row_item
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3157,10 +3159,10 @@ layout fragment_calendar
 layout fragment_dashboard
 layout fragment_goals
 layout fragment_home
-layout fragment_items_view
 layout fragment_manage
 layout fragment_notifications
 layout fragment_tasks
+layout items_view_fragment
 layout m3_alert_dialog
 layout m3_alert_dialog_actions
 layout m3_alert_dialog_title

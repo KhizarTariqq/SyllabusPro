@@ -45,6 +45,7 @@ public class ManageFragment extends Fragment {
         CustomAdapter adapter = new CustomAdapter(courseList);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+        // Add border between items
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
              mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(mDividerItemDecoration);
