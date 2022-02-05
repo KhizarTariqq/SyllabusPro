@@ -48,9 +48,44 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         TextView name, age;
         public ViewHolder(@NonNull View itemView)
         {
-             super(itemView);
-             name = itemView.findViewById(R.id.item_name);
-             // age = itemView.findViewById(R.id.item_age);
+            super(itemView);
+            name = itemView.findViewById(R.id.item_name);
+            itemView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    TextView textView = itemView.findViewById(R.id.item_name);
+                    String courseName = textView.getText().toString();
+                    // Get syllabus items for course
+
+                    ArrayList<SyllabusItem> itemsList = null;
+                    for (Course course : courseList)
+                    {
+                        if (course.getName().equals(courseName))
+                        {
+                            itemsList = course.getSyllabusItems();
+                        }
+                    }
+
+
+                    Log.d("new method", "" + name);
+                    Log.d("new method", String.valueOf(name));
+
+                    // search to items list and so course name
+                    ItemsViewFragment fragment = new ItemsViewFragment();
+                    fragment.setItemsList(itemsList);
+                    fragment.setCourseName(courseName);
+
+                    // start new fragment
+                    // MainActivity.setFragmentManager();
+                    MainActivity.fragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment, "findThisFragment")
+                            .addToBackStack(null)
+                            .commit();
+
+                }
+            });
         }
     }
 
@@ -63,5 +98,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     public Course getSelectedCourse()
     {
         return this.selectedCourse;
+    }
+
+    public void getPosition()
+    {
+        // int pos = this.
+        // recyclerView.getFocusedChild().;
+
+        // Get correct course name
+        // Log.d("position: ", String.valueOf(pos));
     }
 }

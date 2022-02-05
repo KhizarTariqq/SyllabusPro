@@ -27,6 +27,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity
     public static ArrayList <Course> courseList = new ArrayList<Course>();
     public static ArrayList <Task> taskList = new ArrayList<Task>();
     public static ArrayList <Goal> goalList = new ArrayList<Goal>();
+
+    public static FragmentManager fragmentManager;
 
     ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
     ArrayAdapter<CharSequence> adapter;
@@ -128,6 +131,9 @@ public class MainActivity extends AppCompatActivity
             goalList = (ArrayList<Goal>) getArrayList("goals");
             Log.d("first: goals", goalList.toString());
         }
+
+
+        fragmentManager = getSupportFragmentManager();
 
         super.onCreate(savedInstanceState);
 
@@ -565,12 +571,26 @@ public class MainActivity extends AppCompatActivity
         Log.d("in method", courseList.toString());
         saveArrayList(courseList, "courses");
 
+        Log.d("in method", txt.getText().toString());
+        Button button = binding.getRoot().findViewById(R.id.button);
+        button.setTag(txt.getText().toString());
+
+        Log.d("new method", button.getTag().toString());
 
         // Update RecyclerView
         this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
         adapter.setSelectedCourse(course);
         adapter.notifyDataSetChanged();
+
+
+
+    }
+
+    public void setButtonText()
+    {
+        Button button = binding.getRoot().findViewById(R.id.button);
+        button.setTag(txt.getText().toString());
     }
 
     public void addTask(View view)
@@ -593,11 +613,17 @@ public class MainActivity extends AppCompatActivity
     {
 
         this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
+        Button b = (Button) view;
+        // Log.d("new task", view.getId().);
+        // Log.d("new task", view.getTag().toString());
 
+        String name = (String) b.getText();
+        // String name = (String) view.getTag();
         // Get course name
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+
         TextView item_name = binding.getRoot().findViewById(R.id.item_name);
-        String courseName = (String) item_name.getText();
+        String courseName = (String) item_name.getTag();
 
         // Get syllabus items for course
         ArrayList<SyllabusItem> itemsList = null;
@@ -609,18 +635,20 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
-        Log.d("new method", courseName);
+
+        Log.d("new method", "" + name);
+        Log.d("new method", String.valueOf(name));
 
         // search to items list and so course name
         ItemsViewFragment itemsViewFragment = new ItemsViewFragment();
         itemsViewFragment.setItemsList(itemsList);
-        itemsViewFragment.setCourseName(courseName);
+        itemsViewFragment.setCourseName(name);
 
         // start new fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, itemsViewFragment, "findThisFragment")
-                .addToBackStack(null)
-                .commit();
+        // getSupportFragmentManager().beginTransaction()
+        //         .replace(R.id.container, itemsViewFragment, "findThisFragment")
+        //         .addToBackStack(null)
+        //         .commit();
 
     }
 }

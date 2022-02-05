@@ -56,4 +56,5 @@ public class ItemsViewFragment extends Fragment {
     {
         this.courseName = courseName;
     }
+
 }
