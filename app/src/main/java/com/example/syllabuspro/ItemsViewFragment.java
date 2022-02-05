@@ -13,11 +13,14 @@ import android.view.ViewGroup;
 import com.example.navtest.R;
 import com.example.navtest.databinding.ItemsViewFragmentBinding;
 
+import java.util.ArrayList;
+
 public class ItemsViewFragment extends Fragment {
 
     private ItemsViewViewModel mViewModel;
     private ItemsViewFragmentBinding binding;
-
+    private ArrayList<SyllabusItem> itemsList;
+    private String courseName;
 
     public static ItemsViewFragment newInstance() {
         return new ItemsViewFragment();
@@ -30,7 +33,7 @@ public class ItemsViewFragment extends Fragment {
         Log.d("New fragment", "testing");
         binding = ItemsViewFragmentBinding.inflate(inflater, container, false);
         Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbarz);
-        toolbar.setTitle("Syllabus items for " + "TestCourse");
+        toolbar.setTitle("Syllabus items for " + this.courseName);
 
         // return inflater.inflate(R.layout.items_view_fragment, container, false);
         return binding.getRoot();
@@ -44,4 +47,13 @@ public class ItemsViewFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    public void setItemsList(ArrayList<SyllabusItem> itemsList)
+    {
+        this.itemsList = itemsList;
+    }
+
+    public void setCourseName(String courseName)
+    {
+        this.courseName = courseName;
+    }
 }

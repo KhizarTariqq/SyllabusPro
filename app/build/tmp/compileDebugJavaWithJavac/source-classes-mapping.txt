@@ -41,8 +41,8 @@ com/example/navtest/databinding/BlankFragmentBinding.java
  com.example.navtest.databinding.BlankFragmentBinding
 com/example/navtest/databinding/FragmentHomeBinding.java
  com.example.navtest.databinding.FragmentHomeBinding
-com/example/syllabuspro/ui/manage/ManageFragment.java
- com.example.syllabuspro.ui.manage.ManageFragment
+com/example/navtest/databinding/FragmentTasksBinding.java
+ com.example.navtest.databinding.FragmentTasksBinding
 com/example/navtest/databinding/CourseRowItemBinding.java
  com.example.navtest.databinding.CourseRowItemBinding
 com/example/navtest/databinding/FragmentManageBinding.java
@@ -56,11 +56,13 @@ com/example/syllabuspro/CustomAdapter.java
  com.example.syllabuspro.CustomAdapter$ViewHolder
 com/example/navtest/databinding/FragmentCalendarBinding.java
  com.example.navtest.databinding.FragmentCalendarBinding
-com/example/navtest/databinding/FragmentTasksBinding.java
- com.example.navtest.databinding.FragmentTasksBinding
 com/example/syllabuspro/ItemsViewFragment.java
  com.example.syllabuspro.ItemsViewFragment
+com/example/syllabuspro/ui/manage/ManageFragment.java
+ com.example.syllabuspro.ui.manage.ManageFragment
 com/example/syllabuspro/MainActivity.java
  com.example.syllabuspro.MainActivity
  com.example.syllabuspro.MainActivity$1
  com.example.syllabuspro.MainActivity$2
+ com.example.syllabuspro.MainActivity$3
+ com.example.syllabuspro.MainActivity$4

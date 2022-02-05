@@ -38,7 +38,6 @@ public class ManageFragment extends Fragment {
 
         Log.d("Manage fragment", "testing");
         // Initializing list view with the custom adapter
-        // ArrayList <Course> itemList = new ArrayList<Course>();
         this.courseList = MainActivity.courseList;
 
         recyclerView = root.findViewById(R.id.recyclerView);

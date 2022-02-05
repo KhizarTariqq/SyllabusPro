@@ -1,5 +1,6 @@
 package com.example.syllabuspro;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -8,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.*;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -22,8 +24,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
-import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,6 +53,10 @@ public class MainActivity extends AppCompatActivity
     public static ArrayList <Course> courseList = new ArrayList<Course>();
     public static ArrayList <Task> taskList = new ArrayList<Task>();
     public static ArrayList <Goal> goalList = new ArrayList<Goal>();
+
+    ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
+    ArrayAdapter<CharSequence> adapter;
+    EditText txt; // user input bar
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -358,14 +364,81 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void launchPDFSelector(View view) throws IOException, URISyntaxException
+    public void collectInput() throws IOException, URISyntaxException {
+        // convert edit text to string
+        String getInput = txt.getText().toString();
+
+        // ensure that user input bar is not empty
+        if (getInput ==null || getInput.trim().equals(""))
+        {
+            Toast.makeText(getBaseContext(), "Please add a group name", Toast.LENGTH_LONG).show();
+        }    // add input into an data collection arraylist
+
+        else
+        {
+            arrayListCollection.add(getInput);
+            // adapter.notifyDataSetChanged();
+        }
+
+        launchPDFSelector();
+    }
+
+    public void launchTextInput(View view) throws IOException, URISyntaxException
+    {
+        // Get course name
+        AlertDialog.Builder alertName = new AlertDialog.Builder(this);
+        final EditText editTextName1 = new EditText(MainActivity.this);
+        alertName.setTitle("Enter the course name: ");
+        // titles can be used regardless of a custom layout or not
+        alertName.setView(editTextName1);
+        LinearLayout layoutName = new LinearLayout(this);
+        layoutName.setOrientation(LinearLayout.VERTICAL);
+        layoutName.addView(editTextName1); // displays the user input bar
+        alertName.setView(layoutName);
+
+        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                txt = editTextName1; // variable to collect user input
+                try
+                {
+                    collectInput(); // analyze input (txt) in this method
+                }
+
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                }
+
+                catch (URISyntaxException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                dialog.cancel(); // closes dialog alertName.show() // display the dialog
+
+            }
+        });
+
+        alertName.show();
+    }
+
+    public void launchPDFSelector() throws IOException, URISyntaxException
     {
         /**
          * This is a click listener for the add course button,
          * this gets storage permission and then launches file selector
          */
         // Get storage permission
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
+        {
             if (Environment.isExternalStorageManager())
             {
                 mGetContent.launch("application/pdf");
@@ -396,7 +469,7 @@ public class MainActivity extends AppCompatActivity
          * syllabus items to the course.
          */
 
-        Course course = new Course("MAT232");
+        Course course = new Course(txt.getText().toString());
         courseList.add(course);
 
         // begin deadline process
@@ -520,12 +593,13 @@ public class MainActivity extends AppCompatActivity
     {
 
         this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
-        // int itemPosition = this.recyclerView.getChildAdapterPosition();
 
+        // Get course name
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
         TextView item_name = binding.getRoot().findViewById(R.id.item_name);
         String courseName = (String) item_name.getText();
 
+        // Get syllabus items for course
         ArrayList<SyllabusItem> itemsList = null;
         for (Course course : courseList)
         {
@@ -536,19 +610,13 @@ public class MainActivity extends AppCompatActivity
         }
 
         Log.d("new method", courseName);
-        // Log.d("view items", String.valueOf(adapter.getSelectedCourse()));
 
-        // Log.d("new method", Integer.toString(itemPosition));
-        // ArrayList<SyllabusItem> syllabusItems = courseList.get(itemPosition).getSyllabusItems();
-        // add new fragment for items
+        // search to items list and so course name
+        ItemsViewFragment itemsViewFragment = new ItemsViewFragment();
+        itemsViewFragment.setItemsList(itemsList);
+        itemsViewFragment.setCourseName(courseName);
 
-        ItemsViewFragment itemsViewFragment= new ItemsViewFragment();
-        // itemsViewFragment.setItemsList(itemsList);
-
-
-        // Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbar);
-        // toolbar.setTitle("Syllabus items for " + courseName);
-        // getSupportActionBar().setTitle("Syllabus items for " + courseName);
+        // start new fragment
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, itemsViewFragment, "findThisFragment")
                 .addToBackStack(null)
