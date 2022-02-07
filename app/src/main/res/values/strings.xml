@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">nav test</string>
     <string name="title_calendar">Calendar</string>
-    <string name="title_manage">Manage</string>
+    <string name="title_courses">Courses</string>
     <string name="title_goals">Goals</string>
     <string name="title_tasks">Tasks</string>
     <string name="button_add_course">Add Course</string>

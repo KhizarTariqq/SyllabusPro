@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,7 +12,6 @@ import android.widget.*;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.RequiresApi;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -26,12 +24,10 @@ import android.util.Pair;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
-import com.example.syllabuspro.ui.manage.ManageFragment;
+import com.example.syllabuspro.ui.view_items.ItemsViewFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.navtest.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,13 +44,14 @@ import java.util.*;
 
 public class MainActivity extends AppCompatActivity
 {
-    private ActivityMainBinding binding;
+    public static ActivityMainBinding binding;
     private String directory;
     private RecyclerView recyclerView;
     public static ArrayList <Course> courseList = new ArrayList<Course>();
     public static ArrayList <Task> taskList = new ArrayList<Task>();
     public static ArrayList <Goal> goalList = new ArrayList<Goal>();
 
+    public static NavController navController;
     public static FragmentManager fragmentManager;
 
     ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
@@ -132,7 +129,6 @@ public class MainActivity extends AppCompatActivity
             Log.d("first: goals", goalList.toString());
         }
 
-
         fragmentManager = getSupportFragmentManager();
 
         super.onCreate(savedInstanceState);
@@ -146,11 +142,10 @@ public class MainActivity extends AppCompatActivity
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_calendar, R.id.navigation_goals, R.id.navigation_manage, R.id.navigation_tasks)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        this.navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
-
 
     public void saveArrayList(ArrayList<?> list, String key)
     {
@@ -568,29 +563,15 @@ public class MainActivity extends AppCompatActivity
             Log.d("testingtext", item.toString());
         }
 
-        Log.d("in method", courseList.toString());
         saveArrayList(courseList, "courses");
 
-        Log.d("in method", txt.getText().toString());
-        Button button = binding.getRoot().findViewById(R.id.button);
+        Button button = binding.getRoot().findViewById(R.id.open_items_button);
         button.setTag(txt.getText().toString());
-
-        Log.d("new method", button.getTag().toString());
 
         // Update RecyclerView
         this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
         CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
-        adapter.setSelectedCourse(course);
         adapter.notifyDataSetChanged();
-
-
-
-    }
-
-    public void setButtonText()
-    {
-        Button button = binding.getRoot().findViewById(R.id.button);
-        button.setTag(txt.getText().toString());
     }
 
     public void addTask(View view)
@@ -609,46 +590,5 @@ public class MainActivity extends AppCompatActivity
         goalList.add(goal);
     }
 
-    public void viewSyllabusItem(View view)
-    {
 
-        this.recyclerView = binding.getRoot().findViewById(R.id.recyclerView);
-        Button b = (Button) view;
-        // Log.d("new task", view.getId().);
-        // Log.d("new task", view.getTag().toString());
-
-        String name = (String) b.getText();
-        // String name = (String) view.getTag();
-        // Get course name
-        CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
-
-        TextView item_name = binding.getRoot().findViewById(R.id.item_name);
-        String courseName = (String) item_name.getTag();
-
-        // Get syllabus items for course
-        ArrayList<SyllabusItem> itemsList = null;
-        for (Course course : courseList)
-        {
-            if (course.getName().equals(courseName))
-            {
-                itemsList = course.getSyllabusItems();
-            }
-        }
-
-
-        Log.d("new method", "" + name);
-        Log.d("new method", String.valueOf(name));
-
-        // search to items list and so course name
-        ItemsViewFragment itemsViewFragment = new ItemsViewFragment();
-        itemsViewFragment.setItemsList(itemsList);
-        itemsViewFragment.setCourseName(name);
-
-        // start new fragment
-        // getSupportFragmentManager().beginTransaction()
-        //         .replace(R.id.container, itemsViewFragment, "findThisFragment")
-        //         .addToBackStack(null)
-        //         .commit();
-
-    }
 }

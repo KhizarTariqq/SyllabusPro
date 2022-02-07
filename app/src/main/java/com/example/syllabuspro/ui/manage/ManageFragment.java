@@ -36,7 +36,6 @@ public class ManageFragment extends Fragment {
         binding = FragmentManageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Log.d("Manage fragment", "testing");
         // Initializing list view with the custom adapter
         this.courseList = MainActivity.courseList;
 
@@ -44,12 +43,13 @@ public class ManageFragment extends Fragment {
         CustomAdapter adapter = new CustomAdapter(courseList);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+
         // Add border between items
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
              mLayoutManager.getOrientation());
         recyclerView.addItemDecoration(mDividerItemDecoration);
 
-        // recyclerView.setHasFixedSize(true);
+        // Add adapter and layout
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(mLayoutManager);
 

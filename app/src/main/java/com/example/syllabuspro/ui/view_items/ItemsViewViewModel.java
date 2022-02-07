@@ -1,4 +1,4 @@
-package com.example.syllabuspro;
+package com.example.syllabuspro.ui.view_items;
 
 import androidx.lifecycle.ViewModel;
 

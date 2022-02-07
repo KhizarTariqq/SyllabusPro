@@ -2485,8 +2485,12 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_action_name
+drawable ic_calendar
 drawable ic_clock_black_24dp
+drawable ic_courses
 drawable ic_dashboard_black_24dp
+drawable ic_goals
 drawable ic_home_black_24dp
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_background
@@ -2499,6 +2503,7 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_notifications_black_24dp
+drawable ic_tasks
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -2647,7 +2652,6 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
-id button
 id buttonPanel
 id cache_measures
 id calendar_toolbar
@@ -2868,6 +2872,7 @@ id navigation_goals
 id navigation_header_container
 id navigation_manage
 id navigation_tasks
+id navigation_view_items
 id never
 id neverCompleteToEnd
 id neverCompleteToStart
@@ -2882,6 +2887,7 @@ id notification_main_column_container
 id off
 id on
 id onInterceptTouchReturnSwipe
+id open_items_button
 id outline
 id outward
 id overshoot
@@ -3392,8 +3398,8 @@ string path_password_strike_through
 string search_menu_title
 string status_bar_notification_info_overflow
 string title_calendar
+string title_courses
 string title_goals
-string title_manage
 string title_tasks
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light

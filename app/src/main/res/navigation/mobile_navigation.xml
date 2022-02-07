@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/navigation_manage"
         android:name="com.example.syllabuspro.ui.manage.ManageFragment"
-        android:label="@string/title_manage"
+        android:label="@string/title_courses"
         tools:layout="@layout/fragment_manage" />
 
     <fragment
@@ -28,4 +28,10 @@
         android:name="com.example.syllabuspro.ui.tasks.TasksFragment"
         android:label="@string/title_tasks"
         tools:layout="@layout/fragment_tasks" />
+
+    <fragment
+        android:id="@+id/navigation_view_items"
+        android:name="com.example.syllabuspro.ui.view_items.ItemsViewFragment"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/items_view_fragment" />
 </navigation>

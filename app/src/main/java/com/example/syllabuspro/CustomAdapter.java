@@ -2,6 +2,8 @@ package com.example.syllabuspro;
 
 import android.util.Log;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 // import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,13 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.example.navtest.R;
+import com.example.syllabuspro.ui.view_items.ItemsViewFragment;
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
+
+import static com.example.syllabuspro.MainActivity.fragmentManager;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>
 {
     private ArrayList<Course> courseList = new ArrayList<Course>();
-    private Course selectedCourse;
 
     public CustomAdapter(ArrayList<Course> courseList)
     {
@@ -45,12 +49,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView name, age;
+        TextView name;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
             name = itemView.findViewById(R.id.item_name);
-            itemView.findViewById(R.id.button).setOnClickListener(new View.OnClickListener()
+            itemView.findViewById(R.id.open_items_button).setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
@@ -68,44 +72,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                         }
                     }
 
-
-                    Log.d("new method", "" + name);
-                    Log.d("new method", String.valueOf(name));
-
                     // search to items list and so course name
-                    ItemsViewFragment fragment = new ItemsViewFragment();
-                    fragment.setItemsList(itemsList);
-                    fragment.setCourseName(courseName);
+                    RecyclerView recyclerView = MainActivity.binding.getRoot().findViewById(R.id.recyclerView);
+                    recyclerView.setTag(courseName);
 
                     // start new fragment
-                    // MainActivity.setFragmentManager();
-                    MainActivity.fragmentManager.beginTransaction()
-                            .replace(R.id.container, fragment, "findThisFragment")
-                            .addToBackStack(null)
-                            .commit();
-
+                    Navigation.findNavController(view).navigate(R.id.navigation_view_items);
                 }
             });
         }
-    }
-
-    public void setSelectedCourse(Course selectedCourse)
-    {
-        Log.d("view items 2", selectedCourse.toString());
-        this.selectedCourse = selectedCourse;
-    }
-
-    public Course getSelectedCourse()
-    {
-        return this.selectedCourse;
-    }
-
-    public void getPosition()
-    {
-        // int pos = this.
-        // recyclerView.getFocusedChild().;
-
-        // Get correct course name
-        // Log.d("position: ", String.valueOf(pos));
     }
 }

@@ -1,7 +1,8 @@
-package com.example.syllabuspro;
+package com.example.syllabuspro.ui.view_items;
 
 import android.util.Log;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -10,8 +11,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
 import com.example.navtest.databinding.ItemsViewFragmentBinding;
+import com.example.syllabuspro.CustomAdapter;
+import com.example.syllabuspro.MainActivity;
+import com.example.syllabuspro.SyllabusItem;
 
 import java.util.ArrayList;
 
@@ -30,12 +35,20 @@ public class ItemsViewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        Log.d("New fragment", "testing");
         binding = ItemsViewFragmentBinding.inflate(inflater, container, false);
         Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbarz);
-        toolbar.setTitle("Syllabus items for " + this.courseName);
+        RecyclerView recyclerView = container.findViewById(R.id.recyclerView);
+        String courseName = (String) recyclerView.getTag();
 
-        // return inflater.inflate(R.layout.items_view_fragment, container, false);
+        toolbar.setTitle(courseName + " syllabus items");
+        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                MainActivity.fragmentManager.popBackStackImmediate();
+            }
+        });
         return binding.getRoot();
     }
 
@@ -56,5 +69,6 @@ public class ItemsViewFragment extends Fragment {
     {
         this.courseName = courseName;
     }
+
 
 }
