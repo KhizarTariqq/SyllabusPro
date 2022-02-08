@@ -1,8 +1,8 @@
 package com.example.syllabuspro.ui.view_items;
 
 import android.util.Log;
+import android.util.Pair;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
 import com.example.navtest.databinding.ItemsViewFragmentBinding;
-import com.example.syllabuspro.CustomAdapter;
+import com.example.syllabuspro.adapters.ItemsAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.SyllabusItem;
 
@@ -37,18 +39,41 @@ public class ItemsViewFragment extends Fragment {
     {
         binding = ItemsViewFragmentBinding.inflate(inflater, container, false);
         Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbarz);
-        RecyclerView recyclerView = container.findViewById(R.id.recyclerView);
-        String courseName = (String) recyclerView.getTag();
 
-        toolbar.setTitle(courseName + " syllabus items");
+        // get items list
+        RecyclerView courseRecyclerView = container.findViewById(R.id.recyclerView);
+        Pair<String, ArrayList<SyllabusItem>> pair = (Pair<String, ArrayList<SyllabusItem>>) courseRecyclerView.getTag();
+
+        this.itemsList = pair.second;
+        for (SyllabusItem item : this.itemsList)
+        {
+            Log.d("new", item.toString());
+        }
+
+        // set toolbar name and back arrow
+        toolbar.setTitle(pair.first + " syllabus items");
         toolbar.setNavigationIcon(R.drawable.ic_action_name);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v)
             {
                 MainActivity.fragmentManager.popBackStackImmediate();
             }
         });
+
+        RecyclerView itemsRecyclerView = binding.getRoot().findViewById(R.id.items_recyclerView);
+        ItemsAdapter adapter = new ItemsAdapter(this.itemsList);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+
+        // Add border between items
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(itemsRecyclerView.getContext(),
+             mLayoutManager.getOrientation());
+        itemsRecyclerView.addItemDecoration(mDividerItemDecoration);
+
+        // Add adapter and layout
+        itemsRecyclerView.setAdapter(adapter);
+        itemsRecyclerView.setLayoutManager(mLayoutManager);
         return binding.getRoot();
     }
 

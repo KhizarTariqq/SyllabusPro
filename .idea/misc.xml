@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/drawable-anydpi/ic_action_name.xml" value="0.20625" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/drawable-anydpi/ic_calendar.xml" value="0.20625" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/drawable-anydpi/ic_courses.xml" value="0.20625" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/drawable-anydpi/ic_goals.xml" value="0.20625" />
@@ -19,7 +20,10 @@
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_manage.xml" value="0.33" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_syllabus_items.xml" value="0.36231884057971014" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/fragment_tasks.xml" value="0.22" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/goal_row_item.xml" value="0.1890625" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/item_row_item.xml" value="0.1890625" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/items_view_fragment.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/task_row_item.xml" value="0.1890625" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/task_view_fragment.xml" value="0.36231884057971014" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/text_row_item.xml" value="0.5" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2046875" />

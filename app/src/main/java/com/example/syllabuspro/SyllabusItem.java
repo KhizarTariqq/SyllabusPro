@@ -53,6 +53,6 @@ public class SyllabusItem {
 
     public String toString()
     {
-        return "Name: " + name + " Type: " + this.type.name() + " Deadline: " + this.deadline + " Weight: " + Integer.toString(weight);
+        return "Name: " + name + "," + " Type: " + this.type.name() + "," + " Deadline: " + this.deadline + "," + " Weight: " + Integer.toString(weight);
     }
 }

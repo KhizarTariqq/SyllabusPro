@@ -2690,6 +2690,7 @@ int id continuousVelocity 0x7f08008a
 int id coordinator 0x7f08008b
 int id cos 0x7f08008c
 int id counterclockwise 0x7f08008d
+int id course_item_name 0x7f0801fc
 int id currentState 0x7f08008e
 int id custom 0x7f08008f
 int id customPanel 0x7f080090
@@ -2784,6 +2785,7 @@ int id item3 0x7f0800e8
 int id item4 0x7f0800e9
 int id item_name 0x7f0800ea
 int id item_touch_helper_previous_elevation 0x7f0800eb
+int id items_recyclerView 0x7f0801fb
 int id jumpToEnd 0x7f0800ec
 int id jumpToStart 0x7f0800ed
 int id labeled 0x7f0800ee
@@ -3005,8 +3007,6 @@ int id textSpacerNoButtons 0x7f0801c5
 int id textSpacerNoTitle 0x7f0801c6
 int id textStart 0x7f0801c7
 int id textTop 0x7f0801c8
-int id text_dashboard 0x7f0801c9
-int id text_home 0x7f0801ca
 int id text_input_end_icon 0x7f0801cb
 int id text_input_error_icon 0x7f0801cc
 int id text_input_start_icon 0x7f0801cd
@@ -3142,7 +3142,6 @@ int layout abc_search_view 0x7f0b0019
 int layout abc_select_dialog_material 0x7f0b001a
 int layout abc_tooltip 0x7f0b001b
 int layout activity_main 0x7f0b001c
-int layout blank_fragment 0x7f0b001d
 int layout course_row_item 0x7f0b001e
 int layout custom_dialog 0x7f0b001f
 int layout design_bottom_navigation_item 0x7f0b0020
@@ -3161,12 +3160,12 @@ int layout design_navigation_menu_item 0x7f0b002c
 int layout design_text_input_end_icon 0x7f0b002d
 int layout design_text_input_start_icon 0x7f0b002e
 int layout fragment_calendar 0x7f0b002f
-int layout fragment_dashboard 0x7f0b0030
 int layout fragment_goals 0x7f0b0031
-int layout fragment_home 0x7f0b0032
 int layout fragment_manage 0x7f0b0033
 int layout fragment_notifications 0x7f0b0034
 int layout fragment_tasks 0x7f0b0035
+int layout goal_row_item 0x7f0b0088
+int layout item_row_item 0x7f0b0087
 int layout items_view_fragment 0x7f0b0036
 int layout m3_alert_dialog 0x7f0b0037
 int layout m3_alert_dialog_actions 0x7f0b0038
@@ -3233,6 +3232,7 @@ int layout select_dialog_item_material 0x7f0b0074
 int layout select_dialog_multichoice_material 0x7f0b0075
 int layout select_dialog_singlechoice_material 0x7f0b0076
 int layout support_simple_spinner_dropdown_item 0x7f0b0077
+int layout task_row_item 0x7f0b0089
 int layout test_action_chip 0x7f0b0078
 int layout test_chip_zero_corner_radius 0x7f0b0079
 int layout test_design_checkbox 0x7f0b007a

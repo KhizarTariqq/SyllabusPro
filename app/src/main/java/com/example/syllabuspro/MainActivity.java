@@ -27,7 +27,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.navtest.R;
-import com.example.syllabuspro.ui.view_items.ItemsViewFragment;
+import com.example.syllabuspro.adapters.CustomAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.navtest.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
