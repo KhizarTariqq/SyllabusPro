@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.navtest.R;
+import com.example.syllabuspro.R;
 import com.example.syllabuspro.Course;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.SyllabusItem;

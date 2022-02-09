@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.navtest.R;
-import com.example.navtest.databinding.ItemsViewFragmentBinding;
+import com.example.syllabuspro.R;
 import com.example.syllabuspro.adapters.ItemsAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.SyllabusItem;
+import com.example.syllabuspro.databinding.ItemsViewFragmentBinding;
 
 import java.util.ArrayList;
 

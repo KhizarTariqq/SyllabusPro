@@ -4,23 +4,6 @@
             "outputFile": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-ca\\values-ca.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\56442dbac01c176803152a59cf1c1ae9\\transformed\\navigation-ui-2.3.5\\res\\values-ca\\values-ca.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,166",
-                        "endColumns": "110,121",
-                        "endOffsets": "161,283"
-                    },
-                    "to": {
-                        "startLines": "86,87",
-                        "startColumns": "4,4",
-                        "startOffsets": "7417,7528",
-                        "endColumns": "110,121",
-                        "endOffsets": "7523,7645"
-                    }
-                },
-                {
                     "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\107b48ead489d4dd0a48badb09d9592d\\transformed\\core-1.7.0\\res\\values-ca\\values-ca.xml",
                     "from": {
                         "startLines": "2",
@@ -35,6 +18,23 @@
                         "startOffsets": "7818",
                         "endColumns": "100",
                         "endOffsets": "7914"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\12527c1e32019419477b775acdfa43e9\\transformed\\navigation-ui-2.4.0\\res\\values-ca\\values-ca.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,166",
+                        "endColumns": "110,121",
+                        "endOffsets": "161,283"
+                    },
+                    "to": {
+                        "startLines": "86,87",
+                        "startColumns": "4,4",
+                        "startOffsets": "7417,7528",
+                        "endColumns": "110,121",
+                        "endOffsets": "7523,7645"
                     }
                 },
                 {

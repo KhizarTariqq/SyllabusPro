@@ -40,23 +40,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\56442dbac01c176803152a59cf1c1ae9\\transformed\\navigation-ui-2.3.5\\res\\values-tl\\values-tl.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,169",
-                        "endColumns": "113,122",
-                        "endOffsets": "164,287"
-                    },
-                    "to": {
-                        "startLines": "86,87",
-                        "startColumns": "4,4",
-                        "startOffsets": "7440,7554",
-                        "endColumns": "113,122",
-                        "endOffsets": "7549,7672"
-                    }
-                },
-                {
                     "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\107b48ead489d4dd0a48badb09d9592d\\transformed\\core-1.7.0\\res\\values-tl\\values-tl.xml",
                     "from": {
                         "startLines": "2",
@@ -71,6 +54,23 @@
                         "startOffsets": "7847",
                         "endColumns": "100",
                         "endOffsets": "7943"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\WhatsAnOutside\\AndroidStudioProjects\\SyllabusPro\\caches\\transforms-3\\12527c1e32019419477b775acdfa43e9\\transformed\\navigation-ui-2.4.0\\res\\values-tl\\values-tl.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,169",
+                        "endColumns": "113,122",
+                        "endOffsets": "164,287"
+                    },
+                    "to": {
+                        "startLines": "86,87",
+                        "startColumns": "4,4",
+                        "startOffsets": "7440,7554",
+                        "endColumns": "113,122",
+                        "endOffsets": "7549,7672"
                     }
                 }
             ]

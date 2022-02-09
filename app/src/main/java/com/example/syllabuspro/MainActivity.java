@@ -26,10 +26,10 @@ import android.view.View;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.navtest.R;
+import com.example.syllabuspro.R;
 import com.example.syllabuspro.adapters.CustomAdapter;
+import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.navtest.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -377,11 +377,12 @@ public class MainActivity extends AppCompatActivity
 
         else
         {
+            Log.d("empty", "test");
             arrayListCollection.add(getInput);
             // adapter.notifyDataSetChanged();
-        }
 
-        launchPDFSelector();
+            launchPDFSelector();
+        }
     }
 
     public void launchTextInput(View view) throws IOException, URISyntaxException
@@ -442,11 +443,14 @@ public class MainActivity extends AppCompatActivity
         {
             if (Environment.isExternalStorageManager())
             {
+                Log.d("empty", "1");
                 mGetContent.launch("application/pdf");
             }
 
             else
             {
+                Log.d("empty", "2");
+
                 // Request for the permission
                 Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
                 Uri uri = Uri.fromParts("package", getPackageName(), null);

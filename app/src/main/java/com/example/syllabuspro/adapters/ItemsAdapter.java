@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.navtest.R;
+import com.example.syllabuspro.R;
 import com.example.syllabuspro.SyllabusItem;
 import org.jetbrains.annotations.NotNull;
 

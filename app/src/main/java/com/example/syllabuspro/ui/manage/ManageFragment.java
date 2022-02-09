@@ -12,10 +12,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.navtest.R;
-import com.example.navtest.databinding.FragmentManageBinding;
+import com.example.syllabuspro.R;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.MainActivity;
+import com.example.syllabuspro.databinding.FragmentManageBinding;
 
 public class ManageFragment extends Fragment {
 

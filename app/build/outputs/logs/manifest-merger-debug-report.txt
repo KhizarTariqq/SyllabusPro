@@ -5,18 +5,21 @@ INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\m
 INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:2:1-28:12
 INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:2:1-28:12
 MERGED from [androidx.databinding:viewbinding:7.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4db0e65e8b0136ba0bdf296570634278\transformed\jetified-viewbinding-7.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-ui:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\56442dbac01c176803152a59cf1c1ae9\transformed\navigation-ui-2.3.5\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-ui:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\12527c1e32019419477b775acdfa43e9\transformed\navigation-ui-2.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\b6f0d187be5c9a123a53118d219dfb77\transformed\material-1.5.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\68653bf21883c8f561deda403f4d10fb\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.recyclerview:recyclerview:1.2.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5ce26b959b85c2c336811905ac82da78\transformed\recyclerview-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d02d975529811ae875e743a25b0bb47d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f6843108b9a7662eb82e231f217b661f\transformed\appcompat-1.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f3d6a0fbaafbcd82476747de4c1676ac\transformed\jetified-lifecycle-livedata-ktx-2.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-fragment:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\8cc6a046b2c8d0fc36918f1d464b847c\transformed\navigation-fragment-2.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment-ktx:1.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ccb10e75b1493c41c92fd237fbbeac72\transformed\jetified-fragment-ktx-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-runtime:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\0d6decc6813aefdb2e24fd058e89f12a\transformed\navigation-runtime-2.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity-ktx:1.2.3] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\e8949268bb3cc1a5679254c8b6301581\transformed\jetified-activity-ktx-1.2.3\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.navigation:navigation-common:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\cbd03e78e4cae50ddde4ccd9619553a4\transformed\navigation-common-2.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\c7491a1e774460e4b27e03caff5da4fd\transformed\jetified-lifecycle-viewmodel-ktx-2.4.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.navigation:navigation-fragment:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\e7cc95c8092d0ea93916799fefbe652b\transformed\navigation-fragment-2.3.5\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3fe5827d6ee265022c6c7d744237ebf4\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\8cb55503b36ad9de85cad1fe498b94c4\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.navigation:navigation-runtime:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\b28ff500d82f8b3d7afa1379dfc38470\transformed\navigation-runtime-2.3.5\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\bb1d2842eeb33d97ed486b91c2f9ee7f\transformed\fragment-1.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.2.4] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\16bdb11fbb5dc0274a6fe1e0b510194e\transformed\jetified-activity-1.2.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\897093d73be7d4aa14af7ad947f63e06\transformed\jetified-appcompat-resources-1.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f1580985bb0a1642c9b93471b2dfbf35\transformed\jetified-emoji2-views-helper-1.0.0\AndroidManifest.xml:17:1-24:12
@@ -27,19 +30,21 @@ MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\WhatsA
 MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ec14db118fa5a12c63b129931d41ad83\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\bf9fef39d4962548a4e4bead6bd316b6\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\34e4afa6bdb61e696bb8f3d82c690a41\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\c88ed6b81c320e36113a642b5dc5c977\transformed\slidingpanelayout-1.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5b5b966ca59807804aa23da69f0f2cc1\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\2f558a16ae7effefb4c40445cb99fcf6\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\dee7037931f066d3b4edabb67c57f62a\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.transition:transition:1.3.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\59561e88517f71d24e0dc51fcae60883\transformed\transition-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.media:media:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a44f7d642c441ca604adf667f4646668\transformed\media-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3a91b684008f575ae984b8716902e3f7\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4fb902d840465e2b9805977f1d6b945a\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.navigation:navigation-common:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107190c859fc1c5c03948b8c67058d89\transformed\navigation-common-2.3.5\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.2.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5ca439d5ea3c4c222ac1811a1aa359a6\transformed\jetified-core-ktx-1.2.0\AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.transition:transition:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ed56a7a95145fccb3c67e69d901aa0ac\transformed\transition-1.4.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\02ba2442eddfc12787d7e8f7834095e1\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\1d5929fdd2dd1eb6526d78cff549db56\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.7.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107b48ead489d4dd0a48badb09d9592d\transformed\core-1.7.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\769e8eeb090a40829e9ec33d2a71a862\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\cea770675b9c8230e77cdcd03dff11d7\transformed\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3c642c1d73c8ff9c60130d3b9846ccfc\transformed\jetified-savedstate-ktx-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\47ee6cc5d8c628cd164af8a763aae0ad\transformed\jetified-savedstate-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f950e68cf2d530665e7ddc5a0bb6330c\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\671648588f645b9f32a60b5c992fa521\transformed\lifecycle-viewmodel-2.4.0\AndroidManifest.xml:17:1-24:12
@@ -50,6 +55,7 @@ MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\WhatsAnOutside\AndroidStud
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\28e747b2ce78251265eb3002f5666c9f\transformed\lifecycle-livedata-2.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\0c8f01f81e2698aedc89df9e3dd47b0d\transformed\jetified-lifecycle-livedata-core-ktx-2.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d89160b9042a915c7a849c064bb37eb4\transformed\lifecycle-livedata-core-2.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.3.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\15b2327570654d659a581ee268877b69\transformed\jetified-lifecycle-runtime-ktx-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ca7123e0392119cb451e4069c0238fb2\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4e5640acfa3303f029a6b28e05225f13\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\23574aa646515120bc7d481972f71742\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -61,7 +67,7 @@ INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\m
 INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:2:1-28:12
 INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:2:1-28:12
 	package
-		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:3:58-87
+		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:3:58-91
 		INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -96,6 +102,8 @@ MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\WhatsAnO
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d02d975529811ae875e743a25b0bb47d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:9:5-20
 MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:25:5-35:19
 MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:24:5-31:19
+MERGED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:24:5-31:19
 MERGED from [androidx.core:core:1.7.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107b48ead489d4dd0a48badb09d9592d\transformed\core-1.7.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.7.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107b48ead489d4dd0a48badb09d9592d\transformed\core-1.7.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5861500acfc863b7035da42a520ef0d9\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
@@ -112,6 +120,8 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\WhatsAnOutside\And
 		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:11:9-41
 	android:roundIcon
 		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:12:9-54
+	android:configChanges
+		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:15:9-55
 	android:icon
 		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:10:9-43
 	android:allowBackup
@@ -119,15 +129,13 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\WhatsAnOutside\And
 	android:theme
 		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:14:9-45
 activity#com.example.syllabuspro.MainActivity
-ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:15:9-25:20
+ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:16:9-25:20
 	android:label
-		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:18:13-45
+		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:19:13-45
 	android:exported
-		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:17:13-36
-	android:configChanges
-		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:19:13-59
+		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:18:13-36
 	android:name
-		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:16:13-64
+		ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:17:13-64
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
 ADDED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml:20:13-24:29
 action#android.intent.action.MAIN
@@ -144,8 +152,8 @@ INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\m
 INJECTED from C:\Users\WhatsAnOutside\IntelliJIDEAProjects\SyllabusPro\app\src\main\AndroidManifest.xml
 MERGED from [androidx.databinding:viewbinding:7.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4db0e65e8b0136ba0bdf296570634278\transformed\jetified-viewbinding-7.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.databinding:viewbinding:7.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4db0e65e8b0136ba0bdf296570634278\transformed\jetified-viewbinding-7.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-ui:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\56442dbac01c176803152a59cf1c1ae9\transformed\navigation-ui-2.3.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-ui:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\56442dbac01c176803152a59cf1c1ae9\transformed\navigation-ui-2.3.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\12527c1e32019419477b775acdfa43e9\transformed\navigation-ui-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-ui:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\12527c1e32019419477b775acdfa43e9\transformed\navigation-ui-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\b6f0d187be5c9a123a53118d219dfb77\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\b6f0d187be5c9a123a53118d219dfb77\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\68653bf21883c8f561deda403f4d10fb\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
@@ -158,16 +166,22 @@ MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\WhatsAnOutside\Android
 MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f6843108b9a7662eb82e231f217b661f\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f3d6a0fbaafbcd82476747de4c1676ac\transformed\jetified-lifecycle-livedata-ktx-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f3d6a0fbaafbcd82476747de4c1676ac\transformed\jetified-lifecycle-livedata-ktx-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-fragment:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\8cc6a046b2c8d0fc36918f1d464b847c\transformed\navigation-fragment-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-fragment:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\8cc6a046b2c8d0fc36918f1d464b847c\transformed\navigation-fragment-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ccb10e75b1493c41c92fd237fbbeac72\transformed\jetified-fragment-ktx-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment-ktx:1.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ccb10e75b1493c41c92fd237fbbeac72\transformed\jetified-fragment-ktx-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\0d6decc6813aefdb2e24fd058e89f12a\transformed\navigation-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-runtime:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\0d6decc6813aefdb2e24fd058e89f12a\transformed\navigation-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.2.3] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\e8949268bb3cc1a5679254c8b6301581\transformed\jetified-activity-ktx-1.2.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity-ktx:1.2.3] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\e8949268bb3cc1a5679254c8b6301581\transformed\jetified-activity-ktx-1.2.3\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\cbd03e78e4cae50ddde4ccd9619553a4\transformed\navigation-common-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.navigation:navigation-common:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\cbd03e78e4cae50ddde4ccd9619553a4\transformed\navigation-common-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\c7491a1e774460e4b27e03caff5da4fd\transformed\jetified-lifecycle-viewmodel-ktx-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\c7491a1e774460e4b27e03caff5da4fd\transformed\jetified-lifecycle-viewmodel-ktx-2.4.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-fragment:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\e7cc95c8092d0ea93916799fefbe652b\transformed\navigation-fragment-2.3.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-fragment:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\e7cc95c8092d0ea93916799fefbe652b\transformed\navigation-fragment-2.3.5\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3fe5827d6ee265022c6c7d744237ebf4\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-v4:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3fe5827d6ee265022c6c7d744237ebf4\transformed\legacy-support-v4-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\8cb55503b36ad9de85cad1fe498b94c4\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\8cb55503b36ad9de85cad1fe498b94c4\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-runtime:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\b28ff500d82f8b3d7afa1379dfc38470\transformed\navigation-runtime-2.3.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-runtime:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\b28ff500d82f8b3d7afa1379dfc38470\transformed\navigation-runtime-2.3.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\bb1d2842eeb33d97ed486b91c2f9ee7f\transformed\fragment-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\bb1d2842eeb33d97ed486b91c2f9ee7f\transformed\fragment-1.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.2.4] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\16bdb11fbb5dc0274a6fe1e0b510194e\transformed\jetified-activity-1.2.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.activity:activity:1.2.4] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\16bdb11fbb5dc0274a6fe1e0b510194e\transformed\jetified-activity-1.2.4\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\897093d73be7d4aa14af7ad947f63e06\transformed\jetified-appcompat-resources-1.4.1\AndroidManifest.xml:20:5-22:41
@@ -188,22 +202,24 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\Wha
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\bf9fef39d4962548a4e4bead6bd316b6\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\34e4afa6bdb61e696bb8f3d82c690a41\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\34e4afa6bdb61e696bb8f3d82c690a41\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\c88ed6b81c320e36113a642b5dc5c977\transformed\slidingpanelayout-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.2.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\c88ed6b81c320e36113a642b5dc5c977\transformed\slidingpanelayout-1.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5b5b966ca59807804aa23da69f0f2cc1\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5b5b966ca59807804aa23da69f0f2cc1\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\2f558a16ae7effefb4c40445cb99fcf6\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\2f558a16ae7effefb4c40445cb99fcf6\transformed\slidingpanelayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\dee7037931f066d3b4edabb67c57f62a\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\dee7037931f066d3b4edabb67c57f62a\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.3.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\59561e88517f71d24e0dc51fcae60883\transformed\transition-1.3.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.transition:transition:1.3.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\59561e88517f71d24e0dc51fcae60883\transformed\transition-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.media:media:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a44f7d642c441ca604adf667f4646668\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.media:media:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a44f7d642c441ca604adf667f4646668\transformed\media-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3a91b684008f575ae984b8716902e3f7\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3a91b684008f575ae984b8716902e3f7\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4fb902d840465e2b9805977f1d6b945a\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4fb902d840465e2b9805977f1d6b945a\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.navigation:navigation-common:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107190c859fc1c5c03948b8c67058d89\transformed\navigation-common-2.3.5\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.navigation:navigation-common:2.3.5] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\107190c859fc1c5c03948b8c67058d89\transformed\navigation-common-2.3.5\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.2.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5ca439d5ea3c4c222ac1811a1aa359a6\transformed\jetified-core-ktx-1.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.core:core-ktx:1.2.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5ca439d5ea3c4c222ac1811a1aa359a6\transformed\jetified-core-ktx-1.2.0\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.transition:transition:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ed56a7a95145fccb3c67e69d901aa0ac\transformed\transition-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.4.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ed56a7a95145fccb3c67e69d901aa0ac\transformed\transition-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\02ba2442eddfc12787d7e8f7834095e1\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\02ba2442eddfc12787d7e8f7834095e1\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\1d5929fdd2dd1eb6526d78cff549db56\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
@@ -214,6 +230,8 @@ MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\WhatsAnOutside
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\769e8eeb090a40829e9ec33d2a71a862\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\cea770675b9c8230e77cdcd03dff11d7\transformed\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\cea770675b9c8230e77cdcd03dff11d7\transformed\jetified-lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3c642c1d73c8ff9c60130d3b9846ccfc\transformed\jetified-savedstate-ktx-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate-ktx:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\3c642c1d73c8ff9c60130d3b9846ccfc\transformed\jetified-savedstate-ktx-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\47ee6cc5d8c628cd164af8a763aae0ad\transformed\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\47ee6cc5d8c628cd164af8a763aae0ad\transformed\jetified-savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\f950e68cf2d530665e7ddc5a0bb6330c\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
@@ -234,6 +252,8 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.0] C:\Users\What
 MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\0c8f01f81e2698aedc89df9e3dd47b0d\transformed\jetified-lifecycle-livedata-core-ktx-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d89160b9042a915c7a849c064bb37eb4\transformed\lifecycle-livedata-core-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d89160b9042a915c7a849c064bb37eb4\transformed\lifecycle-livedata-core-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.3.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\15b2327570654d659a581ee268877b69\transformed\jetified-lifecycle-runtime-ktx-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx:2.3.1] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\15b2327570654d659a581ee268877b69\transformed\jetified-lifecycle-runtime-ktx-2.3.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ca7123e0392119cb451e4069c0238fb2\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\ca7123e0392119cb451e4069c0238fb2\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\4e5640acfa3303f029a6b28e05225f13\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
@@ -278,6 +298,18 @@ ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioP
 		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
 	android:name
 		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\a6574320c86c3a37e884ef017c5b1904\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+	android:required
+		ADDED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+	android:name
+		ADDED from [androidx.window:window:1.0.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\5a684dbdd58700f6075f5263f4458a21\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
 meta-data#androidx.lifecycle.ProcessLifecycleInitializer
 ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\WhatsAnOutside\AndroidStudioProjects\SyllabusPro\caches\transforms-3\d2a3b14342a552ef8281dc10a1999877\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
 	android:value

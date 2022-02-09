@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import com.example.syllabuspro.databinding.FragmentCalendarBinding;
 
-import com.example.navtest.databinding.FragmentCalendarBinding;
 
 public class CalendarFragment extends Fragment {
 

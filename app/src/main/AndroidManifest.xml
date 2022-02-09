@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.example.navtest">
+          xmlns:tools="http://schemas.android.com/tools" package="com.example.syllabuspro">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -11,12 +11,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NavTest">
+        android:theme="@style/Theme.NavTest"
+        android:configChanges="orientation|screenSize">
         <activity
             android:name="com.example.syllabuspro.MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:configChanges="orientation|screenSize">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
