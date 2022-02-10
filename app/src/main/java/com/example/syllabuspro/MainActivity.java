@@ -6,8 +6,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -25,8 +27,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.R;
+import com.example.syllabuspro.adapters.AddCourseAdapter;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -199,7 +203,6 @@ public class MainActivity extends AppCompatActivity
             for (int i = 0; i < n; i++)
             {
                 extractedText = extractedText + PdfTextExtractor.getTextFromPage(reader, i + 1).trim() + "\n";
-                // to extract the PDF content from the different pages
             }
 
             // below line is used for closing reader.
@@ -214,6 +217,7 @@ public class MainActivity extends AppCompatActivity
 
             Log.d("manage","Error found is : \n" + e);
         }
+
         return extractedText;
     }
 
@@ -381,22 +385,43 @@ public class MainActivity extends AppCompatActivity
             arrayListCollection.add(getInput);
             // adapter.notifyDataSetChanged();
 
-            launchPDFSelector();
+            // launchPDFSelector();
         }
     }
 
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
+
+
         // Get course name
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
         final EditText editTextName1 = new EditText(MainActivity.this);
         alertName.setTitle("Enter the course name: ");
         // titles can be used regardless of a custom layout or not
-        alertName.setView(editTextName1);
-        LinearLayout layoutName = new LinearLayout(this);
-        layoutName.setOrientation(LinearLayout.VERTICAL);
-        layoutName.addView(editTextName1); // displays the user input bar
-        alertName.setView(layoutName);
+        // alertName.setView(editTextName1);
+        // LinearLayout layoutName = new LinearLayout(this);
+        // layoutName.setOrientation(LinearLayout.VERTICAL);
+        // layoutName.addView(editTextName1); // displays the user input bar
+
+
+
+        View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.add_course_dialog, findViewById(R.id.content), false);
+        final EditText name = (EditText) view.findViewById(R.id.name);
+        alertName.setView(dialogView);
+
+        if (dialogView.requestFocus()) {
+            InputMethodManager imm = (InputMethodManager)
+                    getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        }
+
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(dialogView.getContext(), RecyclerView.VERTICAL, false);
+        RecyclerView dialogRecyclerView = dialogView.findViewById(R.id.addCourseRecyclerView);
+        ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+        AddCourseAdapter adapter = new AddCourseAdapter(syllabusItems);
+        dialogRecyclerView.setAdapter(adapter);
+        dialogRecyclerView.setLayoutManager(mLayoutManager);
+
 
         alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
         {
@@ -429,6 +454,19 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        dialogView.findViewById(R.id.add_course_dialog_button).setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view)
+                {
+                    // recyclerView = view.findViewById(R.id.addCourseRecyclerView);
+                    ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+
+                    syllabusItems.add(new SyllabusItem());
+                    adapter.notifyDataSetChanged();
+                }
+            });
+
         alertName.show();
     }
 
@@ -439,25 +477,17 @@ public class MainActivity extends AppCompatActivity
          * this gets storage permission and then launches file selector
          */
         // Get storage permission
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R)
-        {
-            if (Environment.isExternalStorageManager())
-            {
+
+        Log.d("empty", String.valueOf(Build.VERSION.SDK_INT));
+
                 Log.d("empty", "1");
                 mGetContent.launch("application/pdf");
-            }
 
-            else
-            {
-                Log.d("empty", "2");
 
-                // Request for the permission
-                Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-                Uri uri = Uri.fromParts("package", getPackageName(), null);
-                intent.setData(uri);
-                startActivity(intent);
-            }
-        }
+
+
+
+
     }
 
     public ArrayList<Course> getCourseList()
@@ -496,6 +526,7 @@ public class MainActivity extends AppCompatActivity
             {
                 // Math department mode
                 String line = scanner.nextLine();
+                Log.d("new", line);
                 String[] wordsLoop = line.split(" ");
                 int findTableIndex = 0;
 

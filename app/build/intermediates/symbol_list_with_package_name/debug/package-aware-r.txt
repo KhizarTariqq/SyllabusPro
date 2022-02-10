@@ -2504,6 +2504,7 @@ drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
 drawable ic_action_name
+drawable ic_add
 drawable ic_calendar
 drawable ic_clock_black_24dp
 drawable ic_courses
@@ -2639,7 +2640,9 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id addCourseRecyclerView
 id add_course_button
+id add_course_dialog_button
 id add_goal_button
 id add_task_button
 id alertTitle
@@ -2728,6 +2731,7 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id dialog_button
+id dialog_item_name
 id dimensions
 id direct
 id disableHome
@@ -2880,6 +2884,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id name
 id nav_controller_view_tag
 id nav_host_fragment_activity_main
 id nav_host_fragment_container
@@ -3167,6 +3172,8 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
+layout add_course_dialog
+layout add_course_dialog_row
 layout course_row_item
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3322,6 +3329,9 @@ string character_counter_pattern
 string chip_text
 string clear_text_end_icon_content_description
 string course_item_button
+string course_name
+string custom_dialog
+string dialog_name
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior

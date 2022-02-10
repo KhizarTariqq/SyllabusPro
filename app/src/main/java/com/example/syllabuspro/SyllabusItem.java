@@ -36,6 +36,11 @@ public class SyllabusItem {
         this.deadline = new Deadline(2022,1,20);
     }
 
+    public SyllabusItem ()
+    {
+
+    }
+
     public Type getType()
     {
         return this.type;
