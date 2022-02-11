@@ -2800,6 +2800,7 @@ id image
 id immediateStop
 id included
 id info
+id input_name
 id invisible
 id inward
 id italic
@@ -2884,7 +2885,6 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
-id name
 id nav_controller_view_tag
 id nav_host_fragment_activity_main
 id nav_host_fragment_container

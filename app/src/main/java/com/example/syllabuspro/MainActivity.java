@@ -39,6 +39,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.pdf.PdfReader;
@@ -140,7 +141,9 @@ public class MainActivity extends AppCompatActivity
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // Make bottom navigation bar titles static
         BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
         // Passing each menu ID as a set of Ids becourses each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -406,7 +409,7 @@ public class MainActivity extends AppCompatActivity
 
 
         View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.add_course_dialog, findViewById(R.id.content), false);
-        final EditText name = (EditText) view.findViewById(R.id.name);
+        // final EditText name = (EditText) view.findViewById(R.id.name);
         alertName.setView(dialogView);
 
         if (dialogView.requestFocus()) {
@@ -467,7 +470,11 @@ public class MainActivity extends AppCompatActivity
                 }
             });
 
-        alertName.show();
+
+        AlertDialog dialog = alertName.create();
+
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
     }
 
     public void launchPDFSelector() throws IOException, URISyntaxException
