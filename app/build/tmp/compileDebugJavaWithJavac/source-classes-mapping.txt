@@ -1,5 +1,11 @@
+com/example/syllabuspro/databinding/AddItemsDialogRowBinding.java
+ com.example.syllabuspro.databinding.AddItemsDialogRowBinding
 com/example/syllabuspro/ui/tasks/TasksFragment.java
  com.example.syllabuspro.ui.tasks.TasksFragment
+com/example/syllabuspro/ui/add_items/AddItemsViewModel.java
+ com.example.syllabuspro.ui.add_items.AddItemsViewModel
+com/example/syllabuspro/databinding/AddItemsFragmentBinding.java
+ com.example.syllabuspro.databinding.AddItemsFragmentBinding
 com/example/syllabuspro/databinding/GoalRowItemBinding.java
  com.example.syllabuspro.databinding.GoalRowItemBinding
 com/example/syllabuspro/ui/view_items/ItemsViewFragment.java
@@ -30,9 +36,6 @@ com/example/syllabuspro/MainActivity.java
  com.example.syllabuspro.MainActivity$2
  com.example.syllabuspro.MainActivity$3
  com.example.syllabuspro.MainActivity$4
- com.example.syllabuspro.MainActivity$5
-com/example/syllabuspro/databinding/AddCourseDialogRowBinding.java
- com.example.syllabuspro.databinding.AddCourseDialogRowBinding
 com/example/syllabuspro/Goal.java
  com.example.syllabuspro.Goal
 com/example/syllabuspro/Deadline.java
@@ -49,12 +52,12 @@ com/example/syllabuspro/BuildConfig.java
 com/example/syllabuspro/SyllabusItem.java
  com.example.syllabuspro.SyllabusItem
  com.example.syllabuspro.SyllabusItem$Type
-com/example/syllabuspro/databinding/AddCourseDialogBinding.java
- com.example.syllabuspro.databinding.AddCourseDialogBinding
 com/example/syllabuspro/databinding/FragmentGoalsBinding.java
  com.example.syllabuspro.databinding.FragmentGoalsBinding
 com/example/syllabuspro/ui/calendar/CalendarFragment.java
  com.example.syllabuspro.ui.calendar.CalendarFragment
+com/example/syllabuspro/Course.java
+ com.example.syllabuspro.Course
 com/example/syllabuspro/UriUtils.java
  com.example.syllabuspro.UriUtils
 com/example/syllabuspro/ui/view_items/ItemsViewViewModel.java
@@ -78,10 +81,14 @@ com/example/syllabuspro/adapters/AddCourseAdapter.java
 com/example/syllabuspro/adapters/GoalsAdapter.java
  com.example.syllabuspro.adapters.GoalsAdapter
  com.example.syllabuspro.adapters.GoalsAdapter$ViewHolder
+com/example/syllabuspro/DatePicker.java
+ com.example.syllabuspro.DatePicker
 com/example/syllabuspro/databinding/ActivityMainBinding.java
  com.example.syllabuspro.databinding.ActivityMainBinding
 com/example/syllabuspro/adapters/TasksAdapter.java
  com.example.syllabuspro.adapters.TasksAdapter
  com.example.syllabuspro.adapters.TasksAdapter$ViewHolder
-com/example/syllabuspro/Course.java
- com.example.syllabuspro.Course
+com/example/syllabuspro/ui/add_items/AddItemsFragment.java
+ com.example.syllabuspro.ui.add_items.AddItemsFragment
+ com.example.syllabuspro.ui.add_items.AddItemsFragment$1
+ com.example.syllabuspro.ui.add_items.AddItemsFragment$2

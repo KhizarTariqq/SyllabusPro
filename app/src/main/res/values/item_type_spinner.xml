@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="types_array">
+        <item>Term Test</item>
+        <item>Quiz</item>
+        <item>Assignment</item>
+        <item>Class Participation</item>
+        <item>Final Exam</item>
+    </string-array>
+</resources>

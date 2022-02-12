@@ -34,4 +34,10 @@
         android:name="com.example.syllabuspro.ui.view_items.ItemsViewFragment"
         android:label="@string/title_tasks"
         tools:layout="@layout/items_view_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_add_items"
+        android:name="com.example.syllabuspro.ui.add_items.AddItemsFragment"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/items_view_fragment" />
 </navigation>

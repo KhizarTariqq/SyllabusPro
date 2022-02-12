@@ -38,7 +38,7 @@ public class ItemsViewFragment extends Fragment {
                              @Nullable Bundle savedInstanceState)
     {
         binding = ItemsViewFragmentBinding.inflate(inflater, container, false);
-        Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbarz);
+        Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbar);
 
         // get items list
         RecyclerView courseRecyclerView = container.findViewById(R.id.recyclerView);

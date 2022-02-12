@@ -71,6 +71,7 @@ animator nav_default_enter_anim
 animator nav_default_exit_anim
 animator nav_default_pop_enter_anim
 animator nav_default_pop_exit_anim
+array types_array
 attr SharedValue
 attr SharedValueId
 attr action
@@ -2642,8 +2643,8 @@ id activity_chooser_view_content
 id add
 id addCourseRecyclerView
 id add_course_button
-id add_course_dialog_button
 id add_goal_button
+id add_item_button
 id add_task_button
 id alertTitle
 id aligned
@@ -2714,11 +2715,13 @@ id coordinator
 id cos
 id counterclockwise
 id course_item_name
+id create_item
 id currentState
 id custom
 id customPanel
 id cut
 id date_picker_actions
+id deadline_button
 id decelerate
 id decelerateAndComplete
 id decor_content_parent
@@ -2731,7 +2734,6 @@ id design_menu_item_action_area_stub
 id design_menu_item_text
 id design_navigation_view
 id dialog_button
-id dialog_item_name
 id dimensions
 id direct
 id disableHome
@@ -2759,6 +2761,10 @@ id endToStart
 id end_padder
 id enterAlways
 id enterAlwaysCollapsed
+id enter_deadline
+id enter_item_name
+id enter_type
+id enter_weight
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
@@ -2801,6 +2807,7 @@ id immediateStop
 id included
 id info
 id input_name
+id input_weight
 id invisible
 id inward
 id italic
@@ -2826,7 +2833,6 @@ id list_item
 id locale
 id ltr
 id manage_toolbar
-id manage_toolbarz
 id masked
 id match_constraint
 id match_parent
@@ -2889,6 +2895,7 @@ id nav_controller_view_tag
 id nav_host_fragment_activity_main
 id nav_host_fragment_container
 id nav_view
+id navigation_add_items
 id navigation_bar_item_active_indicator_view
 id navigation_bar_item_icon_container
 id navigation_bar_item_icon_view
@@ -2930,6 +2937,7 @@ id path
 id pathRelative
 id peekHeight
 id percent
+id percentage
 id pin
 id position
 id postLayout
@@ -3063,6 +3071,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id triangle
+id types_spinner
 id unchecked
 id uniform
 id unlabeled
@@ -3172,8 +3181,8 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_main
-layout add_course_dialog
-layout add_course_dialog_row
+layout add_items_dialog_row
+layout add_items_fragment
 layout course_row_item
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3331,7 +3340,10 @@ string clear_text_end_icon_content_description
 string course_item_button
 string course_name
 string custom_dialog
-string dialog_name
+string enter_deadline
+string enter_name
+string enter_type
+string enter_weight
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
@@ -3424,6 +3436,7 @@ string mtrl_picker_toggle_to_year_selection
 string mtrl_timepicker_confirm
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
+string new_item
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

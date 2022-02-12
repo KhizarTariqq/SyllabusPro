@@ -1,5 +1,6 @@
 package com.example.syllabuspro;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
+import android.widget.DatePicker;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -45,9 +47,10 @@ import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
 {
     public static ActivityMainBinding binding;
     private String directory;
@@ -372,7 +375,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void collectInput() throws IOException, URISyntaxException {
+    public void collectInput(View view) throws IOException, URISyntaxException {
         // convert edit text to string
         String getInput = txt.getText().toString();
 
@@ -384,9 +387,13 @@ public class MainActivity extends AppCompatActivity
 
         else
         {
-            Log.d("empty", "test");
             arrayListCollection.add(getInput);
-            // adapter.notifyDataSetChanged();
+
+            // hide keyboard and start new fragment
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+            Navigation.findNavController(view).navigate(R.id.navigation_add_items);
 
             // launchPDFSelector();
         }
@@ -394,46 +401,37 @@ public class MainActivity extends AppCompatActivity
 
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
-
-
         // Get course name
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
         final EditText editTextName1 = new EditText(MainActivity.this);
         alertName.setTitle("Enter the course name: ");
         // titles can be used regardless of a custom layout or not
-        // alertName.setView(editTextName1);
-        // LinearLayout layoutName = new LinearLayout(this);
-        // layoutName.setOrientation(LinearLayout.VERTICAL);
-        // layoutName.addView(editTextName1); // displays the user input bar
+        alertName.setView(editTextName1);
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editTextName1); // displays the user input bar
+
+        alertName.setView(layout);
 
 
-
-        View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.add_course_dialog, findViewById(R.id.content), false);
         // final EditText name = (EditText) view.findViewById(R.id.name);
-        alertName.setView(dialogView);
 
-        if (dialogView.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
-        }
-
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(dialogView.getContext(), RecyclerView.VERTICAL, false);
-        RecyclerView dialogRecyclerView = dialogView.findViewById(R.id.addCourseRecyclerView);
-        ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
-        AddCourseAdapter adapter = new AddCourseAdapter(syllabusItems);
-        dialogRecyclerView.setAdapter(adapter);
-        dialogRecyclerView.setLayoutManager(mLayoutManager);
+        // if (dialogView.requestFocus()) {
+        //     InputMethodManager imm = (InputMethodManager)
+        //             getSystemService(Context.INPUT_METHOD_SERVICE);
+        //     imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+        // }
 
 
         alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int whichButton)
             {
+                layout.removeView(editTextName1);
                 txt = editTextName1; // variable to collect user input
                 try
                 {
-                    collectInput(); // analyze input (txt) in this method
+                    collectInput(view); // analyze input (txt) in this method
                 }
 
                 catch (IOException e)
@@ -457,18 +455,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        dialogView.findViewById(R.id.add_course_dialog_button).setOnClickListener(new View.OnClickListener()
-            {
-                @Override
-                public void onClick(View view)
-                {
-                    // recyclerView = view.findViewById(R.id.addCourseRecyclerView);
-                    ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
 
-                    syllabusItems.add(new SyllabusItem());
-                    adapter.notifyDataSetChanged();
-                }
-            });
 
 
         AlertDialog dialog = alertName.create();
@@ -633,4 +620,14 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int day)
+    {
+        Calendar mCalendar = Calendar.getInstance();
+        mCalendar.set(Calendar.YEAR, year);
+        mCalendar.set(Calendar.MONTH, month);
+        mCalendar.set(Calendar.DAY_OF_MONTH, day);
+        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
+        // tvDate.setText(selectedDate);
+    }
 }

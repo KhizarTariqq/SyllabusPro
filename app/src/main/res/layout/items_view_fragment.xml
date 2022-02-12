@@ -14,7 +14,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="1.0"
-            android:layout_marginBottom="8dp" app:layout_constraintTop_toBottomOf="@+id/manage_toolbarz"/>
+            android:layout_marginBottom="8dp" app:layout_constraintTop_toBottomOf="@+id/manage_toolbar"/>
 
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/manage_toolbarz"
+            android:id="@+id/manage_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"

@@ -10,8 +10,13 @@
     <string name="filter_button">Filter</string>
     <string name="course_item_button">Syllabus Items</string>
     <string name="custom_dialog">Syllabus Items</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="course_name"/>
-    <string name="dialog_name">Name: </string>
+
+    <!-- create syllabus item -->
+    <string name="new_item">New Syllabus Item: </string>
+    <string name="enter_name">Name: </string>
+    <string name="enter_type">Type: </string>
+    <string name="enter_deadline">Deadline: </string>
+    <string name="enter_weight">Weight: </string>
 </resources>
