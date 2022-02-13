@@ -2508,6 +2508,7 @@ drawable ic_action_name
 drawable ic_add
 drawable ic_calendar
 drawable ic_clock_black_24dp
+drawable ic_confirm
 drawable ic_courses
 drawable ic_dashboard_black_24dp
 drawable ic_goals

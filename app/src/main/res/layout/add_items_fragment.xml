@@ -24,10 +24,26 @@
             android:src="@drawable/ic_add"
             android:contentDescription=""
             android:layout_margin="16dp"
+            app:layout_constraintBottom_toTopOf="@id/confirm_button"
+            app:backgroundTint="?attr/colorPrimary"
+            android:translationY="-70dp"
+            app:layout_constraintEnd_toEndOf="@+id/confirm_button"
+            android:layout_marginBottom="16dp" app:layout_constraintStart_toStartOf="@+id/confirm_button"
+    />
+    
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_confirm"
+            android:contentDescription=""
+            android:layout_margin="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:backgroundTint="#673AB7"
-            android:translationY="-70dp"/>
+            app:backgroundTint="?attr/colorPrimary"
+            android:translationY="-70dp"
+    />
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"

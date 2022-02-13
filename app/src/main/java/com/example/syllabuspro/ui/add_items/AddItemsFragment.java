@@ -65,19 +65,30 @@ public class AddItemsFragment extends Fragment {
         addItemsRecyclerView.setAdapter(adapter);
         addItemsRecyclerView.setLayoutManager(mLayoutManager);
 
-
-
-
         root.findViewById(R.id.add_item_button).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                // recyclerView = view.findViewById(R.id.addCourseRecyclerView);
-                ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+                // Check if all input fields are completed
+                // then create the SyllabusItem object from the information provided
+                // once the object is created then add the new item to the list
 
+                ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
                 syllabusItems.add(new SyllabusItem());
                 adapter.notifyDataSetChanged();
+            }
+        });
+
+        root.findViewById(R.id.confirm_button).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                RecyclerView recyclerView = view.getRootView().findViewById(R.id.addCourseRecyclerView);
+                AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+
+                // adapter method
             }
         });
 

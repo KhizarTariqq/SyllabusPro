@@ -2,7 +2,9 @@ package com.example.syllabuspro;
 
 import android.util.Log;
 
-public class SyllabusItem {
+public class SyllabusItem
+{
+
 
     public enum Type
     {
@@ -36,9 +38,16 @@ public class SyllabusItem {
         this.deadline = new Deadline(2022,1,20);
     }
 
-    public SyllabusItem ()
+    public SyllabusItem()
     {
 
+    }
+    public void setProperties(SyllabusItem.Type type, String name, Deadline deadline, int weight)
+    {
+        this.type = type;
+        this.name = name;
+        this.deadline = deadline;
+        this.weight = weight;
     }
 
     public Type getType()
