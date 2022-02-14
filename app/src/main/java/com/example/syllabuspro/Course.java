@@ -14,6 +14,12 @@ public class Course {
         this.name = name;
     }
 
+    public Course (String name, ArrayList<SyllabusItem> syllabusItems)
+    {
+        this.name = name;
+        this.syllabusItems = syllabusItems;
+    }
+
     public void addSyllabusItem(SyllabusItem.Type type, String name, Deadline deadline, int weight)
     {
 

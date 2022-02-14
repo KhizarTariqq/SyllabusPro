@@ -2,12 +2,8 @@ package com.example.syllabuspro;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.provider.Settings;
-import android.view.LayoutInflater;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -29,12 +25,11 @@ import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.syllabuspro.R;
 import com.example.syllabuspro.adapters.AddCourseAdapter;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
+import com.example.syllabuspro.databinding.AddItemsFragmentBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -64,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
     ArrayAdapter<CharSequence> adapter;
-    EditText txt; // user input bar
+    public static EditText txt; // user input bar
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -236,7 +231,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
          * boolean that represents if the type is one or two words.
          */
 
-        SyllabusItem.Type type = null;
         if (words[0].equals("Quiz"))
         {
             return new Pair<>(SyllabusItem.Type.Quiz, false);
@@ -256,10 +250,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         {
             return new Pair<>(SyllabusItem.Type.ClassParticipation, true);
         }
+
         else if (words[0].equals("Final") && words[1].equals("Exam"))
         {
             return new Pair<>(SyllabusItem.Type.FinalExam, true);
         }
+
         return null;
     }
 
@@ -375,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
-    public void collectInput(View view) throws IOException, URISyntaxException {
+    public void collectInput(View view, Course course) throws IOException, URISyntaxException {
         // convert edit text to string
         String getInput = txt.getText().toString();
 
@@ -389,6 +385,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         {
             arrayListCollection.add(getInput);
 
+            RecyclerView recyclerView = view.getRootView().findViewById(R.id.recyclerView);
+            CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+            ArrayList<Course> courseList = adapter.getCourseList();
+            courseList.add(course);
+            adapter.notifyDataSetChanged();
+
             // hide keyboard and start new fragment
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -401,6 +403,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
+        // set recycler view
+        ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+
         // Get course name
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
         final EditText editTextName1 = new EditText(MainActivity.this);
@@ -429,17 +434,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             {
                 layout.removeView(editTextName1);
                 txt = editTextName1; // variable to collect user input
+
+                Course course = new Course(txt.getText().toString(), syllabusItems);
+
                 try
                 {
-                    collectInput(view); // analyze input (txt) in this method
+                    collectInput(view, course); // analyze input (txt) in this method
                 }
 
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-
-                catch (URISyntaxException e)
+                catch (IOException | URISyntaxException e)
                 {
                     e.printStackTrace();
                 }
@@ -473,15 +476,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         // Get storage permission
 
         Log.d("empty", String.valueOf(Build.VERSION.SDK_INT));
-
-                Log.d("empty", "1");
-                mGetContent.launch("application/pdf");
-
-
-
-
-
-
+        Log.d("empty", "1");
+        mGetContent.launch("application/pdf");
     }
 
     public ArrayList<Course> getCourseList()
@@ -628,6 +624,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mCalendar.set(Calendar.MONTH, month);
         mCalendar.set(Calendar.DAY_OF_MONTH, day);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
-        // tvDate.setText(selectedDate);
+        Log.d("Date", selectedDate);
+
+        RecyclerView recyclerView = this.binding.getRoot().findViewById(R.id.addCourseRecyclerView);
+        AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+        ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+        SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+
+        item.setDeadline(new Deadline(year, month, day));
     }
 }

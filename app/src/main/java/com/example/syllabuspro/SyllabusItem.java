@@ -4,8 +4,6 @@ import android.util.Log;
 
 public class SyllabusItem
 {
-
-
     public enum Type
     {
         TermTest,
@@ -48,6 +46,29 @@ public class SyllabusItem
         this.name = name;
         this.deadline = deadline;
         this.weight = weight;
+    }
+
+    public void setType(SyllabusItem.Type type)
+    {
+        this.type = type;
+    }
+
+    public void setDeadline(Deadline deadline)
+    {
+        this.deadline = deadline;
+    }
+
+    public boolean notNull()
+    {
+        if (this.type == null && this.name == null && this.deadline == null && this.weight == 0)
+        {
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
     }
 
     public Type getType()

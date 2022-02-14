@@ -14,11 +14,14 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.syllabuspro.Course;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.SyllabusItem;
 import com.example.syllabuspro.adapters.AddCourseAdapter;
+import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.databinding.AddItemsFragmentBinding;
+import com.example.syllabuspro.ui.manage.ManageFragment;
 
 import java.util.ArrayList;
 
@@ -26,6 +29,7 @@ public class AddItemsFragment extends Fragment {
 
     private AddItemsViewModel mViewModel;
     private AddItemsFragmentBinding binding;
+    private ArrayList<SyllabusItem> syllabusItems;
 
     public static AddItemsFragment newInstance() {
         return new AddItemsFragment();
@@ -55,7 +59,7 @@ public class AddItemsFragment extends Fragment {
 
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
-        ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+        syllabusItems = new ArrayList<SyllabusItem>();
         AddCourseAdapter adapter = new AddCourseAdapter(syllabusItems);
 
         // Add border between items
@@ -74,9 +78,14 @@ public class AddItemsFragment extends Fragment {
                 // then create the SyllabusItem object from the information provided
                 // once the object is created then add the new item to the list
 
-                ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
-                syllabusItems.add(new SyllabusItem());
-                adapter.notifyDataSetChanged();
+                // SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+                if (syllabusItems.size() == 0 || syllabusItems.get(syllabusItems.size() - 1).notNull())
+                {
+                    ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+                    syllabusItems.add(new SyllabusItem());
+                    adapter.notifyDataSetChanged();
+                }
+
             }
         });
 
@@ -85,10 +94,7 @@ public class AddItemsFragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                RecyclerView recyclerView = view.getRootView().findViewById(R.id.addCourseRecyclerView);
-                AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
-
-                // adapter method
+                MainActivity.fragmentManager.popBackStackImmediate();
             }
         });
 
@@ -102,5 +108,4 @@ public class AddItemsFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(AddItemsViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }

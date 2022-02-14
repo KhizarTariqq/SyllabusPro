@@ -47,6 +47,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         return this.courseList.size();
     }
 
+    public ArrayList<Course> getCourseList()
+    {
+        return this.courseList;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name;

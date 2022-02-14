@@ -4,10 +4,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +18,7 @@ import java.util.ArrayList;
 
 public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.ViewHolder>
 {
-    private ArrayList<SyllabusItem> syllabusItems;
+    public ArrayList<SyllabusItem> syllabusItems;
     private ViewHolder viewHolder;
 
     public AddCourseAdapter(ArrayList<SyllabusItem> syllabusItems)
@@ -52,6 +49,69 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+
+        // set up spinner listener
+        spinner.setSelection(0, false);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
+            {
+                if (spinner.getTag() == null)
+                {
+                    spinner.setTag(true);
+                }
+
+                else
+                {
+                    Log.d("empty", String.valueOf(adapterView.getSelectedItemId()));
+                    Log.d("Spinner", "testing");
+                    Log.d("Spinner", adapterView.getItemAtPosition(position).getClass().getSimpleName());
+
+                    String typeString = adapterView.getItemAtPosition(position).getClass().getSimpleName();
+                    adapterView.getItemAtPosition(position);
+                    SyllabusItem.Type type = null;
+
+                    if (typeString.equals("Quiz"))
+                    {
+                        type = SyllabusItem.Type.Quiz;
+                    }
+
+                    else if (typeString.equals("Assignment"))
+                    {
+                        type = SyllabusItem.Type.Assignment;
+                    }
+
+                    else if (typeString.equals("Term") && typeString.equals("Test"))
+                    {
+                        type = SyllabusItem.Type.TermTest;
+                    }
+
+                    else if (typeString.equals("Class") && typeString.equals("Participation"))
+                    {
+                        type = SyllabusItem.Type.ClassParticipation;
+                    }
+                    else if (typeString.equals("Final") && typeString.equals("Exam"))
+                    {
+                        type = SyllabusItem.Type.FinalExam;
+                    }
+
+                    // Get SyllabusItem
+                    RecyclerView recyclerView = view.getRootView().findViewById(R.id.addCourseRecyclerView);
+                    AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+                    ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+
+                    SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+                    item.setType(type);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
     }
 
     @Override
@@ -82,6 +142,7 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
     {
         TextView name;
         TextView weight;
+        Spinner spinner;
 
         public ViewHolder(@NonNull View itemView)
         {
@@ -101,6 +162,8 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
                     fragment.show(MainActivity.fragmentManager, "datePicker");
                 }
             });
+
+
         }
     }
 }
