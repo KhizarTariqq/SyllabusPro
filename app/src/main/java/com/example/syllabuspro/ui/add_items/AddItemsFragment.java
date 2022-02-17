@@ -1,7 +1,9 @@
 package com.example.syllabuspro.ui.add_items;
 
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
@@ -29,7 +31,7 @@ public class AddItemsFragment extends Fragment {
 
     private AddItemsViewModel mViewModel;
     private AddItemsFragmentBinding binding;
-    private ArrayList<SyllabusItem> syllabusItems;
+    public ArrayList<SyllabusItem> syllabusItems;
 
     public static AddItemsFragment newInstance() {
         return new AddItemsFragment();
@@ -59,7 +61,7 @@ public class AddItemsFragment extends Fragment {
 
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
-        syllabusItems = new ArrayList<SyllabusItem>();
+        syllabusItems = MainActivity.syllabusItems;
         AddCourseAdapter adapter = new AddCourseAdapter(syllabusItems);
 
         // Add border between items
@@ -78,14 +80,24 @@ public class AddItemsFragment extends Fragment {
                 // then create the SyllabusItem object from the information provided
                 // once the object is created then add the new item to the list
 
-                // SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+                RecyclerView recyclerView = binding.getRoot().findViewById(R.id.addCourseRecyclerView);
+                AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+                ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+
                 if (syllabusItems.size() == 0 || syllabusItems.get(syllabusItems.size() - 1).notNull())
                 {
-                    ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+                    Log.d("empty", syllabusItems.toString());
                     syllabusItems.add(new SyllabusItem());
+
+                    Log.d("empty", syllabusItems.toString());
                     adapter.notifyDataSetChanged();
                 }
 
+                else
+                {
+                    Toast toast = Toast.makeText(getContext(), "Complete the current item before adding a new one.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 
@@ -94,7 +106,21 @@ public class AddItemsFragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-                MainActivity.fragmentManager.popBackStackImmediate();
+                RecyclerView recyclerView = binding.getRoot().findViewById(R.id.addCourseRecyclerView);
+                AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+                ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+
+                if (syllabusItems.get(syllabusItems.size() - 1).notNull())
+                {
+                    MainActivity.saveCourses();
+                    MainActivity.fragmentManager.popBackStackImmediate();
+                }
+
+                else
+                {
+                    Toast toast = Toast.makeText(getContext(), "Complete the last item before continuing.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
 

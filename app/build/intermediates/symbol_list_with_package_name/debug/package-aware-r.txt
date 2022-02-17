@@ -2696,6 +2696,7 @@ id chip1
 id chip2
 id chip3
 id chip_group
+id choose_course
 id chronometer
 id circle_center
 id clear_text
@@ -2742,6 +2743,10 @@ id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
 id disjoint
+id display_deadline
+id display_item_name
+id display_type
+id display_weight
 id dragAnticlockwise
 id dragClockwise
 id dragDown
@@ -2763,7 +2768,10 @@ id end_padder
 id enterAlways
 id enterAlwaysCollapsed
 id enter_deadline
+id enter_description
 id enter_item_name
+id enter_name
+id enter_priority
 id enter_type
 id enter_weight
 id exitUntilCollapsed
@@ -2816,7 +2824,6 @@ id item1
 id item2
 id item3
 id item4
-id item_name
 id item_touch_helper_previous_elevation
 id items_recyclerView
 id jumpToEnd
@@ -3184,6 +3191,7 @@ layout abc_tooltip
 layout activity_main
 layout add_items_dialog_row
 layout add_items_fragment
+layout add_task_dialog
 layout course_row_item
 layout custom_dialog
 layout design_bottom_navigation_item
@@ -3337,14 +3345,17 @@ string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
 string chip_text
+string choose_course
 string clear_text_end_icon_content_description
 string course_item_button
 string course_name
 string custom_dialog
 string enter_deadline
+string enter_description
 string enter_name
 string enter_type
 string enter_weight
+string entry_priority
 string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior

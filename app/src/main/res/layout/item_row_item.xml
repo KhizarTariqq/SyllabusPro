@@ -6,13 +6,117 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-            android:id="@+id/item_name"
-            android:layout_width="match_parent"
+            android:id="@+id/create_item"
+            android:text="Syllabus Item: "
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:padding="15dp"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="SpeakableTextPresentCheck"/>
+    />
+
+    <TextView
+            android:id="@+id/enter_item_name"
+            android:text="@string/enter_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="10dp"
+            app:layout_constraintTop_toBottomOf="@id/create_item"
+    />
+
+    <TextView
+            android:id="@+id/display_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:paddingStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/enter_item_name"
+            app:layout_constraintTop_toBottomOf="@id/create_item"
+    />
+
+    <TextView
+            android:id="@+id/enter_type"
+            android:text="@string/enter_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/enter_item_name"
+            app:layout_constraintStart_toEndOf="@id/create_item"
+            android:layout_marginStart="30dp"
+       />
+
+    <TextView
+            android:id="@+id/display_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/enter_item_name"
+            app:layout_constraintStart_toEndOf="@id/enter_type"
+            app:layout_editor_absoluteX="300dp"
+           />
+
+    <TextView
+            android:id="@+id/enter_deadline"
+            android:text="@string/enter_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/enter_item_name"
+            android:layout_marginStart="10dp"
+    />
+
+    <TextView
+            android:id="@+id/display_deadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/enter_deadline"
+            app:layout_constraintTop_toTopOf="@id/enter_deadline"
+            android:paddingStart="5dp"
+    />
+
+    <TextView
+            android:id="@+id/enter_weight"
+            android:text="@string/enter_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/enter_type"
+            app:layout_constraintTop_toBottomOf="@id/enter_type"
+    />
+
+    <TextView
+            android:id="@+id/display_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:paddingStart="5dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/enter_weight"
+            app:layout_constraintStart_toEndOf="@id/enter_weight"
+           />
+
+    <TextView
+            android:id="@+id/percentage"
+            android:text="%"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toEndOf="@id/display_weight"
+            app:layout_constraintBottom_toBottomOf="@id/display_weight"
+            app:layout_constraintTop_toTopOf="@id/display_weight"
+    />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

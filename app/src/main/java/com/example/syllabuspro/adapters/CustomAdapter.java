@@ -25,6 +25,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     {
         this.courseList = courseList;
         Log.d("Adapter", courseList.toString());
+        if (courseList.size() != 0)
+        {
+            Log.d("Adapter", courseList.get(0).toString());
+            Log.d("Adapter", courseList.get(0).getSyllabusItems().toString());
+        }
     }
 
     @NonNull

@@ -19,4 +19,7 @@
     <string name="enter_type">Type: </string>
     <string name="enter_deadline">Deadline: </string>
     <string name="enter_weight">Weight: </string>
+    <string name="choose_course">Choose course:</string>
+    <string name="enter_description">Enter description:</string>
+    <string name="entry_priority">Priority: </string>
 </resources>

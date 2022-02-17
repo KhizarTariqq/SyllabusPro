@@ -20,6 +20,10 @@
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\goal_row_item.xml"
     },
     {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\add_task_dialog.xml",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\add_task_dialog.xml"
+    },
+    {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_row_item.xml",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\item_row_item.xml"
     },

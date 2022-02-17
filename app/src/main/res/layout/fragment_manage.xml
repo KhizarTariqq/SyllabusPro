@@ -8,12 +8,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_width="411dp"
-            android:layout_height="675dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="1.0"
-            tools:layout_constraintTop_toBottomOf="@id/manage_toolbar"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/manage_toolbar"
+    />
+
     <Button
             android:id="@+id/add_course_button"
             android:layout_width="wrap_content"

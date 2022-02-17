@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
     ArrayAdapter<CharSequence> adapter;
     public static EditText txt; // user input bar
+    public static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+
+    public static SharedPreferences prefs;
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -90,8 +93,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
          this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
          WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+         prefs = this.getPreferences(Context.MODE_PRIVATE);
 
         // On first time app installation create the directories to store courses, tasks, and goals
         if(!prefs.getBoolean("firstTime", false))
@@ -152,9 +154,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
 
-    public void saveArrayList(ArrayList<?> list, String key)
+    public static void saveArrayList(ArrayList<?> list, String key)
     {
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(list);
@@ -371,6 +372,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
+    public static void saveCourses()
+    {
+        saveArrayList(courseList, "courses");
+    }
+
     public void collectInput(View view, Course course) throws IOException, URISyntaxException {
         // convert edit text to string
         String getInput = txt.getText().toString();
@@ -387,9 +393,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
             RecyclerView recyclerView = view.getRootView().findViewById(R.id.recyclerView);
             CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
-            ArrayList<Course> courseList = adapter.getCourseList();
+            courseList = adapter.getCourseList();
             courseList.add(course);
             adapter.notifyDataSetChanged();
+
 
             // hide keyboard and start new fragment
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -403,31 +410,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
-        // set recycler view
-        ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
-
         // Get course name
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
         final EditText editTextName1 = new EditText(MainActivity.this);
         alertName.setTitle("Enter the course name: ");
-        // titles can be used regardless of a custom layout or not
         alertName.setView(editTextName1);
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.addView(editTextName1); // displays the user input bar
-
+        layout.addView(editTextName1);
         alertName.setView(layout);
 
-
-        // final EditText name = (EditText) view.findViewById(R.id.name);
-
-        // if (dialogView.requestFocus()) {
-        //     InputMethodManager imm = (InputMethodManager)
-        //             getSystemService(Context.INPUT_METHOD_SERVICE);
-        //     imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
-        // }
-
-
+        // Continue button listener
         alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int whichButton)
@@ -449,20 +442,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        // Cancel button click listener
         alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int whichButton)
             {
-                dialog.cancel(); // closes dialog alertName.show() // display the dialog
-
+                dialog.cancel();
             }
         });
 
-
-
-
         AlertDialog dialog = alertName.create();
-
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
     }
@@ -478,11 +467,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         Log.d("empty", String.valueOf(Build.VERSION.SDK_INT));
         Log.d("empty", "1");
         mGetContent.launch("application/pdf");
-    }
-
-    public ArrayList<Course> getCourseList()
-    {
-        return this.courseList;
     }
 
     public void addCourse() throws IOException, URISyntaxException
@@ -601,18 +585,69 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public void addTask(View view)
     {
+        // Get course name
+        AlertDialog.Builder alertName = new AlertDialog.Builder(this);
+        // final EditText editTextName1 = new EditText(MainActivity.this);
+        alertName.setTitle("Add task: ");
+        // alertName.setView(editTextName1);
+        // LinearLayout layout = new LinearLayout(this);
+        // layout.setOrientation(LinearLayout.VERTICAL);
+        // layout.addView(editTextName1);
+        View layout = getLayoutInflater().inflate(R.layout.add_task_dialog, null);
+        alertName.setView(layout);
+
+        // Course chooser
+
+        // Continue button listener
+        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                // layout.removeView(editTextName1);
+                // txt = editTextName1; // variable to collect user input
+
+                Course course = new Course(txt.getText().toString(), syllabusItems);
+
+                try
+                {
+                    collectInput(view, course); // analyze input (txt) in this method
+                }
+
+                catch (IOException | URISyntaxException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        // Cancel button click listener
+        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                dialog.cancel(); // closes dialog alertName.show() // display the dialog
+
+            }
+        });
+
+        AlertDialog dialog = alertName.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
+
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
         // add task
-        Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
-        taskList.add(task);
+        // Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
+        // taskList.add(task);
 
     }
 
     public void addGoal(View view)
     {
         // add goal
-        Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
-        Goal goal = new Goal(new Deadline(0, 0, 0), task, "test goal");
-        goalList.add(goal);
+        // Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
+        // Goal goal = new Goal(new Deadline(0, 0, 0), task, "test goal");
+        // goalList.add(goal);
     }
 
 
