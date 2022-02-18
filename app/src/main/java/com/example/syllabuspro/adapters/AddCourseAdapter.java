@@ -101,27 +101,27 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
         // set edittext listeners
         EditText editName = holder.itemView.findViewById(R.id.input_name);
         editName.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
             {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-                {
 
-                }
+            }
 
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-                {
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
 
-                }
+            }
 
-                @Override
-                public void afterTextChanged(Editable editable)
-                {
-                    Log.d("empty", "textBoxChange");
-                    SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
-                    item.setName(editable.toString());
-                }
-            });
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                Log.d("empty", "textBoxChange");
+                SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+                item.setName(editable.toString());
+            }
+        });
 
         EditText editWeight = holder.itemView.findViewById(R.id.input_weight);
         editWeight.addTextChangedListener(new TextWatcher()

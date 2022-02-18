@@ -377,7 +377,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         saveArrayList(courseList, "courses");
     }
 
-    public void collectInput(View view, Course course) throws IOException, URISyntaxException {
+    public void collectCourseInput(View view, Course course) throws IOException, URISyntaxException {
         // convert edit text to string
         String getInput = txt.getText().toString();
 
@@ -408,6 +408,22 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
+    public void collectTaskInput()
+    {
+
+    }
+
+    public ArrayList<String> courseListToStringArray(ArrayList<Course> courseList)
+    {
+        ArrayList<String> courseListString = new ArrayList<String>();
+        for (Course course : courseList)
+        {
+            courseListString.add(course.getName());
+        }
+
+        return courseListString;
+    }
+
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
         // Get course name
@@ -432,7 +448,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                 try
                 {
-                    collectInput(view, course); // analyze input (txt) in this method
+                    collectCourseInput(view, course); // analyze input (txt) in this method
                 }
 
                 catch (IOException | URISyntaxException e)
@@ -585,38 +601,40 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public void addTask(View view)
     {
-        // Get course name
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
-        // final EditText editTextName1 = new EditText(MainActivity.this);
         alertName.setTitle("Add task: ");
-        // alertName.setView(editTextName1);
-        // LinearLayout layout = new LinearLayout(this);
-        // layout.setOrientation(LinearLayout.VERTICAL);
-        // layout.addView(editTextName1);
         View layout = getLayoutInflater().inflate(R.layout.add_task_dialog, null);
         alertName.setView(layout);
 
-        // Course chooser
+        // set spinner course list
+        Spinner spinner = layout.findViewById(R.id.tasks_course_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,android.R.layout.simple_spinner_dropdown_item, courseListToStringArray(this.courseList));
+        spinner.setAdapter(adapter);
 
+        // set spinner click listener
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
+            {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+
+        // edittext click listeners
+        EditText editText = layout.findViewById(R.id.);
         // Continue button listener
         alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
         {
             public void onClick(DialogInterface dialog, int whichButton)
             {
-                // layout.removeView(editTextName1);
-                // txt = editTextName1; // variable to collect user input
-
-                Course course = new Course(txt.getText().toString(), syllabusItems);
-
-                try
-                {
-                    collectInput(view, course); // analyze input (txt) in this method
-                }
-
-                catch (IOException | URISyntaxException e)
-                {
-                    e.printStackTrace();
-                }
+                collectTaskInput();
             }
         });
 
@@ -636,10 +654,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         Window window = dialog.getWindow();
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-        // add task
-        // Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
-        // taskList.add(task);
-
     }
 
     public void addGoal(View view)

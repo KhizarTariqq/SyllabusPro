@@ -18,7 +18,7 @@
     />
 
     <Spinner
-            android:id="@+id/types_spinner"
+            android:id="@+id/tasks_course_spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/choose_course"
@@ -60,6 +60,17 @@
             android:layout_marginTop="5dp"
     />
 
+    <EditText
+            android:id="@+id/input_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/enter_description"
+            app:layout_constraintTop_toTopOf="@+id/enter_description"
+            app:layout_constraintBottom_toBottomOf="@id/enter_description"
+            android:autofillHints="Enter an description:"
+            android:inputType="text"
+    />
+
     <TextView
             android:id="@+id/enter_priority"
             android:text="@string/entry_priority"
@@ -72,4 +83,11 @@
             android:layout_marginTop="5dp"
     />
 
+    <Spinner
+            android:id="@+id/tasks_priority_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/enter_priority"
+            app:layout_constraintTop_toTopOf="@id/enter_priority"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
