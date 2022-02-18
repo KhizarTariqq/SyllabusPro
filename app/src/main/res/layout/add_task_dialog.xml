@@ -13,8 +13,10 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tasks_course_spinner"
+            app:layout_constraintBottom_toBottomOf="@id/tasks_course_spinner"
+            android:layout_marginStart="20dp"
     />
 
     <Spinner
@@ -22,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/choose_course"
-            app:layout_constraintTop_toTopOf="@id/choose_course"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/choose_course"
     />
 
     <TextView
@@ -32,19 +35,19 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/choose_course"
+            app:layout_constraintTop_toTopOf="@+id/input_name"
+            app:layout_constraintBottom_toBottomOf="@id/input_name"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="20dp"
     />
 
     <EditText
             android:id="@+id/input_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="Enter name:"
             app:layout_constraintStart_toEndOf="@+id/enter_name"
-            app:layout_constraintTop_toTopOf="@+id/enter_name"
-            app:layout_constraintBottom_toBottomOf="@id/enter_name"
-            android:autofillHints="Enter Name:"
+            app:layout_constraintTop_toBottomOf="@+id/tasks_course_spinner"
             android:inputType="text"
     />
 
@@ -55,19 +58,19 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/enter_name"
-            app:layout_constraintStart_toStartOf="@+id/enter_name"
-            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/input_description"
+            app:layout_constraintBottom_toBottomOf="@id/input_description"
+            android:layout_marginStart="20dp"
     />
 
     <EditText
             android:id="@+id/input_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@+id/enter_description"
-            app:layout_constraintTop_toTopOf="@+id/enter_description"
-            app:layout_constraintBottom_toBottomOf="@id/enter_description"
-            android:autofillHints="Enter an description:"
+            android:hint="Enter description:"
+            app:layout_constraintStart_toEndOf="@id/enter_description"
+            app:layout_constraintTop_toBottomOf="@id/input_name"
             android:inputType="text"
     />
 
@@ -78,8 +81,9 @@
             android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/enter_description"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/input_description"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
     />
 
@@ -89,5 +93,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/enter_priority"
             app:layout_constraintTop_toTopOf="@id/enter_priority"
+            app:layout_constraintBottom_toBottomOf="@id/enter_priority"
     />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,4 +22,5 @@
     <string name="choose_course">Choose course:</string>
     <string name="enter_description">Enter description:</string>
     <string name="entry_priority">Priority: </string>
+    <string name="task_button">View Task</string>
 </resources>

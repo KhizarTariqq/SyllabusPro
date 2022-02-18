@@ -48,6 +48,10 @@
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\add_items_fragment.xml"
     },
     {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\tasks_fragment.xml",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\tasks_fragment.xml"
+    },
+    {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_notifications.xml",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_notifications.xml"
     },

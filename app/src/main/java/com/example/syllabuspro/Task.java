@@ -16,11 +16,16 @@ public class Task
         EXTREME
     }
 
-    public Task(String name, Task.Priority priority, String description, Course course)
+    public Task(String name, String description, Task.Priority priority, Course course)
     {
         this.name = name;
-        this.priority = priority;
         this.description = description;
+        this.priority = priority;
         this.course = course;
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 }
