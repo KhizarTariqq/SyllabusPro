@@ -32,6 +32,15 @@
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/layout/text_row_item.xml" value="0.5" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/menu/bottom_nav_menu.xml" value="0.2046875" />
         <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/SyllabusPro/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20625" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/add_goal_dialog.xml" value="0.5" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/add_items_dialog_row.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/add_items_fragment.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/add_task_dialog.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/fragment_goals.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/fragment_manage.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/fragment_tasks.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/goal_row_item.xml" value="0.19010416666666666" />
+        <entry key="..\:/Users/WhatsAnOutside/IntelliJIDEAProjects/branches/Goals/SyllabusPro/app/src/main/res/layout/task_row_item.xml" value="0.19010416666666666" />
       </map>
     </option>
   </component>

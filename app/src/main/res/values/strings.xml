@@ -19,4 +19,10 @@
     <string name="enter_type">Type: </string>
     <string name="enter_deadline">Deadline: </string>
     <string name="enter_weight">Weight: </string>
+
+    <!-- Create goals -->
+    <string name="goals_enter_description">Enter description:</string>
+    <string name="goals_choose_deadline">Choose deadline:</string>
+    <string name="goals_choose_task">Choose task:</string>
+    <string name="goals_choose_course">Choose course:</string>
 </resources>
