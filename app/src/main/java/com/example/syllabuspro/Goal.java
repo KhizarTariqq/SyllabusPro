@@ -2,14 +2,16 @@ package com.example.syllabuspro;
 
 public class Goal
 {
+    private String description;
+    private Course course;
     private Deadline deadline;
     private Task task;
-    private String description;
 
-    public Goal(Deadline deadline, Task task, String description)
+    public Goal(String description, Task task, Deadline deadline)
     {
-        this.deadline = deadline;
-        this.task = task;
         this.description = description;
+        this.task = task;
+        this.course = task.getCourse();
+        this.deadline = deadline;
     }
 }
