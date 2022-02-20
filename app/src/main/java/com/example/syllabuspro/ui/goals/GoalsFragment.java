@@ -11,45 +11,34 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.syllabuspro.MainActivity;
-import com.example.syllabuspro.R;
-import com.example.syllabuspro.adapters.GoalsAdapter;
 import com.example.syllabuspro.databinding.FragmentGoalsBinding;
 
 
-public class GoalsFragment extends Fragment
-{
+public class GoalsFragment extends Fragment {
 
+    private HomeViewModel homeViewModel;
     private FragmentGoalsBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-    {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentGoalsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        RecyclerView recyclerView = root.findViewById(R.id.goalsRecyclerview);
-        GoalsAdapter adapter = new GoalsAdapter(MainActivity.goalList);
-
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
-
-        // Add border between items
-        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
-             mLayoutManager.getOrientation());
-        recyclerView.addItemDecoration(mDividerItemDecoration);
-
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(mLayoutManager);
-
+        // final TextView textView = binding.textHome;
+        // homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        //     @Override
+        //     public void onChanged(@Nullable String s) {
+        //         textView.setText(s);
+        //     }
+        // });
         return root;
     }
 
     @Override
-    public void onDestroyView()
-    {
+    public void onDestroyView() {
         super.onDestroyView();
         binding = null;
     }

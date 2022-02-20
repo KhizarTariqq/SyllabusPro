@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Goals.SyllabusPro.iml" filepath="$PROJECT_DIR$/.idea/modules/Goals.SyllabusPro.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Goals.SyllabusPro.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Goals.SyllabusPro.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/SyllabusPro.iml" filepath="$PROJECT_DIR$/.idea/modules/SyllabusPro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/SyllabusPro.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/SyllabusPro.app.iml" />
     </modules>
   </component>
 </project>
