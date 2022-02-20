@@ -5,7 +5,7 @@ public class Task
     private String name;
     private Task.Priority priority;
     private String description;
-    // Goal
+    private Course course;
 
     public enum Priority
     {
@@ -16,10 +16,16 @@ public class Task
         EXTREME
     }
 
-    public Task(String name, Task.Priority priority, String description)
+    public Task(String name, String description, Task.Priority priority, Course course)
     {
         this.name = name;
-        this.priority = priority;
         this.description = description;
+        this.priority = priority;
+        this.course = course;
+    }
+
+    public String getName()
+    {
+        return this.name;
     }
 }

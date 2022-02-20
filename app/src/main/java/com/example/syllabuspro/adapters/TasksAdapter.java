@@ -32,7 +32,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-
+        holder.name.setText(this.taskList.get(position).getName());
     }
 
     @Override
@@ -41,13 +41,18 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>
         return this.taskList.size();
     }
 
+    public ArrayList<Task> getTaskList()
+    {
+        return this.taskList;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            // name = itemView.findViewById(R.id.item_name);
+            name = itemView.findViewById(R.id.task_name);
             // age = itemView.findViewById(R.id.item_age);
         }
     }

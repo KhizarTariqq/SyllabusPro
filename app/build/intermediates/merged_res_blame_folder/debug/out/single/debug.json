@@ -100,6 +100,10 @@
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\drawable-xhdpi\\ic_calendar.png"
     },
     {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_tasks_fragment.xml.flat",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\tasks_fragment.xml"
+    },
+    {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.webp"
     },
@@ -114,6 +118,10 @@
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_goals.xml.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_goals.xml"
+    },
+    {
+        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_add_task_dialog.xml.flat",
+        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\add_task_dialog.xml"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\drawable-mdpi_ic_action_name.png.flat",
@@ -194,10 +202,6 @@
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.webp"
-    },
-    {
-        "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_fragment_tasks.xml.flat",
-        "source": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\src\\main\\res\\layout\\fragment_tasks.xml"
     },
     {
         "merged": "C:\\Users\\WhatsAnOutside\\IntelliJIDEAProjects\\SyllabusPro\\app\\build\\intermediates\\merged_res\\debug\\layout_add_items_dialog_row.xml.flat",

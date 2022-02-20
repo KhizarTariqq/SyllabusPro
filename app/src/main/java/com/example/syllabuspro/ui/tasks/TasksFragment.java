@@ -1,65 +1,65 @@
 package com.example.syllabuspro.ui.tasks;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.R;
+import com.example.syllabuspro.Task;
+import com.example.syllabuspro.adapters.CustomAdapter;
+import com.example.syllabuspro.MainActivity;
+import com.example.syllabuspro.adapters.TasksAdapter;
+import com.example.syllabuspro.databinding.FragmentManageBinding;
+import com.example.syllabuspro.MainActivity;
+import com.example.syllabuspro.databinding.TasksFragmentBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TasksFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class TasksFragment extends Fragment {
+import java.util.ArrayList;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class TasksFragment extends Fragment
+{
+    private TasksFragmentBinding binding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
+    {
+        binding = TasksFragmentBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-    public TasksFragment() {
-        // Required empty public constructor
-    }
+        // Get task recycler view
+        RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
+        TasksAdapter adapter = new TasksAdapter(MainActivity.taskList);
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment tasks.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TasksFragment newInstance(String param1, String param2) {
-        TasksFragment fragment = new TasksFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        // LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
+        GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
+
+        // Add border between items
+        DividerItemDecoration mDividerItemDecorationVertical = new DividerItemDecoration(recyclerView.getContext(), RecyclerView.VERTICAL);
+        DividerItemDecoration mDividerItemDecorationHorizontal = new DividerItemDecoration(recyclerView.getContext(), RecyclerView.HORIZONTAL);
+        recyclerView.addItemDecoration(mDividerItemDecorationVertical);
+        recyclerView.addItemDecoration(mDividerItemDecorationHorizontal);
+
+        // Set adapter and layout manager
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(mLayoutManager);
+
+        return root;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tasks, container, false);
+    public void onDestroyView()
+    {
+        super.onDestroyView();
+        binding = null;
     }
 }

@@ -37,9 +37,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-        Log.d("adapter spec", this.syllabusItems.get(position).toString());
-        Log.d("adapter spec", String.valueOf(holder.name == null));
-        holder.name.setText(this.syllabusItems.get(position).toString());
+        SyllabusItem item = this.syllabusItems.get(position);
+        holder.displayName.setText((CharSequence) item.getName());
+        holder.displayWeight.setText((CharSequence) Integer.toString(item.getWeight()));
+        holder.displayDeadline.setText((CharSequence) item.getDeadline().toString());
+        holder.displayType.setText((CharSequence) item.getType().toString());
     }
 
     @Override
@@ -50,11 +52,23 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView name;
+        // display text views
+        TextView displayName;
+        TextView displayWeight;
+        TextView displayDeadline;
+        TextView displayType;
+
+        // input text views
+        TextView inputName;
+        TextView inputWeight;
+
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            name = itemView.findViewById(R.id.item_name);
+            displayName = itemView.findViewById(R.id.display_item_name);
+            displayWeight = itemView.findViewById(R.id.display_weight);
+            displayDeadline = itemView.findViewById(R.id.display_deadline);
+            displayType = itemView.findViewById(R.id.display_type);
             // age = itemView.findViewById(R.id.item_age);
         }
     }

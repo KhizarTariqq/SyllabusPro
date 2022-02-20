@@ -1,6 +1,7 @@
 package com.example.syllabuspro.ui.manage;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class ManageFragment extends Fragment {
         View root = binding.getRoot();
 
         // Initializing list view with the custom adapter
-
+        Log.d("empty", MainActivity.courseList.toString());
         recyclerView = root.findViewById(R.id.recyclerView);
         CustomAdapter adapter = new CustomAdapter(MainActivity.courseList);
 
