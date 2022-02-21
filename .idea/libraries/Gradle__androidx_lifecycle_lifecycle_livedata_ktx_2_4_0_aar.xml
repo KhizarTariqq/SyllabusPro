@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.lifecycle:lifecycle-livedata-ktx:2.4.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/AndroidStudioProjects/SyllabusPro/caches/transforms-3/f3d6a0fbaafbcd82476747de4c1676ac/transformed/jetified-lifecycle-livedata-ktx-2.4.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/AndroidStudioProjects/SyllabusPro/caches/transforms-3/f3d6a0fbaafbcd82476747de4c1676ac/transformed/jetified-lifecycle-livedata-ktx-2.4.0/res" />
-      <root url="file://$USER_HOME$/AndroidStudioProjects/SyllabusPro/caches/transforms-3/f3d6a0fbaafbcd82476747de4c1676ac/transformed/jetified-lifecycle-livedata-ktx-2.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f3d6a0fbaafbcd82476747de4c1676ac/transformed/jetified-lifecycle-livedata-ktx-2.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f3d6a0fbaafbcd82476747de4c1676ac/transformed/jetified-lifecycle-livedata-ktx-2.4.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f3d6a0fbaafbcd82476747de4c1676ac/transformed/jetified-lifecycle-livedata-ktx-2.4.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/AndroidStudioProjects/SyllabusPro/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-ktx/2.4.0/4aa2db934fc7bfa0f648f1ddee7fd2a436d7712c/lifecycle-livedata-ktx-2.4.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-livedata-ktx/2.4.0/4aa2db934fc7bfa0f648f1ddee7fd2a436d7712c/lifecycle-livedata-ktx-2.4.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
