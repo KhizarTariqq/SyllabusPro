@@ -728,6 +728,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        //Testing commit
         // set click listeners
         // initialize taskSpinner as disabled and enable it when course selected
         Spinner taskSpinner = layout.findViewById(R.id.goals_task_spinner);
