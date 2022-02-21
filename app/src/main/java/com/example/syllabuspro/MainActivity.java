@@ -771,6 +771,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        // Placeholder click listener to avoid errors
         // Continue button listener implemented later to not automatically close the dialog
         alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
         {
