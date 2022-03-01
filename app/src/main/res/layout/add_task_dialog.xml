@@ -8,7 +8,7 @@
 
     <TextView
             android:id="@+id/choose_course"
-            android:text="@string/choose_course"
+            android:text="@string/task_choose_course"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
 
     <TextView
             android:id="@+id/enter_description"
-            android:text="@string/enter_description"
+            android:text="@string/task_enter_description"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
 
     <TextView
             android:id="@+id/enter_priority"
-            android:text="@string/entry_priority"
+            android:text="@string/task_enter_priority"
             android:textSize="18sp"
             android:textColor="@color/black"
             android:layout_width="wrap_content"
