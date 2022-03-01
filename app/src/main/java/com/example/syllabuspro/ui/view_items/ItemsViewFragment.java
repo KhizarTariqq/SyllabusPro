@@ -58,7 +58,7 @@ public class ItemsViewFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                MainActivity.fragmentManager.popBackStackImmediate();
+                MainActivity.navController.popBackStack();
             }
         });
 

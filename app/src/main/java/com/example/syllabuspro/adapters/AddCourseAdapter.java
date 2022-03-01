@@ -72,6 +72,21 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
 
                 else if (typeString.equals("Class Participation"))
                 {
+                    type = SyllabusItem.Type.Quiz;
+                }
+
+                else if (typeString.equals("Assignment"))
+                {
+                    type = SyllabusItem.Type.Assignment;
+                }
+
+                else if (typeString.equals("Term Test"))
+                {
+                    type = SyllabusItem.Type.TermTest;
+                }
+
+                else if (typeString.equals("Class Participation"))
+                {
                     type = SyllabusItem.Type.ClassParticipation;
                 }
 
@@ -181,6 +196,7 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
                 @Override
                 public void onClick(View view)
                 {
+                    MainActivity.deadlineMode = MainActivity.DeadlineMode.SYLLABUS_ITEM;
                     DialogFragment fragment = new DatePickerFragment();
                     fragment.show(MainActivity.fragmentManager, "datePicker");
                 }

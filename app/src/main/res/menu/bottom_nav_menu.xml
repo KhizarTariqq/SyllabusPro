@@ -2,22 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/navigation_summary"
+        android:icon="@drawable/ic_summary"
+        android:title="@string/title_summary"
+    />
+
+    <item
         android:id="@+id/navigation_calendar"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/title_calendar" />
+        android:title="@string/title_calendar"
+    />
 
     <item
         android:id="@+id/navigation_goals"
         android:icon="@drawable/ic_goals"
-        android:title="@string/title_goals" />
+        android:title="@string/title_goals"
+    />
 
     <item
         android:id="@+id/navigation_tasks"
         android:icon="@drawable/ic_tasks"
-        android:title="@string/title_tasks" />
+        android:title="@string/title_tasks"
+    />
 
     <item
         android:id="@+id/navigation_manage"
         android:icon="@drawable/ic_courses"
-        android:title="@string/title_courses" />
+        android:title="@string/title_courses"
+    />
 </menu>

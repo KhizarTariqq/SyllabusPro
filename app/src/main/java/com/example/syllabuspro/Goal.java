@@ -14,4 +14,29 @@ public class Goal
         this.course = task.getCourse();
         this.deadline = deadline;
     }
+
+    public String getDescription()
+    {
+        return this.description;
+    }
+
+    public Course getCourse()
+    {
+        return this.course;
+    }
+
+    public Deadline getDeadline()
+    {
+        return this.deadline;
+    }
+
+    public Task getTask()
+    {
+        return this.task;
+    }
+
+    public String toString()
+    {
+        return "Description: " + this.description + " Course: " + this.course.toString() + " Deadline: " + this.deadline.toString() + " Task: " + this.task.toString();
+    }
 }

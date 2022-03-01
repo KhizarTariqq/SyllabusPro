@@ -33,6 +33,9 @@ import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.adapters.TasksAdapter;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.example.syllabuspro.ui.tasks.TasksFragment;
+import com.example.syllabuspro.adapters.GoalsAdapter;
+import com.example.syllabuspro.adapters.TasksAdapter;
+import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -57,6 +60,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public static ArrayList <Task> taskList = new ArrayList<Task>();
     public static ArrayList <Goal> goalList = new ArrayList<Goal>();
 
+    // List first syllabus items for when adding course
+    public static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+
+    // fragment controllers
     public static NavController navController;
     public static FragmentManager fragmentManager;
 
@@ -66,6 +73,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
 
     public static SharedPreferences prefs;
+
+    // Deadline selector mode to tell if deadline is for syllabus item or goal
+    public enum DeadlineMode
+    {
+        SYLLABUS_ITEM,
+        GOAL
+    }
+
+    // Variables for setting deadlines
+    public static DeadlineMode deadlineMode;
+    private Deadline goalDeadline;
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -92,11 +110,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     protected void onCreate(Bundle savedInstanceState)
     {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
-         getSupportActionBar().hide();
+        getSupportActionBar().hide();
 
          this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
          WindowManager.LayoutParams.FLAG_FULLSCREEN);
          prefs = this.getPreferences(Context.MODE_PRIVATE);
+
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        prefs = this.getPreferences(Context.MODE_PRIVATE);
 
         // On first time app installation create the directories to store courses, tasks, and goals
         if(!prefs.getBoolean("firstTime", false))
@@ -140,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             taskList = gson.fromJson(tasksJson, typeTask);
             Log.d("first: tasks", taskList.toString());
 
-            String goalsJson = prefs.getString("tasks", null);
+            String goalsJson = prefs.getString("goals", null);
             Type typeGoal = new TypeToken<ArrayList<Goal>>() {}.getType();
             goalList = gson.fromJson(goalsJson, typeGoal);
             Log.d("first: goals", goalList.toString());
@@ -156,12 +179,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         // Make bottom navigation bar titles static
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setLabelVisibilityMode(NavigationBarView.LABEL_VISIBILITY_LABELED);
-        // Passing each menu ID as a set of Ids becourses each
-        // menu should be considered as top level destinations.
+
+        // Set up bottom navigation bar
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_calendar, R.id.navigation_goals, R.id.navigation_manage, R.id.navigation_tasks)
+                R.id.navigation_summary, R.id.navigation_calendar, R.id.navigation_goals, R.id.navigation_manage, R.id.navigation_tasks)
                 .build();
-        this.navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
@@ -426,8 +449,26 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         TasksAdapter adapter = (TasksAdapter) recyclerView.getAdapter();
 
         taskList.add(new Task(name, description, priority, course));
+        Log.d("taskList", taskList.toString());
+        Log.d("taskList", name);
         saveArrayList(taskList, "tasks");
 
+        adapter.notifyDataSetChanged();
+    }
+
+    public void collectGoalInput(String description, Task task, View view)
+    {
+        // Get task list and update it
+        RecyclerView recyclerView = view.getRootView().findViewById(R.id.tasksRecyclerview);
+        TasksAdapter adapter = (TasksAdapter) recyclerView.getAdapter();
+
+        taskList.add(new Task(name, description, priority, course));
+        saveArrayList(taskList, "tasks");
+        goalList.add(new Goal(description, task, this.goalDeadline));
+
+        saveArrayList(goalList, "goals");
+        adapter.notifyDataSetChanged();
+    }
         adapter.notifyDataSetChanged();
     }
 
@@ -440,6 +481,36 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
 
         return courseListString;
+    }
+
+    public ArrayList<String> taskListToStringArray(Course course)
+    {
+        ArrayList<Task> courseTaskList = new ArrayList<Task>();
+
+        Log.d("taskList", taskList.toString());
+        for (Task task : taskList)
+        {
+            Log.d("taskList", task.getCourse().toString());
+            Log.d("taskList", course.toString());
+
+            if (task.getCourse().equals(course))
+            {
+                Log.d("taskList", "if passed");
+                courseTaskList.add(task);
+            }
+        }
+
+        Log.d("taskList", courseTaskList.toString());
+
+        ArrayList<String> taskListString = new ArrayList<String>();
+        for (Task task : courseTaskList)
+        {
+            taskListString.add(task.getName());
+        }
+
+        Log.d("taskList", taskListString.toString());
+
+        return taskListString;
     }
 
     public Course getCourseFromString(String courseName)
@@ -456,9 +527,28 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return chosenCourse;
     }
 
+    public Task getTaskFromString(String taskName)
+    {
+        Task chosenTask = null;
+        for (Task task : taskList)
+        {
+            if (task.getName().equals(taskName))
+            {
+                chosenTask = task;
+            }
+        }
+
+        return chosenTask;
+    }
+
+    public static void saveCourses()
+    {
+        saveArrayList(courseList, "courses");
+    }
+
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
-        // Get course name
+        // Set up dialog
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
         final EditText editTextName1 = new EditText(MainActivity.this);
         alertName.setTitle("Enter the course name: ");
@@ -747,6 +837,202 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
+        final String[] taskDescription = {null};
+        EditText descriptionEditText = layout.findViewById(R.id.input_description);
+        descriptionEditText.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                taskDescription[0] = editable.toString();
+                Log.d("task", taskDescription[0]);
+            }
+        });
+
+        // Continue button listener implemented later to not automatically close the dialog
+        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+
+        // Cancel button click listener
+        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                dialog.cancel(); // closes dialog alertName.show() // display the dialog
+
+            }
+        });
+
+        AlertDialog dialog = alertName.create();
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View innerView)
+            {
+                if (courseChosen[0] && priorityChosen[0] && taskName[0] != null && taskDescription[0] != null)
+                {
+                    collectTaskInput(taskName[0], taskDescription[0], priority[0], course[0], view);
+                    dialog.dismiss();
+                }
+
+                else
+                {
+                    Log.d("listener", String.valueOf(courseChosen[0]));
+                    Log.d("listener", String.valueOf(priorityChosen[0]));
+                    Log.d("listener", String.valueOf(taskName[0]));
+                    Log.d("listener", String.valueOf(taskDescription[0]));
+
+                    // TODO Give more detailed response
+                    Toast toast = Toast.makeText(view.getContext(), "Input all information before proceeding", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+    }
+
+    public void addGoal(View view)
+    {
+        // Set up dialog
+        AlertDialog.Builder alertName = new AlertDialog.Builder(this);
+        alertName.setTitle("Add task: ");
+        View layout = getLayoutInflater().inflate(R.layout.add_task_dialog, null);
+        alertName.setView(layout);
+
+        Log.d("addTask", String.valueOf(view));
+
+        // set course spinner
+        final Course[] course = {null};
+        final boolean[] courseChosen = {false};
+        Spinner courseSpinner = layout.findViewById(R.id.tasks_course_spinner);
+        ArrayAdapter<String> courseAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_spinner_dropdown_item, courseListToStringArray(this.courseList));
+        courseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        courseSpinner.setAdapter(courseAdapter);
+
+        // set course spinner click listener
+        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
+            {
+                String courseName = (String) adapterView.getItemAtPosition(position);
+                Log.d("task", courseName);
+                course[0] = getCourseFromString(courseName);
+                courseChosen[0] = true;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+
+        // set priority spinner
+        Spinner prioritySpinner = layout.findViewById(R.id.tasks_priority_spinner);
+        ArrayAdapter<CharSequence> priorityAdapter = ArrayAdapter.createFromResource(getApplicationContext(),
+        R.array.priority_array, android.R.layout.simple_spinner_item);
+
+        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        prioritySpinner.setAdapter(priorityAdapter);
+
+        // set priority spinner click listener
+        final Task.Priority[] priority = {null};
+        final boolean[] priorityChosen = {false};
+        prioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
+            {
+                String priorityName = (String) adapterView.getItemAtPosition(position);
+                Log.d("task", priorityName);
+
+                if (priorityName.equals("Low"))
+                {
+                    priority[0] = Task.Priority.LOW;
+                }
+
+                if (priorityName.equals("Medium"))
+                {
+                    priority[0] = Task.Priority.MEDIUM;
+                }
+
+                if (priorityName.equals("High"))
+                {
+                    priority[0] = Task.Priority.HIGH;
+                }
+
+                if (priorityName.equals("Very High"))
+                {
+                    priority[0] = Task.Priority.VERY_HIGH;
+                }
+
+                if (priorityName.equals("Extreme"))
+                {
+                    priority[0] = Task.Priority.EXTREME;
+                }
+
+                priorityChosen[0] = true;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView)
+            {
+
+            }
+        });
+
+        // edittext click listeners
+        final String[] taskName = {null};
+
+        EditText nameEditText = layout.findViewById(R.id.input_name);
+        nameEditText.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+                // launch date picker
+                MainActivity.deadlineMode = MainActivity.DeadlineMode.GOAL;
+                DialogFragment fragment = new DatePickerFragment();
+                fragment.show(MainActivity.fragmentManager, "datePicker");
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable)
+            {
+                taskName[0] = editable.toString();
+                Log.d("task", taskName[0]);
+            }
+        });
+
         final String[] descriptionName = {null};
         EditText descriptionEditText = layout.findViewById(R.id.input_description);
         descriptionEditText.addTextChangedListener(new TextWatcher()
@@ -795,7 +1081,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
 
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
+        // override continue button
+        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View innerView)
@@ -803,6 +1090,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 if (courseChosen[0] && priorityChosen[0] && taskName[0] != null && descriptionName[0] != null)
                 {
                     collectTaskInput(taskName[0], descriptionName[0], priority[0], course[0], view);
+                    // collect goal input and add to list
+                    if (description[0] == null)
+                    {
+                        collectGoalInput(description[0], task[0], view);
+                    }
+
+                    else
+                    {
+                        collectGoalInput("", task[0], view);
+                    }
+
                     dialog.dismiss();
                 }
 
@@ -842,6 +1140,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mCalendar.set(Calendar.DAY_OF_MONTH, day);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
         Log.d("Date", selectedDate);
+        Log.d("Date", deadlineMode.toString());
 
         RecyclerView recyclerView = this.binding.getRoot().findViewById(R.id.addCourseRecyclerView);
         AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
@@ -849,5 +1148,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
 
         item.setDeadline(new Deadline(year, month, day));
+
+        if (deadlineMode == DeadlineMode.SYLLABUS_ITEM)
+        {
+            RecyclerView recyclerView = binding.getRoot().findViewById(R.id.addCourseRecyclerView);
+            AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+            ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+            SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+
+            item.setDeadline(new Deadline(year, month, day));
+        }
+
+        else if (deadlineMode == DeadlineMode.GOAL)
+        {
+            Log.d("Date", "Passed");
+            this.goalDeadline = new Deadline(year, month, day);
+        }
     }
 }

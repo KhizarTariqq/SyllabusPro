@@ -1,43 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_calendar">
+    app:startDestination="@+id/navigation_summary"
+>
 
     <fragment
-        android:id="@+id/navigation_goals"
-        android:name="com.example.syllabuspro.ui.goals.GoalsFragment"
-        android:label="@string/title_goals"
-        tools:layout="@layout/fragment_goals" />
+        android:id="@+id/navigation_summary"
+        android:name="com.example.syllabuspro.ui.summary.SummaryFragment"
+        android:label="@string/title_summary"
+        tools:layout="@layout/fragment_summary"
+    />
 
     <fragment
         android:id="@+id/navigation_calendar"
         android:name="com.example.syllabuspro.ui.calendar.CalendarFragment"
         android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar"
+    />
+
+    <fragment
+        android:id="@+id/navigation_goals"
+        android:name="com.example.syllabuspro.ui.goals.GoalsFragment"
+        android:label="@string/title_goals"
+        tools:layout="@layout/fragment_goals"
+    />
 
     <fragment
         android:id="@+id/navigation_manage"
         android:name="com.example.syllabuspro.ui.manage.ManageFragment"
         android:label="@string/title_courses"
-        tools:layout="@layout/fragment_manage" />
+        tools:layout="@layout/fragment_manage"
+    />
 
     <fragment
         android:id="@+id/navigation_tasks"
         android:name="com.example.syllabuspro.ui.tasks.TasksFragment"
         android:label="@string/title_tasks"
-        tools:layout="@layout/fragment_tasks" />
+        tools:layout="@layout/fragment_tasks"
+    />
 
     <fragment
         android:id="@+id/navigation_view_items"
         android:name="com.example.syllabuspro.ui.view_items.ItemsViewFragment"
         android:label="@string/title_tasks"
-        tools:layout="@layout/items_view_fragment" />
+        tools:layout="@layout/items_view_fragment"
+    />
 
     <fragment
         android:id="@+id/navigation_add_items"
         android:name="com.example.syllabuspro.ui.add_items.AddItemsFragment"
         android:label="@string/title_tasks"
-        tools:layout="@layout/items_view_fragment" />
+        tools:layout="@layout/items_view_fragment"
+    />
 </navigation>

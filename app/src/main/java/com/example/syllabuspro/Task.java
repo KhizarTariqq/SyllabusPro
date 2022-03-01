@@ -24,8 +24,28 @@ public class Task
         this.course = course;
     }
 
+    public Course getCourse()
+    {
+        return this.course;
+    }
+
     public String getName()
     {
         return this.name;
+    }
+
+    public String getDescription()
+    {
+        return this.description;
+    }
+
+    public Task.Priority getPriority()
+    {
+        return this.priority;
+    }
+
+    public boolean equals(Task task)
+    {
+        return this.name.equals(task.getName()) && this.description.equals(task.getDescription()) && this.course.equals(task.getCourse()) && this.priority == task.getPriority();
     }
 }

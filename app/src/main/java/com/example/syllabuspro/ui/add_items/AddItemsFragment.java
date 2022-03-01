@@ -86,10 +86,7 @@ public class AddItemsFragment extends Fragment {
 
                 if (syllabusItems.size() == 0 || syllabusItems.get(syllabusItems.size() - 1).notNull())
                 {
-                    Log.d("empty", syllabusItems.toString());
                     syllabusItems.add(new SyllabusItem());
-
-                    Log.d("empty", syllabusItems.toString());
                     adapter.notifyDataSetChanged();
                 }
 
@@ -112,6 +109,7 @@ public class AddItemsFragment extends Fragment {
 
                 if (syllabusItems.get(syllabusItems.size() - 1).notNull())
                 {
+                    MainActivity.syllabusItems = new ArrayList<SyllabusItem>();
                     MainActivity.saveCourses();
                     MainActivity.fragmentManager.popBackStackImmediate();
                 }

@@ -20,27 +20,6 @@ public class Course {
         this.syllabusItems = syllabusItems;
     }
 
-    public void addSyllabusItem(SyllabusItem.Type type, String name, Deadline deadline, int weight)
-    {
-
-        // Log.d("customtext", type.toString());
-        // Log.d("customtext", name);
-        // Log.d("customtext", String.valueOf(deadline == null));
-        // Log.d("customtext", Integer.toString(weight));
-
-        if (deadline == null)
-        {
-            SyllabusItem item = new SyllabusItem(type, name, weight);
-            this.syllabusItems.add(item);
-        }
-
-        else
-        {
-            SyllabusItem item = new SyllabusItem(type, name, weight, deadline);
-            this.syllabusItems.add(item);
-        }
-    }
-
     public void addSyllabusItem(SyllabusItem item)
     {
         this.syllabusItems.add(item);
@@ -69,5 +48,10 @@ public class Course {
         }
 
         return string;
+    }
+
+    public boolean equals(Course course)
+    {
+        return this.name.equals(course.getName());
     }
 }
