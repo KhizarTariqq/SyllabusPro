@@ -28,8 +28,8 @@ public class SummaryFragment extends Fragment
         View root = binding.getRoot();
 
         // set the id for the progressbar and progress text
-        progressBar = root.findViewById(R.id.progress_bar);
-        progressText = root.findViewById(R.id.progress_text);
+        progressBar = root.findViewById(R.id.daily_progress_bar);
+        progressText = root.findViewById(R.id.daily_progress_text);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {

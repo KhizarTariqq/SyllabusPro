@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+android:layout_marginBottom="?attr/actionBarSize"
     tools:context="com.example.syllabuspro.ui.manage.ManageFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,17 +15,19 @@
             app:layout_constraintTop_toBottomOf="@id/manage_toolbar"
     />
 
-    <Button
-            android:id="@+id/add_course_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/button_add_course"
-            android:onClick="launchTextInput"
-            android:backgroundTint="@color/purple_200"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/add_course_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:backgroundTint="?attr/colorPrimary"
+        android:contentDescription="To do"
+        android:text="Add course"
+        app:icon="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:onClick="launchTextInput"
+    />
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -43,6 +46,18 @@
         app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:titleTextColor = "#fff"
-        app:title="Manage"/>
+        app:title="Courses"/>
 
+    <ImageButton
+            android:id="@+id/editButton"
+            android:src="@drawable/ic_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/white"
+            app:backgroundTint="?attr/colorPrimary"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintTop_toTopOf="@id/manage_toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/manage_toolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".ui.add_items.AddItemsFragment">
 
@@ -27,7 +28,6 @@
             android:layout_margin="16dp"
             app:layout_constraintBottom_toTopOf="@id/confirm_button"
             app:backgroundTint="?attr/colorPrimary"
-            android:translationY="-70dp"
             app:layout_constraintEnd_toEndOf="@+id/confirm_button"
             android:layout_marginBottom="16dp"
             app:layout_constraintStart_toStartOf="@+id/confirm_button"
@@ -44,7 +44,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:backgroundTint="?attr/colorPrimary"
-            android:translationY="-70dp"
     />
     <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"

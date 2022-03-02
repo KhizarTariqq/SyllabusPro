@@ -53,7 +53,7 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            name = itemView.findViewById(R.id.task_name);
+            name = itemView.findViewById(R.id.task_display_name);
             // age = itemView.findViewById(R.id.item_age);
         }
     }

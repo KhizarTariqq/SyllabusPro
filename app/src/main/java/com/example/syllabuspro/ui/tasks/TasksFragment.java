@@ -20,20 +20,19 @@ import com.example.syllabuspro.Task;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.adapters.TasksAdapter;
-import com.example.syllabuspro.databinding.FragmentManageBinding;
 import com.example.syllabuspro.MainActivity;
-import com.example.syllabuspro.databinding.TasksFragmentBinding;
+import com.example.syllabuspro.databinding.FragmentTasksBinding;
 
 import java.util.ArrayList;
 
 public class TasksFragment extends Fragment
 {
-    private TasksFragmentBinding binding;
+    private FragmentTasksBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
-        binding = TasksFragmentBinding.inflate(inflater, container, false);
+        binding = FragmentTasksBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // Get task recycler view
@@ -44,10 +43,10 @@ public class TasksFragment extends Fragment
         GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
 
         // Add border between items
-        DividerItemDecoration mDividerItemDecorationVertical = new DividerItemDecoration(recyclerView.getContext(), RecyclerView.VERTICAL);
-        DividerItemDecoration mDividerItemDecorationHorizontal = new DividerItemDecoration(recyclerView.getContext(), RecyclerView.HORIZONTAL);
-        recyclerView.addItemDecoration(mDividerItemDecorationVertical);
-        recyclerView.addItemDecoration(mDividerItemDecorationHorizontal);
+        // DividerItemDecoration mDividerItemDecorationVertical = new DividerItemDecoration(recyclerView.getContext(), RecyclerView.VERTICAL);
+        // DividerItemDecoration mDividerItemDecorationHorizontal = new DividerItemDecoration(recyclerView.getContext(), RecyclerView.HORIZONTAL);
+        // recyclerView.addItemDecoration(mDividerItemDecorationVertical);
+        // recyclerView.addItemDecoration(mDividerItemDecorationHorizontal);
 
         // Set adapter and layout manager
         recyclerView.setAdapter(adapter);

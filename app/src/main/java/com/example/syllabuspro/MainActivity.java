@@ -26,6 +26,7 @@ import android.util.Pair;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.adapters.AddCourseAdapter;
@@ -70,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
     ArrayAdapter<CharSequence> adapter;
     public static EditText txt; // user input bar
-    public static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
 
     public static SharedPreferences prefs;
 
@@ -458,17 +458,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public void collectGoalInput(String description, Task task, View view)
     {
-        // Get task list and update it
-        RecyclerView recyclerView = view.getRootView().findViewById(R.id.tasksRecyclerview);
-        TasksAdapter adapter = (TasksAdapter) recyclerView.getAdapter();
+        RecyclerView goalRecyclerView = view.getRootView().findViewById(R.id.goalsRecyclerview);
+        GoalsAdapter adapter = (GoalsAdapter) goalRecyclerView.getAdapter();
 
-        taskList.add(new Task(name, description, priority, course));
-        saveArrayList(taskList, "tasks");
+        Log.d("Goal input", String.valueOf(this.goalDeadline));
         goalList.add(new Goal(description, task, this.goalDeadline));
-
+        Log.d("deadline", this.goalDeadline.toString());
+        Log.d("goalList", goalList.toString());
         saveArrayList(goalList, "goals");
-        adapter.notifyDataSetChanged();
-    }
         adapter.notifyDataSetChanged();
     }
 
@@ -541,10 +538,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return chosenTask;
     }
 
-    public static void saveCourses()
-    {
-        saveArrayList(courseList, "courses");
-    }
 
     public void launchTextInput(View view) throws IOException, URISyntaxException
     {
@@ -913,223 +906,139 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
 
-    public void addGoal(View view)
+        public void addGoal(View view)
     {
         // Set up dialog
         AlertDialog.Builder alertName = new AlertDialog.Builder(this);
         alertName.setTitle("Add task: ");
-        View layout = getLayoutInflater().inflate(R.layout.add_task_dialog, null);
+        View layout = getLayoutInflater().inflate(R.layout.add_goal_dialog, null);
         alertName.setView(layout);
+        // Placeholder click listener to avoid errors
+        // Continue button listener implemented later to not automatically close the dialog
+        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+            }
+        });
+        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog, int whichButton)
+            {
+                dialog.cancel(); // closes dialog alertName.show() // display the dialog
+            }
+        });
 
-        Log.d("addTask", String.valueOf(view));
-
-        // set course spinner
+        //Testing commit
+        // set click listeners
+        // initialize taskSpinner as disabled and enable it when course selected
+        Spinner taskSpinner = layout.findViewById(R.id.goals_task_spinner);
+        taskSpinner.setEnabled(false);
+        // set up course spinner
         final Course[] course = {null};
         final boolean[] courseChosen = {false};
-        Spinner courseSpinner = layout.findViewById(R.id.tasks_course_spinner);
+        Spinner courseSpinner = layout.findViewById(R.id.goals_course_spinner);
         ArrayAdapter<String> courseAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_spinner_dropdown_item, courseListToStringArray(this.courseList));
-        courseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         courseSpinner.setAdapter(courseAdapter);
-
-        // set course spinner click listener
         courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
             {
+                // When a course is chosen save course and enable task spinner
+                // Save course
                 String courseName = (String) adapterView.getItemAtPosition(position);
-                Log.d("task", courseName);
                 course[0] = getCourseFromString(courseName);
                 courseChosen[0] = true;
+                // Enable tasks spinner and set list
+                taskSpinner.setEnabled(true);
+                ArrayAdapter<String> taskAdapter = new ArrayAdapter<String> (getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, taskListToStringArray(course[0]));
+                taskSpinner.setAdapter(taskAdapter);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView)
             {
-
             }
         });
-
-        // set priority spinner
-        Spinner prioritySpinner = layout.findViewById(R.id.tasks_priority_spinner);
-        ArrayAdapter<CharSequence> priorityAdapter = ArrayAdapter.createFromResource(getApplicationContext(),
-        R.array.priority_array, android.R.layout.simple_spinner_item);
-
-        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        prioritySpinner.setAdapter(priorityAdapter);
-
-        // set priority spinner click listener
-        final Task.Priority[] priority = {null};
-        final boolean[] priorityChosen = {false};
-        prioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        // Set up task spinner
+        final Task[] task = {null};
+        final boolean[] taskChosen = {false};
+        taskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
             {
-                String priorityName = (String) adapterView.getItemAtPosition(position);
-                Log.d("task", priorityName);
-
-                if (priorityName.equals("Low"))
-                {
-                    priority[0] = Task.Priority.LOW;
-                }
-
-                if (priorityName.equals("Medium"))
-                {
-                    priority[0] = Task.Priority.MEDIUM;
-                }
-
-                if (priorityName.equals("High"))
-                {
-                    priority[0] = Task.Priority.HIGH;
-                }
-
-                if (priorityName.equals("Very High"))
-                {
-                    priority[0] = Task.Priority.VERY_HIGH;
-                }
-
-                if (priorityName.equals("Extreme"))
-                {
-                    priority[0] = Task.Priority.EXTREME;
-                }
-
-                priorityChosen[0] = true;
+                String chosenTask = (String) adapterView.getItemAtPosition(position);
+                task[0] = getTaskFromString(chosenTask);
+                taskChosen[0] = true;
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView)
             {
-
             }
         });
-
-        // edittext click listeners
-        final String[] taskName = {null};
-
-        EditText nameEditText = layout.findViewById(R.id.input_name);
-        nameEditText.addTextChangedListener(new TextWatcher()
+        // set up deadline button click listener
+        final boolean[] dateChosen = {false};
+        Button deadlineButton = layout.findViewById(R.id.deadline_button);
+        deadlineButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            public void onClick(View view)
             {
                 // launch date picker
-                MainActivity.deadlineMode = MainActivity.DeadlineMode.GOAL;
+                MainActivity.deadlineMode = DeadlineMode.GOAL;
                 DialogFragment fragment = new DatePickerFragment();
                 fragment.show(MainActivity.fragmentManager, "datePicker");
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                taskName[0] = editable.toString();
-                Log.d("task", taskName[0]);
+                // set boolean
+                dateChosen[0] = true;
             }
         });
 
-        final String[] descriptionName = {null};
+        // set description edit text listener
+        final String[] description = {null};
         EditText descriptionEditText = layout.findViewById(R.id.input_description);
         descriptionEditText.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
             {
-
             }
-
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
             {
-
             }
-
             @Override
             public void afterTextChanged(Editable editable)
             {
-                descriptionName[0] = editable.toString();
-                Log.d("task", descriptionName[0]);
+                description[0] = editable.toString();
             }
         });
-
-        // Placeholder click listener to avoid errors
-        // Continue button listener implemented later to not automatically close the dialog
-        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-
-        // Cancel button click listener
-        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                dialog.cancel(); // closes dialog alertName.show() // display the dialog
-
-            }
-        });
-
         AlertDialog dialog = alertName.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         dialog.show();
-
         // override continue button
+        final Deadline[] deadline = {this.goalDeadline};
         dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View innerView)
             {
-                if (courseChosen[0] && priorityChosen[0] && taskName[0] != null && descriptionName[0] != null)
+                if (courseChosen[0] && taskChosen[0] && dateChosen[0])
                 {
-                    collectTaskInput(taskName[0], descriptionName[0], priority[0], course[0], view);
                     // collect goal input and add to list
-                    if (description[0] == null)
-                    {
-                        collectGoalInput(description[0], task[0], view);
-                    }
-
-                    else
-                    {
-                        collectGoalInput("", task[0], view);
-                    }
-
+                    collectGoalInput(description[0], task[0], view);
                     dialog.dismiss();
                 }
-
                 else
                 {
-                    Log.d("listener", String.valueOf(courseChosen[0]));
-                    Log.d("listener", String.valueOf(priorityChosen[0]));
-                    Log.d("listener", String.valueOf(taskName[0]));
-                    Log.d("listener", String.valueOf(descriptionName[0]));
-
-                    // TODO Give more detailed response
-                    Toast toast = Toast.makeText(view.getContext(), "Input all information before proceeding", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getBaseContext(), "Complete all fields before continuing", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
         });
-
         Window window = dialog.getWindow();
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
-
-    public void addGoal(View view)
-    {
-        // add goal
-        // Task task = new Task("testTask", Task.Priority.MEDIUM, "testTask");
-        // Goal goal = new Goal(new Deadline(0, 0, 0), task, "test goal");
-        // goalList.add(goal);
-    }
-
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day)
@@ -1141,13 +1050,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
         Log.d("Date", selectedDate);
         Log.d("Date", deadlineMode.toString());
-
-        RecyclerView recyclerView = this.binding.getRoot().findViewById(R.id.addCourseRecyclerView);
-        AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
-        ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
-        SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
-
-        item.setDeadline(new Deadline(year, month, day));
 
         if (deadlineMode == DeadlineMode.SYLLABUS_ITEM)
         {

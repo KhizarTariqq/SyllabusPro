@@ -65,9 +65,10 @@ public class AddItemsFragment extends Fragment {
         AddCourseAdapter adapter = new AddCourseAdapter(syllabusItems);
 
         // Add border between items
-        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(addItemsRecyclerView.getContext(),
-             mLayoutManager.getOrientation());
-        addItemsRecyclerView.addItemDecoration(mDividerItemDecoration);
+        // DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(addItemsRecyclerView.getContext(),
+        //      mLayoutManager.getOrientation());
+        // addItemsRecyclerView.addItemDecoration(mDividerItemDecoration);
+
         addItemsRecyclerView.setAdapter(adapter);
         addItemsRecyclerView.setLayoutManager(mLayoutManager);
 

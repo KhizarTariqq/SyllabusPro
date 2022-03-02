@@ -67,9 +67,9 @@ public class ItemsViewFragment extends Fragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
 
         // Add border between items
-        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(itemsRecyclerView.getContext(),
-             mLayoutManager.getOrientation());
-        itemsRecyclerView.addItemDecoration(mDividerItemDecoration);
+        // DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(itemsRecyclerView.getContext(),
+        //      mLayoutManager.getOrientation());
+        // itemsRecyclerView.addItemDecoration(mDividerItemDecoration);
 
         // Add adapter and layout
         itemsRecyclerView.setAdapter(adapter);
