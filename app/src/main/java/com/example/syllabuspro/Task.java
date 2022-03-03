@@ -1,6 +1,7 @@
 package com.example.syllabuspro;
 
-public class Task
+public class
+Task
 {
     private String name;
     private Task.Priority priority;

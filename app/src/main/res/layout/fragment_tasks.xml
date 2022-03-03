@@ -8,13 +8,12 @@
         android:layout_marginBottom="?attr/actionBarSize"
         tools:context="com.example.syllabuspro.ui.tasks.TasksFragment"
 >
-
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tasksRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tasks_toolbar"
+            app:layout_constraintTop_toTopOf="parent"
     />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -52,15 +51,41 @@
     />
 
     <ImageButton
-            android:id="@+id/editButton"
+            android:id="@+id/tasks_edit_button"
             android:src="@drawable/ic_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:tint="@color/white"
             app:backgroundTint="?attr/colorPrimary"
             android:layout_marginEnd="10dp"
+            android:contentDescription="To do"
             app:layout_constraintTop_toTopOf="@id/tasks_toolbar"
             app:layout_constraintBottom_toBottomOf="@id/tasks_toolbar"
             app:layout_constraintEnd_toEndOf="parent"
+            android:minHeight="48dp"/>
+
+
+    <TextView
+        android:id="@+id/tasks_sort_mode"
+        android:text="Sort by:"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/tasks_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/tasks_toolbar"
+        app:layout_constraintEnd_toStartOf="@id/tasks_sort_spinner"
     />
+
+    <Spinner
+            android:id="@+id/tasks_sort_spinner"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:contentDescription="To do"
+            app:layout_constraintTop_toTopOf="@id/tasks_toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/tasks_toolbar"
+            app:layout_constraintEnd_toStartOf="@id/tasks_edit_button"
+            android:minHeight="48dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
