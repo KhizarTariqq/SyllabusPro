@@ -51,7 +51,7 @@
     />
 
     <ImageButton
-            android:id="@+id/editButton"
+            android:id="@+id/goals_edit_button"
             android:src="@drawable/ic_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,4 +62,28 @@
             app:layout_constraintBottom_toBottomOf="@id/goals_toolbar"
             app:layout_constraintEnd_toEndOf="parent"
     />
+
+    <TextView
+        android:id="@+id/goals_sort_mode"
+        android:text="Sort by:"
+        android:textColor="@color/white"
+        android:textSize="13dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintTop_toTopOf="@id/goals_toolbar"
+        app:layout_constraintBottom_toBottomOf="@id/goals_toolbar"
+        app:layout_constraintEnd_toStartOf="@id/tasks_sort_spinner"
+    />
+
+    <Spinner
+            android:id="@+id/tasks_sort_spinner"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:contentDescription="To do"
+            app:layout_constraintTop_toTopOf="@id/goals_toolbar"
+            app:layout_constraintBottom_toBottomOf="@id/goals_toolbar"
+            app:layout_constraintEnd_toStartOf="@id/goals_edit_button"
+            android:minHeight="48dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

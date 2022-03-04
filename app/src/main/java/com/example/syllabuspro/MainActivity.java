@@ -29,12 +29,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.syllabuspro.adapters.AddCourseAdapter;
-import com.example.syllabuspro.adapters.CustomAdapter;
-import com.example.syllabuspro.adapters.TasksAdapter;
+import com.example.syllabuspro.adapters.*;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
+import com.example.syllabuspro.ui.tasks.TaskPriorityType;
 import com.example.syllabuspro.ui.tasks.TasksFragment;
-import com.example.syllabuspro.adapters.GoalsAdapter;
 import com.example.syllabuspro.adapters.TasksAdapter;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -72,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     ArrayAdapter<CharSequence> adapter;
     public static EditText txt; // user input bar
 
+    // variable for accessing user storage
     public static SharedPreferences prefs;
 
     // Deadline selector mode to tell if deadline is for syllabus item or goal
@@ -412,6 +411,20 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         saveArrayList(courseList, "courses");
     }
 
+    public static ArrayList<TaskPriorityType> getPriorityList()
+    {
+        ArrayList<TaskPriorityType> priorityTypes= new ArrayList<TaskPriorityType>();
+        priorityTypes.add(new TaskPriorityType(Task.Priority.LOW));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.MEDIUM));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.HIGH));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.VERY_HIGH));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.EXTREME));
+
+        priorityTypes.removeIf(type -> type.getTaskList().size() == 0);
+
+        return priorityTypes;
+    }
+
     public void collectCourseInput(View view, Course course) throws IOException, URISyntaxException {
         // convert edit text to string
         String getInput = txt.getText().toString();
@@ -446,14 +459,24 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     {
         // Get task list and update it
         RecyclerView recyclerView = view.getRootView().findViewById(R.id.tasksRecyclerview);
-        TasksAdapter adapter = (TasksAdapter) recyclerView.getAdapter();
 
+        // Add the task to the task list and save it to storage
         taskList.add(new Task(name, description, priority, course));
-        Log.d("taskList", taskList.toString());
-        Log.d("taskList", name);
         saveArrayList(taskList, "tasks");
 
-        adapter.notifyDataSetChanged();
+        if (recyclerView.getAdapter().getClass() == TasksCourseAdapter.class)
+        {
+            TasksCourseAdapter adapter = (TasksCourseAdapter) recyclerView.getAdapter();
+            adapter.notifyDataSetChanged();
+        }
+
+        else if (recyclerView.getAdapter().getClass() == TasksPriorityAdapter.class)
+        {
+            TasksPriorityAdapter adapter = (TasksPriorityAdapter) recyclerView.getAdapter();
+
+            adapter.setTaskPriorityList(getPriorityList());
+            adapter.notifyDataSetChanged();
+        }
     }
 
     public void collectGoalInput(String description, Task task, View view)

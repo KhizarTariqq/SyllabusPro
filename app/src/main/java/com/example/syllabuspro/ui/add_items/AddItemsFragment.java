@@ -53,7 +53,7 @@ public class AddItemsFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                MainActivity.fragmentManager.popBackStackImmediate();
+                MainActivity.navController.popBackStack();
             }
         });
 
@@ -112,7 +112,7 @@ public class AddItemsFragment extends Fragment {
                 {
                     MainActivity.syllabusItems = new ArrayList<SyllabusItem>();
                     MainActivity.saveCourses();
-                    MainActivity.fragmentManager.popBackStackImmediate();
+                    MainActivity.navController.popBackStack();
                 }
 
                 else

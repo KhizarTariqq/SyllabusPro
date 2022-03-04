@@ -37,6 +37,7 @@ public class TasksFragment extends Fragment
     private FragmentTasksBinding binding;
     public static Context context;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
@@ -47,16 +48,12 @@ public class TasksFragment extends Fragment
 
         // Set task recycler view
         RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
+
         // Adapter for when sorting by course
         TasksCourseAdapter courseAdapter = new TasksCourseAdapter(MainActivity.courseList);
 
         // Adapter for when sorting by priority
-        ArrayList<TaskPriorityType> priorityTypes= new ArrayList<TaskPriorityType>();
-        priorityTypes.add(new TaskPriorityType(Task.Priority.LOW));
-        priorityTypes.add(new TaskPriorityType(Task.Priority.MEDIUM));
-        priorityTypes.add(new TaskPriorityType(Task.Priority.HIGH));
-        priorityTypes.add(new TaskPriorityType(Task.Priority.EXTREME));
-        TasksPriorityAdapter priorityAdapter = new TasksPriorityAdapter(priorityTypes);
+        TasksPriorityAdapter priorityAdapter = new TasksPriorityAdapter(MainActivity.getPriorityList());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         // GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);

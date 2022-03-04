@@ -18,11 +18,11 @@ import java.util.ArrayList;
 
 public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdapter.ViewHolder>
 {
-    private ArrayList<TaskPriorityType> taskList;
+    private ArrayList<TaskPriorityType> taskPriorityList;
 
-    public TasksPriorityAdapter(ArrayList<TaskPriorityType> taskList)
+    public TasksPriorityAdapter(ArrayList<TaskPriorityType> taskPriorityList)
     {
-        this.taskList = taskList;
+        this.taskPriorityList = taskPriorityList;
     }
 
     @NonNull
@@ -30,30 +30,35 @@ public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdap
     @Override
     public TasksPriorityAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType)
     {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.task_row_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.task_priority_row_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-        holder.priorityType.setText(this.taskList.get(position).getPriority().toString());
+        holder.priorityType.setText(this.taskPriorityList.get(position).getPriority().toString());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(TasksFragment.context,RecyclerView.HORIZONTAL, false);
 
         // Add adapter and layout
-        holder.taskRecyclerView.setAdapter(new TasksAdapter(this.taskList.get(position).getTaskList()));
+        holder.taskRecyclerView.setAdapter(new TasksAdapter(this.taskPriorityList.get(position).getTaskList()));
         holder.taskRecyclerView.setLayoutManager(mLayoutManager);
     }
 
     @Override
     public int getItemCount()
     {
-        return this.taskList.size();
+        return this.taskPriorityList.size();
     }
 
-    public ArrayList<TaskPriorityType> getTaskList()
+    public void setTaskPriorityList(ArrayList<TaskPriorityType> taskPriorityList)
     {
-        return this.taskList;
+        this.taskPriorityList = taskPriorityList;
+    }
+
+    public ArrayList<TaskPriorityType> getTaskPriorityList()
+    {
+        return this.taskPriorityList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder

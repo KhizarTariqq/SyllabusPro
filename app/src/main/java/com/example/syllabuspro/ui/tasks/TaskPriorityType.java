@@ -12,10 +12,10 @@ public class TaskPriorityType
     public TaskPriorityType(Task.Priority priority)
     {
         this.priority = priority;
-        this.taskList = setTaskList();
+        setTaskList();
     }
 
-    private ArrayList<Task> setTaskList()
+    public void setTaskList()
     {
         ArrayList<Task> priorityTaskList = new ArrayList<Task>();
         for (Task task : MainActivity.taskList)
@@ -26,7 +26,7 @@ public class TaskPriorityType
             }
         }
 
-        return priorityTaskList;
+        this.taskList = priorityTaskList;
     }
 
     public Task.Priority getPriority()

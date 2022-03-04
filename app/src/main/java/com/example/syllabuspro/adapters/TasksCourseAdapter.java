@@ -38,7 +38,8 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-        holder.name.setText(this.courseList.get(position).getName());
+        String name = "Course: " + this.courseList.get(position).getName();
+        holder.name.setText(name);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(TasksFragment.context,RecyclerView.HORIZONTAL , false);
 
         // Add adapter and layout
