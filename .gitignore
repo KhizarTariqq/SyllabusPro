@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+python_backend/pdfs/
+python_backend/txts/
