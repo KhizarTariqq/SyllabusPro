@@ -15,3 +15,5 @@
 local.properties
 python_backend/pdfs/
 python_backend/txts/
+python_backend/txts2/
+python_backend/annotations/
