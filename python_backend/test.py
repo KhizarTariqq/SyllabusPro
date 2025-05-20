@@ -6,9 +6,10 @@ def read_char_range(file_path, start, end):
         text = f.read()
     return text[start:end]
 
-file_path = 'txts/1 Syllabus 20241_PHY100H5S_LEC0101.txt'
-start = 4512
-end = 4599
+#[3572,3616,"SYLLABUSITEM"],[3617,3676,"SYLLABUSITEM"],[3677,3737,"SYLLABUSITEM"],[3738,3756,"SYLLABUSITEM"],[3757,3804,"SYLLABUSITEM"]
+file_path = 'txts/20239_CSC324H5F_LEC0101.txt'
+start = 3572
+end = 3616
 
 chunk = read_char_range(file_path, start, end)
 print(f"Characters {start}-{end}:\n{chunk}")
