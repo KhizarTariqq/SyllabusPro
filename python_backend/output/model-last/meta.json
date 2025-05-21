@@ -1,0 +1,52 @@
+{
+  "lang":"en",
+  "name":"pipeline",
+  "version":"0.0.0",
+  "spacy_version":">=3.8.5,<3.9.0",
+  "description":"",
+  "author":"",
+  "email":"",
+  "url":"",
+  "license":"",
+  "spacy_git_version":"d0c705c",
+  "vectors":{
+    "width":0,
+    "vectors":0,
+    "keys":0,
+    "name":null,
+    "mode":"default"
+  },
+  "labels":{
+    "tok2vec":[
+
+    ],
+    "ner":[
+      "SYLLABUSITEM"
+    ]
+  },
+  "pipeline":[
+    "tok2vec",
+    "ner"
+  ],
+  "components":[
+    "tok2vec",
+    "ner"
+  ],
+  "disabled":[
+
+  ],
+  "performance":{
+    "ents_f":0.4166666667,
+    "ents_p":1.0,
+    "ents_r":0.2631578947,
+    "ents_per_type":{
+      "SYLLABUSITEM":{
+        "p":1.0,
+        "r":0.2631578947,
+        "f":0.4166666667
+      }
+    },
+    "tok2vec_loss":43.8844090806,
+    "ner_loss":8.1706285477
+  }
+}
