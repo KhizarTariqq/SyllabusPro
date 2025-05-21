@@ -2,7 +2,7 @@ import spacy
 nlp = spacy.load("output/model-best")
 
 # Create doc object
-with open("testing_txts/20249_CSC420H5F_LEC0101.txt", "r", encoding="utf-8") as f:
+with open("testing_txts/20229_CSC398H5F_LEC0101.txt", "r", encoding="utf-8") as f:
     CSC420 = f.read()
 
 doc = nlp(CSC420)
