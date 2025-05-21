@@ -1,8 +1,12 @@
 import spacy
-nlp = spacy.load("en_core_web_sm")
+nlp = spacy.load("output/model-best")
 
 # Create doc object
-doc = nlp(extracted_text)
-#for ent in doc.ents:
+with open("testing_txts/20249_CSC420H5F_LEC0101.txt", "r", encoding="utf-8") as f:
+    CSC420 = f.read()
+
+doc = nlp(CSC420)
+
+for ent in doc.ents:
     # Print the entity text and its label
-    #print(ent.text, ent.label_)
+    print(ent.text, ent.label_)

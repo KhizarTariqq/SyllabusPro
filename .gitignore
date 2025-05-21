@@ -17,3 +17,6 @@ python_backend/pdfs/
 python_backend/txts/
 python_backend/txts2/
 python_backend/annotations/
+python_backend/__pycache__/
+python_backend/testing_txts/
+python_backend/testing_pdfs/

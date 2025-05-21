@@ -30,9 +30,16 @@ def process_pdf_manual_rows(pdf_path):
     return '\n'.join(all_text)
 
 pdf_dir = os.path.join(os.path.dirname(__file__), 'pdfs')
+test_pdf_dir = os.path.join(os.path.dirname(__file__), 'testing_pdfs')
 
 for filename in os.listdir(pdf_dir):
     if filename.endswith('.pdf'):
         newFileName = "txts/" + filename[:-4] + ".txt"
         with open(newFileName, "w") as f:
             f.write(process_pdf_manual_rows("pdfs/" + filename))
+
+for filename in os.listdir(test_pdf_dir):
+    if filename.endswith('.pdf'):
+        newFileName = "testing_txts/" + filename[:-4] + ".txt"
+        with open(newFileName, "w") as f:
+            f.write(process_pdf_manual_rows("testing_pdfs/" + filename))
