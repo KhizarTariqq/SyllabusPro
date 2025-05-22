@@ -1,4 +1,5 @@
 # Read txt files into strings
+
 with open("txts/1 Syllabus 20241_PHY100H5S_LEC0101.txt", "r", encoding="utf-8") as f:
     PHY100 = f.read()
 
@@ -67,9 +68,3 @@ with open("txts/LIN205 (WS23) - Course Syllabus.txt", "r", encoding="utf-8") as 
 
 with open("txts/STA258-winter2023-Omid-quercus.txt", "r", encoding="utf-8") as f:
     STA258 = f.read()
-
-with open("txts/STA302F2024_syllabus.txt", "r", encoding="utf-8") as f:
-    STA302 = f.read()
-
-with open("txts/Syllabus_STA304_Fall2024.txt", "r", encoding="utf-8") as f:
-    STA304 = f.read()

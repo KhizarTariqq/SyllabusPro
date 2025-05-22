@@ -2,6 +2,9 @@ import os
 import pdfplumber
 from collections import defaultdict
 
+"""
+This alternative parsing method extracts text from tables
+"""
 
 TABLE_SETTINGS = {
     "vertical_strategy": "lines",          # only if there are no ruling lines

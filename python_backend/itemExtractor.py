@@ -1,8 +1,11 @@
 import spacy
-from processPDF import process_pdf
+from pdfParsing.processPDF import process_pdf
 nlp = spacy.load("output/model-best")
 
 def extract_items(file):
+    '''
+    Extract all syllabus items from the pdf, add them to a list and return it.
+    '''
     text = process_pdf(file)
 
     doc = nlp(text)
@@ -10,7 +13,6 @@ def extract_items(file):
     entities = []
     for ent in doc.ents:
         # Add the entity to the list
-        # print(ent.text, ent.label_)
         entities.append(ent.text)
 
     return entities
