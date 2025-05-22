@@ -1,12 +1,16 @@
 import spacy
+from processPDF import process_pdf
 nlp = spacy.load("output/model-best")
 
-# Create doc object
-with open("testing_txts/20229_CSC398H5F_LEC0101.txt", "r", encoding="utf-8") as f:
-    CSC420 = f.read()
+def extract_items(file):
+    text = process_pdf(file)
 
-doc = nlp(CSC420)
+    doc = nlp(text)
 
-for ent in doc.ents:
-    # Print the entity text and its label
-    print(ent.text, ent.label_)
+    entities = []
+    for ent in doc.ents:
+        # Add the entity to the list
+        # print(ent.text, ent.label_)
+        entities.append(ent.text)
+
+    return entities

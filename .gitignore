@@ -19,4 +19,3 @@ python_backend/annotations/
 python_backend/__pycache__/
 python_backend/testing_txts/
 python_backend/testing_pdfs/
-python_backend/newMethodTest/

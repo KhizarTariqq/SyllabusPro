@@ -41,10 +41,10 @@ for i, (text, entities) in enumerate(training_data):
         span = doc.char_span(start, end, label=label)
         if span is None:
             print(text)
-            print(f"❌ Invalid span in item {i}: ({start}, {end}, {label})")
+            print(f"Invalid span in item {i}: ({start}, {end}, {label})")
             print(f"Text segment: {repr(text[start:end])}")
         else:
-            print(f"✅ Span OK in item {i}: {repr(span.text)}")
+            print(f"Span OK in item {i}: {repr(span.text)}")
 
 # the DocBin will store the example documents
 db = DocBin()
