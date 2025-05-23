@@ -1,11 +1,15 @@
+import os
 import spacy
-from pdfParsing.processPDF import process_pdf
-nlp = spacy.load("output/model-best")
+
+from .pdfParsing.processPDF import process_pdf
+
+model_path = os.path.join(os.path.dirname(__file__), "model", "model-best")
+nlp = spacy.load(model_path)
 
 def extract_items(file):
-    '''
+    """
     Extract all syllabus items from the pdf, add them to a list and return it.
-    '''
+    """
     text = process_pdf(file)
 
     doc = nlp(text)

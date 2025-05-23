@@ -13,6 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-python_backend/annotations/
-python_backend/__pycache__/
-python_backend/data/
+NER/python_backend/annotations/
+NER/python_backend/__pycache__/
+NER/python_backend/data/
+NER/flask_api/__pycache__/

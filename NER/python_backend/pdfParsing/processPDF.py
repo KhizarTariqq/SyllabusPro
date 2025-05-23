@@ -2,9 +2,9 @@ import pdfplumber
 from collections import defaultdict
 
 def extract_rows_from_page(page, y_tolerance=3):
-    '''
+    """
     Extract the rows from a page of a PDF by grouping text with similar y values
-    '''
+    """
 
     words = page.extract_words()
     rows = defaultdict(list)
