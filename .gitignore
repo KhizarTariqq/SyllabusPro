@@ -15,5 +15,7 @@
 local.properties
 NER/python_backend/annotations/
 NER/python_backend/__pycache__/
-NER/python_backend/data/
+NER/python_backend/extractItemsModel/data/
+NER/python_backend/extractDetailsModel/data/
 NER/flask_api/__pycache__/
+NER/python_backend/pdfParsing/__pycache__/

@@ -1,3 +1,5 @@
+import re
+
 def read_char_range(file_path, start, end):
     """
     Reads characters from `start` to `end` (exclusive) in the file at `file_path`.
@@ -6,10 +8,23 @@ def read_char_range(file_path, start, end):
         text = f.read()
     return text[start:end]
 
-#[2537,2576,"SYLLABUSITEM"],[2577,2616,"SYLLABUSITEM"],[2675,2713,"SYLLABUSITEM"],[2714,2770,"SYLLABUSITEM"],[2771,2810,"SYLLABUSITEM"],[2811,2876,"SYLLABUSITEM"],[2877,2945,"SYLLABUSITEM"],[2946,2979,"SYLLABUSITEM"],[2980,3046,"SYLLABUSITEM"],[3047,3133,"SYLLABUSITEM"],[3134,3183,"SYLLABUSITEM"]
-file_path = 'txts/20231_MAT301H5S_LEC0101.txt'
-start = 1772
-end = 1810
+def read_all_ranges_from_string(file_path, range_string):
+    """
+    Parses a string with character ranges and reads the corresponding text from the file.
+    Example input: '(2904, 2933, "SYLLABUSITEM"), (3001, 3040, "SYLLABUSITEM")'
+    """
+    # Find all tuples of the form (start, end, "LABEL")
+    pattern = r'\(\s*(\d+)\s*,\s*(\d+)\s*,\s*".*?"\s*\)'
+    matches = re.findall(pattern, range_string)
 
-chunk = read_char_range(file_path, start, end)
-print(f"Characters {start}-{end}:\n{chunk}")
+    # Read and print each range
+    for start_str, end_str in matches:
+        start = int(start_str)
+        end = int(end_str)
+        chunk = read_char_range(file_path, start, end)
+        print(f"Characters {start}-{end}:\n{chunk}\n{'-'*40}")
+
+range_string = '(2904, 2933, "SYLLABUSITEM"), (3001, 3040, "SYLLABUSITEM"), (3041, 3101, "SYLLABUSITEM"), (3102, 3141, "SYLLABUSITEM"), (3142, 3196, "SYLLABUSITEM")'
+file_path = '/home/whatsanoutside/syllabusprogit/SyllabusPro/NER/python_backend/extractItemsModel/data/training_txts/20249_CHM211H5F_LEC0101.txt'
+
+read_all_ranges_from_string(file_path, range_string)
