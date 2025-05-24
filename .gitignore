@@ -13,7 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
-NER/python_backend/annotations/
+NER/python_backend/extractItemsModel/annotations/
 NER/python_backend/__pycache__/
 NER/python_backend/extractItemsModel/data/
 NER/python_backend/extractDetailsModel/data/
@@ -21,3 +21,4 @@ NER/flask_api/__pycache__/
 NER/python_backend/pdfParsing/__pycache__/
 NER/python_backend/extractDetailsModel/__pycache__/
 NER/python_backend/extractDetailsModel/createModel/__pycache__/
+NER/python_backend/extractDetailsModel/annotations/

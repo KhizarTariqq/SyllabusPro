@@ -8,6 +8,7 @@ flask = "*"
 requests = "*"
 spacy = "*"
 pdfplumber = "*"
+marshmallow = "*"
 
 [dev-packages]
 

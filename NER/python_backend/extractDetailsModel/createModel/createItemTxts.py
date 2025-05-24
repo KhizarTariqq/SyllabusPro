@@ -36,7 +36,7 @@ def createItemTxts(EIMDirectory, EDMDirectory):
 
             counter = 1
             for item in items_in_file:
-                new_file_name = filename[:-4] + f"-item-{counter}"
+                new_file_name = filename[:-4] + f"-item-{counter}.txt"
                 new_file_path = os.path.join(EDMDirectory, new_file_name)
                 counter += 1
 
