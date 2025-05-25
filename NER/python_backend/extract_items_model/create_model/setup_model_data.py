@@ -1,5 +1,5 @@
-import trainingDataStrings as tStrings
-import validationDataStrings as vStrings
+import training_data_strings as tStrings
+import validation_data_strings as vStrings
 import spacy
 from spacy.tokens import DocBin
 

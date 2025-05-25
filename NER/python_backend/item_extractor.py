@@ -1,7 +1,7 @@
 import os
 import spacy
 
-from .pdfParsing.processPDF import process_pdf
+from .pdf_parsing.process_PDF import process_pdf
 
 model_path = os.path.join(os.path.dirname(__file__), "extractItemsModel", "model", "model-best")
 nlp = spacy.load(model_path)

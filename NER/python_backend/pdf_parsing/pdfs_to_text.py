@@ -1,5 +1,5 @@
 import os
-from processPDF import process_pdf
+from process_PDF import process_pdf
 
 # Process each pdf in the pdfs directory (contains both training and validation data)
 # and each pdf in the test_pdf_dir directory (contains test data)

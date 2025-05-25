@@ -1,5 +1,5 @@
 import os
-from python_backend.itemExtractor import extract_items_from_text
+from python_backend.item_extractor import extract_items_from_text
 
 # This file creates the txt files for each syllabus item within each syllabus that was
 # used to train the extractItemsModel, which extracts all of the Syllabus Items from a

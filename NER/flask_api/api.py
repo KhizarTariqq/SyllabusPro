@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from python_backend.itemExtractor import extract_items_from_file
+from python_backend.item_extractor import extract_items_from_file
 
 app = Flask(__name__)
 
