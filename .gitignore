@@ -21,4 +21,9 @@ NER/flask_api/__pycache__/
 NER/python_backend/pdf_parsing/__pycache__/
 NER/python_backend/extract_details_model/__pycache__/
 NER/python_backend/extract_details_model/create_model/__pycache__/
-NER/python_backend/extract_details_model/annotations/
+NER/python_backend/extract_details_model/training_annotations/
+NER/python_backend/extract_details_model/validation_annotations/
+NER/python_backend/extract_items_model/create_model/training_data_strings.py
+NER/python_backend/extract_items_model/create_model/validation_data_strings.py
+NER/python_backend/extract_details_model/create_model/training_data_strings.py
+NER/python_backend/extract_details_model/create_model/validation_data_strings.py
