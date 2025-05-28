@@ -30,7 +30,6 @@ def process_pdf(pdfFile):
     all_text = []
     with pdfplumber.open(pdfFile) as pdf:
         for page in pdf.pages:
-            print(f"Processing page {page.page_number}")
             lines = extract_rows_from_page(page)
             all_text.extend(lines)
     return '\n'.join(all_text)

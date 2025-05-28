@@ -1,8 +1,11 @@
 import spacy
-nlp = spacy.load("output/model-best")
+import os
+
+nlp = spacy.load(os.path.join(os.path.dirname(__file__), "model", "model-best"))
 
 # Create doc object
-with open("testing_txts/20229_CSC398H5F_LEC0101.txt", "r", encoding="utf-8") as f:
+file = os.path.join(os.path.dirname(__file__), "data", "testing_txts", "20229_CSC398H5F_LEC0101.txt")
+with open(file, "r", encoding="utf-8") as f:
     CSC420 = f.read()
 
 doc = nlp(CSC420)

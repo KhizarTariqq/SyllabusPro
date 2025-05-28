@@ -26,7 +26,6 @@ def process_pdf_manual_rows(pdf_path):
     all_text = []
     with pdfplumber.open(pdf_path) as pdf:
         for page in pdf.pages:
-            print(f"Processing page {page.page_number}")
             lines = extract_rows_from_page(page)
             all_text.extend(lines)
     return '\n'.join(all_text)
