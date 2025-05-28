@@ -54,3 +54,11 @@ class SyllabusItem:
 
     def __str__(self):
         return f"SyllabusItem: (type = {self.type}, description = {self.description}, weight = {self.weight}, due_date = {self.due_date})"
+    
+    def to_dict(self):
+        return {
+            "type": self.type.name if self.type else None,
+            "description": self.description,
+            "weight": self.weight,
+            "due_date": self.due_date.isoformat() if self.due_date else None
+        }
