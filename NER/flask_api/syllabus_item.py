@@ -21,7 +21,7 @@ class ItemType(Enum):
         if s == "assignment":
             return cls.ASSIGNMENT
         
-        elif s == "lab":
+        elif s in {"lab", "labs"}:
             return cls.LAB
         
         elif s in {"class participation", "in-class participation", "lecture participation", "participation"}:

@@ -8,6 +8,8 @@ import os
 model_path = os.path.join(os.path.dirname(__file__), "extract_details_model", "model", "model-best")
 nlp = spacy.load(model_path)
 
+exam_descriptions = {"final exam", "exam", "final", "final examination"}
+
 def extract_items_with_details(file):
     """
     Run the extract_items_model on the file to extract all syllabus items from it.
@@ -18,6 +20,8 @@ def extract_items_with_details(file):
 
     extracted_items = extract_items_from_file(file)
     item_objects = []
+    found_exam = False
+    processed_exam = False
 
     for item in extracted_items:
         doc = nlp(item)
@@ -32,9 +36,13 @@ def extract_items_with_details(file):
                 # "TYPE","DESCRIPTION","WEIGHT","DATE"
                 case "TYPE":
                     type = ItemType.from_string(ent.text)
+                    if (type == ItemType.EXAM):
+                        found_exam = True
 
                 case "DESCRIPTION":
                     description = ent.text
+                    if description.strip().lower() in {"exam", "final exam", "final", "final examination"}:
+                        found_exam = True
                 
                 case "DATE":
                     # TODO create custom date type that can either be a date or "ongoing/tba"
@@ -53,7 +61,16 @@ def extract_items_with_details(file):
                         except ValueError:
                             weight = None
 
-        syllabus_item = SyllabusItem(type=type, description=description, weight=weight, due_date=due_date)
-        item_objects.append(syllabus_item)
+        # Add the newly created item unless:
+        #   # 1. It has no weight or due date (which means the first NER picked up something
+        #        that isn't a Syllabus Item). 
+        #   # 2. The item is an "exam" but we already processed an exam (In CS syllabi there is
+        #        a 40% rule for exams which sometimes is picked up as a syllabus item)
+        if not ((weight is None and due_date is None) or (processed_exam and description.strip().lower() in exam_descriptions)
+                or (processed_exam and type == ItemType.EXAM)):
+            syllabus_item = SyllabusItem(type=type, description=description, weight=weight, due_date=due_date)
+            item_objects.append(syllabus_item)
+
+            processed_exam = found_exam
 
     return item_objects
