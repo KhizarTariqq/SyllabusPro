@@ -3,12 +3,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    namespace "com.example.syllabuspro"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.syllabuspro"
         minSdk 26
-        targetSdk 32
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -63,4 +64,9 @@ dependencies {
 }
 
 repositories {
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
