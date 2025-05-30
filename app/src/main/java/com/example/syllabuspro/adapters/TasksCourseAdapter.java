@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.Course;
+import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.Task;
 import com.example.syllabuspro.ui.tasks.TasksFragment;
@@ -16,7 +17,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import static com.example.syllabuspro.MainActivity.taskList;
 
 public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.ViewHolder>
 {
@@ -63,7 +63,7 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
         Course course = this.courseList.get(position);
         ArrayList<Task> courseTaskList = new ArrayList<Task>();
 
-        for (Task task : taskList)
+        for (Task task : MainActivity.getTaskList())
         {
             if (task.getCourse().equals(course))
             {

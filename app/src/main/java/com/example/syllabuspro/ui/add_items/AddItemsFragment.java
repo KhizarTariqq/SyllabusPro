@@ -56,7 +56,7 @@ public class AddItemsFragment extends Fragment {
 
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
-        syllabusItems = MainActivity.syllabusItems;
+        syllabusItems = MainActivity.getSyllabusItems();
         AddCourseAdapter adapter = new AddCourseAdapter(syllabusItems);
 
         // Add border between items
@@ -105,8 +105,8 @@ public class AddItemsFragment extends Fragment {
 
                 if (syllabusItems.get(syllabusItems.size() - 1).notNull())
                 {
-                    MainActivity.syllabusItems = new ArrayList<SyllabusItem>();
-                    MainActivity.saveCourses();
+                    MainActivity.setSyllabusItems(syllabusItems);
+                    MainActivity.saveCourseList();
                     MainActivity.navController.popBackStack();
                 }
 

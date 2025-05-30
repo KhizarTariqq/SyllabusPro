@@ -52,18 +52,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public static ActivityMainBinding binding;
     private String directory;
     private RecyclerView recyclerView;
-    public static ArrayList <Course> courseList = new ArrayList<Course>();
-    public static ArrayList <Task> taskList = new ArrayList<Task>();
+    private static ArrayList <Course> courseList;
+    private static ArrayList <Task> taskList;
 
     // List first syllabus items for when adding course
-    public static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+    private static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
 
     // fragment controllers
     public static NavController navController;
     public static FragmentManager fragmentManager;
 
     ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
-    ArrayAdapter<CharSequence> adapter;
+
     public static EditText txt; // user input bar
 
     // variable for accessing user storage
@@ -112,20 +112,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             SharedPreferences.Editor editor = prefs.edit();
 
             // Courses ArrayList
-            ArrayList<Course> courses = new ArrayList<Course>(0);
-            saveArrayList(courses, "courses");
+            courseList = new ArrayList<Course>(0);
+            saveCourseList();
 
             // Tasks ArrayList
-            ArrayList<Task> tasks = new ArrayList<Task>(0);
-            saveArrayList(tasks, "tasks");
-
+            taskList = new ArrayList<Task>(0);
+            saveTaskList();
 
             // set first time boolean
             editor.putBoolean("firstTime", true);
             editor.apply();
         }
 
-        // if it's not the first time installing the app, get the list of courses, and tasks..
+        // if it's not the first time installing the app, get the list of courses, and tasks.
         else
         {
             Log.d("first time", "2");
@@ -163,6 +162,46 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+    }
+
+    public static ArrayList<Course> getCourseList()
+    {
+        return courseList;
+    }
+
+    public static void saveCourseList(){
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(courseList);
+        editor.putString("courses", json);
+        editor.apply();
+    }
+
+    public static ArrayList<Task> getTaskList()
+    {
+        return taskList;
+    }
+
+    public static void addToTaskList(Task task)
+    {
+        taskList.add(task);
+    }
+
+    public static void saveTaskList(){
+        SharedPreferences.Editor editor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(taskList);
+        editor.putString("tasks", json);
+        editor.apply();
+    }
+
+    public static ArrayList<SyllabusItem> getSyllabusItems()
+    {
+        return syllabusItems;
+    }
+
+    public static void setSyllabusItems(ArrayList<SyllabusItem> syllabusItemsNew){
+        syllabusItems = syllabusItemsNew;
     }
 
     public static void saveArrayList(ArrayList<?> list, String key)
@@ -383,11 +422,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
-    public static void saveCourses()
-    {
-        saveArrayList(courseList, "courses");
-    }
-
     public static ArrayList<TaskPriorityType> getPriorityList()
     {
         ArrayList<TaskPriorityType> priorityTypes= new ArrayList<TaskPriorityType>();
@@ -432,31 +466,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
     }
 
-    public void collectTaskInput(String name, String description, Task.Priority priority, Course course, View view)
-    {
-        // Get task list and update it
-        RecyclerView recyclerView = view.getRootView().findViewById(R.id.tasksRecyclerview);
-
-        // Add the task to the task list and save it to storage
-        taskList.add(new Task(name, description, priority, course));
-        saveArrayList(taskList, "tasks");
-
-        if (recyclerView.getAdapter().getClass() == TasksCourseAdapter.class)
-        {
-            TasksCourseAdapter adapter = (TasksCourseAdapter) recyclerView.getAdapter();
-            adapter.notifyDataSetChanged();
-        }
-
-        else if (recyclerView.getAdapter().getClass() == TasksPriorityAdapter.class)
-        {
-            TasksPriorityAdapter adapter = (TasksPriorityAdapter) recyclerView.getAdapter();
-
-            adapter.setTaskPriorityList(getPriorityList());
-            adapter.notifyDataSetChanged();
-        }
-    }
-
-    public ArrayList<String> courseListToStringArray(ArrayList<Course> courseList)
+    public static ArrayList<String> courseListToStringArray()
     {
         ArrayList<String> courseListString = new ArrayList<String>();
         for (Course course : courseList)
@@ -497,7 +507,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return taskListString;
     }
 
-    public Course getCourseFromString(String courseName)
+    public static Course getCourseFromString(String courseName)
     {
         Course chosenCourse = null;
         for (Course course : courseList)
@@ -690,7 +700,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             Log.d("testingtext", item.toString());
         }
 
-        saveArrayList(courseList, "courses");
+        saveCourseList();
 
         Button button = binding.getRoot().findViewById(R.id.open_items_button);
         button.setTag(txt.getText().toString());
@@ -701,197 +711,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         adapter.notifyDataSetChanged();
     }
 
-    public void addTask(View view)
-    {
-        AlertDialog.Builder alertName = new AlertDialog.Builder(this);
-        alertName.setTitle("Add task: ");
-        View layout = getLayoutInflater().inflate(R.layout.add_task_dialog, null);
-        alertName.setView(layout);
 
-        Log.d("addTask", String.valueOf(view));
-
-        // set course spinner
-        final Course[] course = {null};
-        final boolean[] courseChosen = {false};
-        Spinner courseSpinner = layout.findViewById(R.id.tasks_course_spinner);
-        ArrayAdapter<String> courseAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_spinner_dropdown_item, courseListToStringArray(this.courseList));
-        courseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        courseSpinner.setAdapter(courseAdapter);
-
-        // set course spinner click listener
-        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                String courseName = (String) adapterView.getItemAtPosition(position);
-                Log.d("task", courseName);
-                course[0] = getCourseFromString(courseName);
-                courseChosen[0] = true;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-
-        // set priority spinner
-        Spinner prioritySpinner = layout.findViewById(R.id.tasks_priority_spinner);
-        ArrayAdapter<CharSequence> priorityAdapter = ArrayAdapter.createFromResource(getApplicationContext(),
-        R.array.priority_array, android.R.layout.simple_spinner_item);
-
-        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        prioritySpinner.setAdapter(priorityAdapter);
-
-        // set priority spinner click listener
-        final Task.Priority[] priority = {null};
-        final boolean[] priorityChosen = {false};
-        prioritySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                String priorityName = (String) adapterView.getItemAtPosition(position);
-                Log.d("task", priorityName);
-
-                if (priorityName.equals("Low"))
-                {
-                    priority[0] = Task.Priority.LOW;
-                }
-
-                if (priorityName.equals("Medium"))
-                {
-                    priority[0] = Task.Priority.MEDIUM;
-                }
-
-                if (priorityName.equals("High"))
-                {
-                    priority[0] = Task.Priority.HIGH;
-                }
-
-                if (priorityName.equals("Very High"))
-                {
-                    priority[0] = Task.Priority.VERY_HIGH;
-                }
-
-                if (priorityName.equals("Extreme"))
-                {
-                    priority[0] = Task.Priority.EXTREME;
-                }
-
-                priorityChosen[0] = true;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-
-        // edittext click listeners
-        final String[] taskName = {null};
-
-        EditText nameEditText = layout.findViewById(R.id.input_name);
-        nameEditText.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                taskName[0] = editable.toString();
-                Log.d("task", taskName[0]);
-            }
-        });
-
-        final String[] taskDescription = {null};
-        EditText descriptionEditText = layout.findViewById(R.id.input_description);
-        descriptionEditText.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                taskDescription[0] = editable.toString();
-                Log.d("task", taskDescription[0]);
-            }
-        });
-
-        // Continue button listener implemented later to not automatically close the dialog
-        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            }
-        });
-
-        // Cancel button click listener
-        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                dialog.cancel(); // closes dialog alertName.show() // display the dialog
-
-            }
-        });
-
-        AlertDialog dialog = alertName.create();
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
-
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View innerView)
-            {
-                if (courseChosen[0] && priorityChosen[0] && taskName[0] != null && taskDescription[0] != null)
-                {
-                    collectTaskInput(taskName[0], taskDescription[0], priority[0], course[0], view);
-                    dialog.dismiss();
-                }
-
-                else
-                {
-                    Log.d("listener", String.valueOf(courseChosen[0]));
-                    Log.d("listener", String.valueOf(priorityChosen[0]));
-                    Log.d("listener", String.valueOf(taskName[0]));
-                    Log.d("listener", String.valueOf(taskDescription[0]));
-
-                    // TODO Give more detailed response
-                    Toast toast = Toast.makeText(view.getContext(), "Input all information before proceeding", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        });
-
-        Window window = dialog.getWindow();
-        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-    }
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day)

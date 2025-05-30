@@ -29,9 +29,9 @@ public class CoursesFragment extends Fragment {
         View root = binding.getRoot();
 
         // Initializing list view with the custom adapter
-        Log.d("empty", MainActivity.courseList.toString());
+        Log.d("empty", MainActivity.getCourseList().toString());
         recyclerView = root.findViewById(R.id.recyclerView);
-        CustomAdapter adapter = new CustomAdapter(MainActivity.courseList);
+        CustomAdapter adapter = new CustomAdapter(MainActivity.getCourseList());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
 

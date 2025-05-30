@@ -27,7 +27,6 @@
         app:icon="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="addTask"
     />
 
     <com.google.android.material.appbar.AppBarLayout
