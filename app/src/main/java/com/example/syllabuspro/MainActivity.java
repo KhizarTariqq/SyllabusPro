@@ -32,9 +32,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.adapters.*;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.example.syllabuspro.ui.tasks.TaskPriorityType;
-import com.example.syllabuspro.ui.tasks.TasksFragment;
-import com.example.syllabuspro.adapters.TasksAdapter;
-import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -57,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private RecyclerView recyclerView;
     public static ArrayList <Course> courseList = new ArrayList<Course>();
     public static ArrayList <Task> taskList = new ArrayList<Task>();
-    public static ArrayList <Goal> goalList = new ArrayList<Goal>();
 
     // List first syllabus items for when adding course
     public static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
@@ -72,17 +68,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     // variable for accessing user storage
     public static SharedPreferences prefs;
-
-    // Deadline selector mode to tell if deadline is for syllabus item or goal
-    public enum DeadlineMode
-    {
-        SYLLABUS_ITEM,
-        GOAL
-    }
-
-    // Variables for setting deadlines
-    public static DeadlineMode deadlineMode;
-    private Deadline goalDeadline;
 
     // File selector launcher for PDF
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -120,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         prefs = this.getPreferences(Context.MODE_PRIVATE);
 
-        // On first time app installation create the directories to store courses, tasks, and goals
+        // On first time app installation create the directories to store courses, and tasks
         if(!prefs.getBoolean("firstTime", false))
         {
             Log.d("first time", "1");
@@ -134,21 +119,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             ArrayList<Task> tasks = new ArrayList<Task>(0);
             saveArrayList(tasks, "tasks");
 
-            // Goals ArrayList
-            ArrayList<Goal> goals = new ArrayList<Goal>(0);
-            saveArrayList(goals, "goals");
 
             // set first time boolean
             editor.putBoolean("firstTime", true);
             editor.apply();
         }
 
-        // if it's not the first time installing the app, get the list of courses, task, and goals.
+        // if it's not the first time installing the app, get the list of courses, and tasks..
         else
         {
             Log.d("first time", "2");
 
-            // Get ArrayList of courses, tasks and goals
+            // Get ArrayList of courses, and tasks
             SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
             Gson gson = new Gson();
 
@@ -161,11 +143,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             Type typeTask = new TypeToken<ArrayList<Task>>() {}.getType();
             taskList = gson.fromJson(tasksJson, typeTask);
             Log.d("first: tasks", taskList.toString());
-
-            String goalsJson = prefs.getString("goals", null);
-            Type typeGoal = new TypeToken<ArrayList<Goal>>() {}.getType();
-            goalList = gson.fromJson(goalsJson, typeGoal);
-            Log.d("first: goals", goalList.toString());
         }
 
         fragmentManager = getSupportFragmentManager();
@@ -181,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         // Set up bottom navigation bar
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_summary, R.id.navigation_calendar, R.id.navigation_goals, R.id.navigation_manage, R.id.navigation_tasks)
+                R.id.navigation_summary, R.id.navigation_calendar, R.id.navigation_courses, R.id.navigation_tasks)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -477,19 +454,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             adapter.setTaskPriorityList(getPriorityList());
             adapter.notifyDataSetChanged();
         }
-    }
-
-    public void collectGoalInput(String description, Task task, View view)
-    {
-        RecyclerView goalRecyclerView = view.getRootView().findViewById(R.id.goalsRecyclerview);
-        GoalsAdapter adapter = (GoalsAdapter) goalRecyclerView.getAdapter();
-
-        Log.d("Goal input", String.valueOf(this.goalDeadline));
-        goalList.add(new Goal(description, task, this.goalDeadline));
-        Log.d("deadline", this.goalDeadline.toString());
-        Log.d("goalList", goalList.toString());
-        saveArrayList(goalList, "goals");
-        adapter.notifyDataSetChanged();
     }
 
     public ArrayList<String> courseListToStringArray(ArrayList<Course> courseList)
@@ -929,140 +893,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
     }
 
-        public void addGoal(View view)
-    {
-        // Set up dialog
-        AlertDialog.Builder alertName = new AlertDialog.Builder(this);
-        alertName.setTitle("Add task: ");
-        View layout = getLayoutInflater().inflate(R.layout.add_goal_dialog, null);
-        alertName.setView(layout);
-        // Placeholder click listener to avoid errors
-        // Continue button listener implemented later to not automatically close the dialog
-        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-            }
-        });
-        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                dialog.cancel(); // closes dialog alertName.show() // display the dialog
-            }
-        });
-
-        //Testing commit
-        // set click listeners
-        // initialize taskSpinner as disabled and enable it when course selected
-        Spinner taskSpinner = layout.findViewById(R.id.goals_task_spinner);
-        taskSpinner.setEnabled(false);
-        // set up course spinner
-        final Course[] course = {null};
-        final boolean[] courseChosen = {false};
-        Spinner courseSpinner = layout.findViewById(R.id.goals_course_spinner);
-        ArrayAdapter<String> courseAdapter = new ArrayAdapter<String> (this,android.R.layout.simple_spinner_dropdown_item, courseListToStringArray(this.courseList));
-        courseSpinner.setAdapter(courseAdapter);
-        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                // When a course is chosen save course and enable task spinner
-                // Save course
-                String courseName = (String) adapterView.getItemAtPosition(position);
-                course[0] = getCourseFromString(courseName);
-                courseChosen[0] = true;
-                // Enable tasks spinner and set list
-                taskSpinner.setEnabled(true);
-                ArrayAdapter<String> taskAdapter = new ArrayAdapter<String> (getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, taskListToStringArray(course[0]));
-                taskSpinner.setAdapter(taskAdapter);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-            }
-        });
-        // Set up task spinner
-        final Task[] task = {null};
-        final boolean[] taskChosen = {false};
-        taskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                String chosenTask = (String) adapterView.getItemAtPosition(position);
-                task[0] = getTaskFromString(chosenTask);
-                taskChosen[0] = true;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-            }
-        });
-        // set up deadline button click listener
-        final boolean[] dateChosen = {false};
-        Button deadlineButton = layout.findViewById(R.id.deadline_button);
-        deadlineButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                // launch date picker
-                MainActivity.deadlineMode = DeadlineMode.GOAL;
-                DialogFragment fragment = new DatePickerFragment();
-                fragment.show(MainActivity.fragmentManager, "datePicker");
-                // set boolean
-                dateChosen[0] = true;
-            }
-        });
-
-        // set description edit text listener
-        final String[] description = {null};
-        EditText descriptionEditText = layout.findViewById(R.id.input_description);
-        descriptionEditText.addTextChangedListener(new TextWatcher()
-        {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-            }
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-            }
-            @Override
-            public void afterTextChanged(Editable editable)
-            {
-                description[0] = editable.toString();
-            }
-        });
-        AlertDialog dialog = alertName.create();
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
-        // override continue button
-        final Deadline[] deadline = {this.goalDeadline};
-        dialog.getButton(DialogInterface.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View innerView)
-            {
-                if (courseChosen[0] && taskChosen[0] && dateChosen[0])
-                {
-                    // collect goal input and add to list
-                    collectGoalInput(description[0], task[0], view);
-                    dialog.dismiss();
-                }
-                else
-                {
-                    Toast toast = Toast.makeText(getBaseContext(), "Complete all fields before continuing", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        });
-        Window window = dialog.getWindow();
-        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-    }
-
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day)
     {
@@ -1072,22 +902,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mCalendar.set(Calendar.DAY_OF_MONTH, day);
         String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
         Log.d("Date", selectedDate);
-        Log.d("Date", deadlineMode.toString());
 
-        if (deadlineMode == DeadlineMode.SYLLABUS_ITEM)
-        {
-            RecyclerView recyclerView = binding.getRoot().findViewById(R.id.addCourseRecyclerView);
-            AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
-            ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
-            SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
+        RecyclerView recyclerView = binding.getRoot().findViewById(R.id.addCourseRecyclerView);
+        AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
+        ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
+        SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
 
-            item.setDeadline(new Deadline(year, month, day));
-        }
-
-        else if (deadlineMode == DeadlineMode.GOAL)
-        {
-            Log.d("Date", "Passed");
-            this.goalDeadline = new Deadline(year, month, day);
-        }
+        item.setDeadline(new Deadline(year, month, day));
     }
 }

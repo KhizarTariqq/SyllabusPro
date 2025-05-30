@@ -5,13 +5,11 @@
     <string name="title_summary">Summary</string>
     <string name="title_calendar">Calendar</string>
     <string name="title_courses">Courses</string>
-    <string name="title_goals">Goals</string>
     <string name="title_tasks">Tasks</string>
 
     <!-- add object button -->
     <string name="button_add_course">Add Course</string>
     <string name="button_add_task">Add Task</string>
-    <string name="button_add_goal">Add Goal</string>
     <string name="filter_button">Filter</string>
     <string name="course_item_button">Syllabus Items</string>
     <string name="custom_dialog">Syllabus Items</string>
@@ -30,16 +28,4 @@
     <string name="task_enter_description">Enter description:</string>
     <string name="task_enter_priority">Priority: </string>
     <string name="task_button">View Task</string>
-
-    <!-- Create goals -->
-    <string name="goals_enter_description">Enter description:</string>
-    <string name="goals_choose_deadline">Choose deadline:</string>
-    <string name="goals_choose_task">Choose task:</string>
-    <string name="goals_choose_course">Choose course:</string>
-
-    <!-- Display goal (goal adapter) -->
-    <string name="goal_description">Description:</string>
-    <string name="goal_course">Course:</string>
-    <string name="goal_deadline">Deadline:</string>
-    <string name="goal_task">Task:</string>
 </resources>

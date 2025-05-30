@@ -1,4 +1,4 @@
-package com.example.syllabuspro.ui.manage;
+package com.example.syllabuspro.ui.courses;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.R;
@@ -18,14 +17,14 @@ import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.databinding.FragmentManageBinding;
 
-public class ManageFragment extends Fragment {
+public class CoursesFragment extends Fragment {
 
-    private ManageViewModel manageViewModel;
+    private CoursesViewModel coursesViewModel;
     private FragmentManageBinding binding;
     private RecyclerView recyclerView;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        manageViewModel = new ViewModelProvider(this).get(ManageViewModel.class);
+        coursesViewModel = new ViewModelProvider(this).get(CoursesViewModel.class);
         binding = FragmentManageBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 

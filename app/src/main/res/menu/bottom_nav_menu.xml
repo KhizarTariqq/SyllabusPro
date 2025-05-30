@@ -14,19 +14,13 @@
     />
 
     <item
-        android:id="@+id/navigation_goals"
-        android:icon="@drawable/ic_goals"
-        android:title="@string/title_goals"
-    />
-
-    <item
         android:id="@+id/navigation_tasks"
         android:icon="@drawable/ic_tasks"
         android:title="@string/title_tasks"
     />
 
     <item
-        android:id="@+id/navigation_manage"
+        android:id="@+id/navigation_courses"
         android:icon="@drawable/ic_courses"
         android:title="@string/title_courses"
     />

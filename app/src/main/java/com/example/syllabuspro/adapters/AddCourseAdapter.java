@@ -196,7 +196,6 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
                 @Override
                 public void onClick(View view)
                 {
-                    MainActivity.deadlineMode = MainActivity.DeadlineMode.SYLLABUS_ITEM;
                     DialogFragment fragment = new DatePickerFragment();
                     fragment.show(MainActivity.fragmentManager, "datePicker");
                 }

@@ -1,16 +1,16 @@
-package com.example.syllabuspro.ui.goals;
+package com.example.syllabuspro.ui.courses;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GoalsViewModel extends ViewModel {
+public class CoursesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GoalsViewModel() {
+    public CoursesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is manage fragment");
     }
 
     public LiveData<String> getText() {

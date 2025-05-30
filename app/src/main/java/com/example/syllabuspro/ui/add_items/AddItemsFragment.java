@@ -1,8 +1,5 @@
 package com.example.syllabuspro.ui.add_items;
 
-import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,17 +10,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import androidx.recyclerview.widget.DividerItemDecoration;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.syllabuspro.Course;
+
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.SyllabusItem;
 import com.example.syllabuspro.adapters.AddCourseAdapter;
-import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.databinding.AddItemsFragmentBinding;
-import com.example.syllabuspro.ui.manage.ManageFragment;
 
 import java.util.ArrayList;
 
