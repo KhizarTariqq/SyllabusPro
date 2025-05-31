@@ -49,6 +49,8 @@ public class CoursesFragment extends Fragment {
     private CoursesViewModel coursesViewModel;
     private FragmentCoursesBinding binding;
     private RecyclerView recyclerView;
+    private EditText courseNameText;
+    private LinearLayout layout;
     private File pdfFile;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +72,15 @@ public class CoursesFragment extends Fragment {
         // Setup addCourse Dialog
         AlertDialog dialog = createNewCourseDialog(root);
         ExtendedFloatingActionButton button = binding.addCourseButton;
-        button.setOnClickListener(v -> dialog.show());
+        button.setOnClickListener(v -> {
+            if (layout.indexOfChild(courseNameText) == -1)
+            {
+                courseNameText.setText("");
+                layout.addView(courseNameText);
+            }
+            
+            dialog.show();
+        });
 
         return root;
     }
@@ -85,10 +95,10 @@ public class CoursesFragment extends Fragment {
     {
         // Set up dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
-        final EditText courseNameText = new EditText(requireContext());
+        courseNameText = new EditText(requireContext());
         dialogBuilder.setTitle("Enter the course name: ");
         dialogBuilder.setView(courseNameText);
-        LinearLayout layout = new LinearLayout(requireContext());
+        layout = new LinearLayout(requireContext());
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.addView(courseNameText);
         dialogBuilder.setView(layout);
