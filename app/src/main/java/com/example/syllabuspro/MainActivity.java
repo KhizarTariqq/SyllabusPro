@@ -47,7 +47,6 @@ import java.util.*;
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
 {
     public static ActivityMainBinding binding;
-    private String directory;
     private RecyclerView recyclerView;
     private static ArrayList <Course> courseList;
     private static ArrayList <Task> taskList;
@@ -58,8 +57,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     // fragment controllers
     public static NavController navController;
     public static FragmentManager fragmentManager;
-
-    public static EditText txt; // user input bar
 
     // variable for accessing user storage
     public static SharedPreferences prefs;
@@ -182,195 +179,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         syllabusItems = syllabusItemsNew;
     }
 
-    public String getText()
-    {
-        /**
-         * This method sets the extractedText string to the contents of the selected PDF.
-         */
-
-        // get PDF text
-        String extractedText = "";
-
-        try
-        {
-            // creating a variable for pdf reader and passing our PDF file in it.
-            File file = new File(this.directory);
-            PdfReader reader = new PdfReader(new FileInputStream(file.getPath()));
-
-            // below line is for getting number of pages of PDF file.
-            int n = reader.getNumberOfPages();
-
-            // running a for loop to get the data from PDF we are storing that data inside our string.
-            for (int i = 0; i < n; i++)
-            {
-                extractedText = extractedText + PdfTextExtractor.getTextFromPage(reader, i + 1).trim() + "\n";
-            }
-
-            // below line is used for closing reader.
-            reader.close();
-            return extractedText;
-        }
-
-        catch (Exception e)
-        {
-            // for handling error while extracting the text file.
-            // extractedTV.setText("Error found is : \n" + e);
-
-            Log.d("manage","Error found is : \n" + e);
-        }
-
-        return extractedText;
-    }
-
-    private Pair<SyllabusItem.Type, Boolean> findType(String[] words)
-    {
-        /**
-         * This method finds the SyllabusCores.Type of a syllabus item
-         * @param words A line of words representing a syllabus item.
-         * @return A pair that contains the syllabus item type and a
-         * boolean that represents if the type is one or two words.
-         */
-
-        if (words[0].equals("Quiz"))
-        {
-            return new Pair<>(SyllabusItem.Type.Quiz, false);
-        }
-
-        else if (words[0].equals("Assignment"))
-        {
-            return new Pair<>(SyllabusItem.Type.Assignment, false);
-        }
-
-        else if (words[0].equals("Term") && words[1].equals("Test"))
-        {
-            return new Pair<>(SyllabusItem.Type.TermTest, true);
-        }
-
-        else if (words[0].equals("Class") && words[1].equals("Participation"))
-        {
-            return new Pair<>(SyllabusItem.Type.ClassParticipation, true);
-        }
-
-        else if (words[0].equals("Final") && words[1].equals("Exam"))
-        {
-            return new Pair<>(SyllabusItem.Type.FinalExam, true);
-        }
-
-        return null;
-    }
-
-    private SyllabusItem createSyllabusItem(String[] words)
-    {
-        /**
-         * This method returns a SyllabusItem object given a line representing a syllabus item.
-         * @param words A line of words representing a syllabus item.
-         * @return The SyllabusCores object represented by the parameter.
-         */
-
-        StringBuilder nameBuilder = new StringBuilder();
-        boolean deadlineFound = false;
-        boolean weightFound = false;
-        int getNameWordIndex = 0;
-        Deadline deadline = null;
-
-        // Get type
-        SyllabusItem.Type type = findType(words).first;
-        boolean twoWords = findType(words).second;
-
-        // change word index
-        if (twoWords)
-        {
-            getNameWordIndex += 2;
-        }
-
-        else
-        {
-            getNameWordIndex += 1;
-        }
-
-        while (getNameWordIndex < words.length)
-        {
-            // detect tba/ongoing
-            int wordLength = words[getNameWordIndex].length();
-            int getNameCharIndex = 0;
-
-            if (words[getNameWordIndex].equals("TBA"))
-            {
-                deadline = new Deadline(Deadline.Alternative.TBA);
-                deadlineFound = true;
-            }
-
-            if (words[getNameWordIndex].equals("On-going"))
-            {
-                deadline = new Deadline(Deadline.Alternative.Ongoing);
-                deadlineFound = true;
-            }
-
-            // Get name and deadline
-            while (getNameCharIndex < wordLength)
-            {
-                char[] charArray = words[getNameWordIndex].toCharArray();
-
-                // detect XXXX-XX-XX or tba/ongoing
-                // detect XXXX-XX-XX
-                if (charArray.length >= 10 &&
-                    Character.isDigit(charArray[0]) && Character.isDigit(charArray[1]) &&
-                    Character.isDigit(charArray[2]) && Character.isDigit(charArray[3]) &&
-                    charArray[4] == '-' &&
-                    Character.isDigit(charArray[5]) && Character.isDigit(charArray[6]) &&
-                    charArray[7] == '-' &&
-                    Character.isDigit(charArray[8]) && Character.isDigit(charArray[9])
-                    )
-                {
-                    deadlineFound = true;
-
-                    // create deadline
-                    deadline = new Deadline(words[getNameWordIndex]);
-
-                    break;
-                }
-                getNameCharIndex += 1;
-            }
-
-            if (!deadlineFound)
-            {
-                nameBuilder.append(" " + words[getNameWordIndex]);
-            }
-
-            getNameWordIndex += 1;
-        }
-
-        // Get weight
-        getNameWordIndex -= 1;
-        char[] charArray = words[getNameWordIndex].toCharArray();
-        int weight = 0;
-
-        if (Character.isDigit(charArray[0]) && Character.isDigit(charArray[1]))
-        {
-            weight = Integer.parseInt(words[getNameWordIndex].substring(0, 2));
-        }
-
-        else
-        {
-            weight = Integer.parseInt(words[getNameWordIndex].substring(0, 1));
-        }
-
-        String name = nameBuilder.toString();
-        String trimName = name.substring(1, name.length());
-
-        if (deadline == null)
-        {
-            SyllabusItem item = new SyllabusItem(type, trimName, weight);
-            return item;
-        }
-
-        else
-        {
-            SyllabusItem item = new SyllabusItem(type, trimName, weight, deadline);
-            return item;
-        }
-    }
-
     public static ArrayList<String> courseListToStringArray()
     {
         ArrayList<String> courseListString = new ArrayList<String>();
@@ -381,7 +189,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         return courseListString;
     }
-
 
     public static Course getCourseFromString(String courseName)
     {
