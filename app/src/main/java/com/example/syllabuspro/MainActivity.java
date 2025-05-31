@@ -4,8 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Build;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -26,7 +24,6 @@ import android.util.Pair;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.adapters.*;
@@ -62,33 +59,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public static NavController navController;
     public static FragmentManager fragmentManager;
 
-    ArrayList<CharSequence> arrayListCollection = new ArrayList<>();
-
     public static EditText txt; // user input bar
 
     // variable for accessing user storage
     public static SharedPreferences prefs;
-
-    // File selector launcher for PDF
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-    new ActivityResultCallback<Uri>()
-    {
-        @Override
-        public void onActivityResult(Uri uri)
-        {
-            // Handle the returned Uri
-            String fullFilePath = UriUtils.getPathFromUri(getApplicationContext(), uri);
-            try
-            {
-                setDirectory(fullFilePath);
-            }
-
-            catch (IOException | URISyntaxException e)
-            {
-                e.printStackTrace();
-            }
-        }
-    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -169,6 +143,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return courseList;
     }
 
+    public static void addToCourseList(Course course) {
+        courseList.add(course);
+    }
+
     public static void saveCourseList(){
         SharedPreferences.Editor editor = prefs.edit();
         Gson gson = new Gson();
@@ -202,35 +180,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public static void setSyllabusItems(ArrayList<SyllabusItem> syllabusItemsNew){
         syllabusItems = syllabusItemsNew;
-    }
-
-    public static void saveArrayList(ArrayList<?> list, String key)
-    {
-        SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(list);
-        editor.putString(key, json);
-        editor.apply();
-    }
-
-    public ArrayList<?> getArrayList(String key)
-    {
-        SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = prefs.getString(key, null);
-        Type type = new TypeToken<ArrayList<Course>>() {}.getType();
-        return gson.fromJson(json, type);
-    }
-
-    private void setDirectory(String directory) throws IOException, URISyntaxException
-    {
-        /**
-         * This method runs once a file is selected.
-         * This sets the directory of the chosen file
-         * and launches addCourse.
-         */
-        this.directory = directory;
-        addCourse();
     }
 
     public String getText()
@@ -436,36 +385,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return priorityTypes;
     }
 
-    public void collectCourseInput(View view, Course course) throws IOException, URISyntaxException {
-        // convert edit text to string
-        String getInput = txt.getText().toString();
-
-        // ensure that user input bar is not empty
-        if (getInput ==null || getInput.trim().equals(""))
-        {
-            Toast.makeText(getBaseContext(), "Please add a group name", Toast.LENGTH_LONG).show();
-        }
-
-        else
-        {
-            arrayListCollection.add(getInput);
-
-            RecyclerView recyclerView = view.getRootView().findViewById(R.id.recyclerView);
-            CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
-            courseList = adapter.getCourseList();
-            courseList.add(course);
-            adapter.notifyDataSetChanged();
-
-            // hide keyboard and start new fragment
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
-            Navigation.findNavController(view).navigate(R.id.navigation_add_items);
-
-            // launchPDFSelector();
-        }
-    }
-
     public static ArrayList<String> courseListToStringArray()
     {
         ArrayList<String> courseListString = new ArrayList<String>();
@@ -477,35 +396,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         return courseListString;
     }
 
-    public ArrayList<String> taskListToStringArray(Course course)
-    {
-        ArrayList<Task> courseTaskList = new ArrayList<Task>();
-
-        Log.d("taskList", taskList.toString());
-        for (Task task : taskList)
-        {
-            Log.d("taskList", task.getCourse().toString());
-            Log.d("taskList", course.toString());
-
-            if (task.getCourse().equals(course))
-            {
-                Log.d("taskList", "if passed");
-                courseTaskList.add(task);
-            }
-        }
-
-        Log.d("taskList", courseTaskList.toString());
-
-        ArrayList<String> taskListString = new ArrayList<String>();
-        for (Task task : courseTaskList)
-        {
-            taskListString.add(task.getName());
-        }
-
-        Log.d("taskList", taskListString.toString());
-
-        return taskListString;
-    }
 
     public static Course getCourseFromString(String courseName)
     {
@@ -519,82 +409,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
 
         return chosenCourse;
-    }
-
-    public Task getTaskFromString(String taskName)
-    {
-        Task chosenTask = null;
-        for (Task task : taskList)
-        {
-            if (task.getName().equals(taskName))
-            {
-                chosenTask = task;
-            }
-        }
-
-        return chosenTask;
-    }
-
-
-    public void launchTextInput(View view) throws IOException, URISyntaxException
-    {
-        // Set up dialog
-        AlertDialog.Builder alertName = new AlertDialog.Builder(this);
-        final EditText editTextName1 = new EditText(MainActivity.this);
-        alertName.setTitle("Enter the course name: ");
-        alertName.setView(editTextName1);
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        layout.addView(editTextName1);
-        alertName.setView(layout);
-
-        // Continue button listener
-        alertName.setPositiveButton("Continue", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                layout.removeView(editTextName1);
-                txt = editTextName1; // variable to collect user input
-
-                Course course = new Course(txt.getText().toString(), syllabusItems);
-
-                try
-                {
-                    collectCourseInput(view, course); // analyze input (txt) in this method
-                }
-
-                catch (IOException | URISyntaxException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        // Cancel button click listener
-        alertName.setNegativeButton("Cancel", new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog, int whichButton)
-            {
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog dialog = alertName.create();
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
-    }
-
-    public void launchPDFSelector() throws IOException, URISyntaxException
-    {
-        /**
-         * This is a click listener for the add course button,
-         * this gets storage permission and then launches file selector
-         */
-        // Get storage permission
-
-        Log.d("empty", String.valueOf(Build.VERSION.SDK_INT));
-        Log.d("empty", "1");
-        mGetContent.launch("application/pdf");
     }
 
     public void addCourse() throws IOException, URISyntaxException

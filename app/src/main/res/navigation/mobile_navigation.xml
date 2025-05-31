@@ -25,7 +25,7 @@
         android:id="@+id/navigation_courses"
         android:name="com.example.syllabuspro.ui.courses.CoursesFragment"
         android:label="@string/title_courses"
-        tools:layout="@layout/fragment_manage"
+        tools:layout="@layout/fragment_courses"
     />
 
     <fragment

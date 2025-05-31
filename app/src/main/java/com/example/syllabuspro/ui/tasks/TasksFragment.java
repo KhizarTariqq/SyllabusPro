@@ -155,7 +155,7 @@ public class TasksFragment extends Fragment
 
         // Setup buttons
         setupButtons(dialogBuilder);
-        
+
         AlertDialog dialog = dialogBuilder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
