@@ -1,6 +1,5 @@
 package com.example.syllabuspro.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import com.example.syllabuspro.Course;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.Task;
-import com.example.syllabuspro.ui.tasks.TasksFragment;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -40,11 +39,12 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
     {
         String name = "Course: " + this.courseList.get(position).getName();
         holder.name.setText(name);
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(TasksFragment.context,RecyclerView.HORIZONTAL , false);
 
         // Add adapter and layout
         holder.taskRecyclerView.setAdapter(new TasksAdapter(getTaskList(position)));
-        holder.taskRecyclerView.setLayoutManager(mLayoutManager);
+        holder.taskRecyclerView.setLayoutManager(
+                new LinearLayoutManager(holder.taskRecyclerView.getContext(), RecyclerView.HORIZONTAL, false)
+        );
     }
 
     @Override
@@ -53,15 +53,10 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
         return this.courseList.size();
     }
 
-    public ArrayList<Course> getCourseList()
-    {
-        return this.courseList;
-    }
-
     public ArrayList<Task> getTaskList(int position)
     {
         Course course = this.courseList.get(position);
-        ArrayList<Task> courseTaskList = new ArrayList<Task>();
+        ArrayList<Task> courseTaskList = new ArrayList<>();
 
         for (Task task : MainActivity.getTaskList())
         {

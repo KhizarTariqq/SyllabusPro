@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,7 +50,8 @@ public class AddItemsFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                MainActivity.navController.popBackStack();
+                NavController navController = Navigation.findNavController(v);
+                navController.popBackStack();
             }
         });
 
@@ -107,7 +110,8 @@ public class AddItemsFragment extends Fragment {
                 {
                     MainActivity.setSyllabusItems(syllabusItems);
                     MainActivity.saveCourseList();
-                    MainActivity.navController.popBackStack();
+                    NavController navController = Navigation.findNavController(view);
+                    navController.popBackStack();
                 }
 
                 else

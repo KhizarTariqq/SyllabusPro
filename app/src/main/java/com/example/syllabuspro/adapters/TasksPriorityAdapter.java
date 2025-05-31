@@ -1,6 +1,5 @@
 package com.example.syllabuspro.adapters;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.R;
-import com.example.syllabuspro.Task;
 import com.example.syllabuspro.ui.tasks.TaskPriorityType;
-import com.example.syllabuspro.ui.tasks.TasksFragment;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -38,11 +35,11 @@ public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdap
     {
         holder.priorityType.setText(this.taskPriorityList.get(position).getPriority().toString());
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(TasksFragment.context,RecyclerView.HORIZONTAL, false);
-
         // Add adapter and layout
         holder.taskRecyclerView.setAdapter(new TasksAdapter(this.taskPriorityList.get(position).getTaskList()));
-        holder.taskRecyclerView.setLayoutManager(mLayoutManager);
+        holder.taskRecyclerView.setLayoutManager(
+                new LinearLayoutManager(holder.taskRecyclerView.getContext(), RecyclerView.HORIZONTAL, false)
+        );
     }
 
     @Override
@@ -54,11 +51,6 @@ public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdap
     public void setTaskPriorityList(ArrayList<TaskPriorityType> taskPriorityList)
     {
         this.taskPriorityList = taskPriorityList;
-    }
-
-    public ArrayList<TaskPriorityType> getTaskPriorityList()
-    {
-        return this.taskPriorityList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder

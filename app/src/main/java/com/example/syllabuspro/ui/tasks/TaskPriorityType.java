@@ -17,7 +17,7 @@ public class TaskPriorityType
 
     public void setTaskList()
     {
-        ArrayList<Task> priorityTaskList = new ArrayList<Task>();
+        ArrayList<Task> priorityTaskList = new ArrayList<>();
         for (Task task : MainActivity.getTaskList())
         {
             if (task.getPriority() == this.priority)

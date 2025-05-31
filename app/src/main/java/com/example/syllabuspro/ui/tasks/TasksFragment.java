@@ -1,10 +1,7 @@
 package com.example.syllabuspro.ui.tasks;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +38,6 @@ import java.util.ArrayList;
 public class TasksFragment extends Fragment
 {
     private FragmentTasksBinding binding;
-    public static Context context;
 
     private Course course = null;
     private Task.Priority priority = null;
@@ -53,8 +49,6 @@ public class TasksFragment extends Fragment
     {
         binding = FragmentTasksBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        context = getContext();
 
         // Set task recycler view
         RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
@@ -126,7 +120,7 @@ public class TasksFragment extends Fragment
     {
         super.onViewCreated(view, savedInstanceState);
 
-        AlertDialog dialog = createTaskDialog(view);
+        AlertDialog dialog = createTaskDialog();
 
         ExtendedFloatingActionButton button = binding.addTaskButton;
         button.setOnClickListener(v-> showTaskDialog(dialog, view));
@@ -140,7 +134,7 @@ public class TasksFragment extends Fragment
         binding = null;
     }
 
-    public AlertDialog createTaskDialog(View view)
+    public AlertDialog createTaskDialog()
     {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
         dialogBuilder.setTitle("Add task: ");
@@ -171,7 +165,7 @@ public class TasksFragment extends Fragment
     {
         // set course spinner
         Spinner courseSpinner = layout.findViewById(R.id.tasks_course_spinner);
-        ArrayAdapter<String> courseAdapter = new ArrayAdapter<String> (requireContext(), android.R.layout.simple_spinner_dropdown_item, MainActivity.courseListToStringArray());
+        ArrayAdapter<String> courseAdapter = new ArrayAdapter<> (requireContext(), android.R.layout.simple_spinner_dropdown_item, MainActivity.courseListToStringArray());
         courseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         courseSpinner.setAdapter(courseAdapter);
 
@@ -256,11 +250,6 @@ public class TasksFragment extends Fragment
                     dialog.dismiss();
                 }
                 else {
-                    Log.d("listener", String.valueOf(course));
-                    Log.d("listener", String.valueOf(priority));
-                    Log.d("listener", taskName);
-                    Log.d("listener", taskDescription);
-
                     // TODO Give more detailed response
                     Toast toast = Toast.makeText(view.getContext(), "Input all information before proceeding", Toast.LENGTH_SHORT);
                     toast.show();
@@ -312,14 +301,14 @@ public class TasksFragment extends Fragment
 
     public static ArrayList<TaskPriorityType> getPriorityList()
     {
-        ArrayList<TaskPriorityType> priorityTypes = new ArrayList<TaskPriorityType>();
+        ArrayList<TaskPriorityType> priorityTypes = new ArrayList<>();
         priorityTypes.add(new TaskPriorityType(Task.Priority.LOW));
         priorityTypes.add(new TaskPriorityType(Task.Priority.MEDIUM));
         priorityTypes.add(new TaskPriorityType(Task.Priority.HIGH));
         priorityTypes.add(new TaskPriorityType(Task.Priority.VERY_HIGH));
         priorityTypes.add(new TaskPriorityType(Task.Priority.EXTREME));
 
-        priorityTypes.removeIf(type -> type.getTaskList().size() == 0);
+        priorityTypes.removeIf(type -> type.getTaskList().isEmpty());
 
         return priorityTypes;
     }

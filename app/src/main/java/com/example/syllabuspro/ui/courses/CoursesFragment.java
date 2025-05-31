@@ -3,7 +3,6 @@ package com.example.syllabuspro.ui.courses;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,25 +22,20 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.syllabuspro.Course;
 import com.example.syllabuspro.R;
-import com.example.syllabuspro.UriUtils;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.databinding.FragmentCoursesBinding;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 
 public class CoursesFragment extends Fragment {
@@ -71,15 +65,7 @@ public class CoursesFragment extends Fragment {
         // Setup addCourse Dialog
         AlertDialog dialog = createNewCourseDialog(root);
         ExtendedFloatingActionButton button = binding.addCourseButton;
-        button.setOnClickListener(v -> {
-            if (layout.indexOfChild(courseNameText) == -1)
-            {
-                courseNameText.setText("");
-                layout.addView(courseNameText);
-            }
-
-            dialog.show();
-        });
+        button.setOnClickListener(v -> showNewCourseDialog(dialog));
 
         return root;
     }
@@ -90,7 +76,7 @@ public class CoursesFragment extends Fragment {
         binding = null;
     }
 
-    public AlertDialog createNewCourseDialog(View view)
+    private AlertDialog createNewCourseDialog(View view)
     {
         // Set up dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
@@ -127,6 +113,7 @@ public class CoursesFragment extends Fragment {
                     InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
+                    // Manual syllabus item creation
                     // Navigation.findNavController(view).navigate(R.id.navigation_add_items);
 
                     mGetContent.launch("application/pdf");
@@ -147,6 +134,16 @@ public class CoursesFragment extends Fragment {
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
 
         return dialog;
+    }
+
+    private void showNewCourseDialog(AlertDialog dialog) {
+        if (layout.indexOfChild(courseNameText) == -1)
+        {
+            courseNameText.setText("");
+            layout.addView(courseNameText);
+        }
+
+        dialog.show();
     }
 
     // File selector launcher for PDF

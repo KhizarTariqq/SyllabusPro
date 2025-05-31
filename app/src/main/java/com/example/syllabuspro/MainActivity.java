@@ -1,34 +1,18 @@
 package com.example.syllabuspro;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
-import android.net.Uri;
-import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.*;
 import android.widget.DatePicker;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-
-import java.io.*;
-import java.net.URISyntaxException;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
-import android.view.View;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.adapters.*;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
-import com.example.syllabuspro.ui.tasks.TaskPriorityType;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -38,8 +22,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
+
 import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.util.*;
@@ -47,15 +30,12 @@ import java.util.*;
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
 {
     public static ActivityMainBinding binding;
-    private RecyclerView recyclerView;
     private static ArrayList <Course> courseList;
     private static ArrayList <Task> taskList;
 
-    // List first syllabus items for when adding course
-    private static ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
+    // List for syllabus items for when adding course
+    private static ArrayList<SyllabusItem> syllabusItems = new ArrayList<>();
 
-    // fragment controllers
-    public static NavController navController;
     public static FragmentManager fragmentManager;
 
     // variable for accessing user storage
@@ -83,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             SharedPreferences.Editor editor = prefs.edit();
 
             // Courses ArrayList
-            courseList = new ArrayList<Course>(0);
+            courseList = new ArrayList<>(0);
             saveCourseList();
 
             // Tasks ArrayList
-            taskList = new ArrayList<Task>(0);
+            taskList = new ArrayList<>(0);
             saveTaskList();
 
             // set first time boolean
@@ -130,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_summary, R.id.navigation_calendar, R.id.navigation_courses, R.id.navigation_tasks)
                 .build();
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
@@ -181,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     public static ArrayList<String> courseListToStringArray()
     {
-        ArrayList<String> courseListString = new ArrayList<String>();
+        ArrayList<String> courseListString = new ArrayList<>();
         for (Course course : courseList)
         {
             courseListString.add(course.getName());
