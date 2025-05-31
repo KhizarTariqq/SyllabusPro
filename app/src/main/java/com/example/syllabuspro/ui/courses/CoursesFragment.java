@@ -37,15 +37,19 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 
 public class CoursesFragment extends Fragment {
 
     private CoursesViewModel coursesViewModel;
     private FragmentCoursesBinding binding;
     private RecyclerView recyclerView;
-    private String directory;
+    private File pdfFile;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         coursesViewModel = new ViewModelProvider(this).get(CoursesViewModel.class);
@@ -137,22 +141,47 @@ public class CoursesFragment extends Fragment {
     }
 
     // File selector launcher for PDF
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(
+            new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>()
             {
                 @Override
                 public void onActivityResult(Uri uri)
                 {
-                    // Handle the returned Uri
-                    String fullFilePath = UriUtils.getPathFromUri(requireContext(), uri);
-                    File file = new File(fullFilePath);
-
-                    setDirectory(fullFilePath);
+                    if (uri != null)
+                    {
+                        try
+                        {
+                            pdfFile = copyUriToPdfFile(requireContext(), uri);
+                        }
+                        catch (IOException e) {
+                            Log.e("PDF", "Failed to copy PDF file", e);
+                        }
+                    }
+                    else
+                    {
+                        Log.w("PDF", "No file selected");
+                    }
                 }
             });
 
-    private void setDirectory(String filepath)
-    {
-        this.directory = filepath;
+    private File copyUriToPdfFile(Context context, Uri uri) throws IOException {
+        InputStream inputStream = context.getContentResolver().openInputStream(uri);
+        if (inputStream == null) return null;
+
+        // Generate a temp file name with .pdf extension
+        File outputFile = new File(context.getCacheDir(), "selected_pdf_" + System.currentTimeMillis() + ".pdf");
+        OutputStream outputStream = Files.newOutputStream(outputFile.toPath());
+
+        byte[] buffer = new byte[4096];
+        int bytesRead;
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead);
+        }
+
+        inputStream.close();
+        outputStream.close();
+
+        return outputFile;
     }
 }
