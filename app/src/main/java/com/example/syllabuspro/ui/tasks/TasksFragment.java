@@ -36,6 +36,8 @@ import com.example.syllabuspro.adapters.TasksPriorityAdapter;
 import com.example.syllabuspro.databinding.FragmentTasksBinding;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.util.ArrayList;
+
 public class TasksFragment extends Fragment
 {
     private FragmentTasksBinding binding;
@@ -61,7 +63,7 @@ public class TasksFragment extends Fragment
         TasksCourseAdapter courseAdapter = new TasksCourseAdapter(MainActivity.getCourseList());
 
         // Adapter for when sorting by priority
-        TasksPriorityAdapter priorityAdapter = new TasksPriorityAdapter(MainActivity.getPriorityList());
+        TasksPriorityAdapter priorityAdapter = new TasksPriorityAdapter(getPriorityList());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         // GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
@@ -286,7 +288,7 @@ public class TasksFragment extends Fragment
         {
             TasksPriorityAdapter adapter = (TasksPriorityAdapter) recyclerView.getAdapter();
 
-            adapter.setTaskPriorityList(MainActivity.getPriorityList());
+            adapter.setTaskPriorityList(getPriorityList());
             adapter.notifyDataSetChanged();
         }
     }
@@ -306,6 +308,20 @@ public class TasksFragment extends Fragment
             default:
                 throw new IllegalArgumentException("Unknown priority: " + name);
         }
+    }
+
+    public static ArrayList<TaskPriorityType> getPriorityList()
+    {
+        ArrayList<TaskPriorityType> priorityTypes = new ArrayList<TaskPriorityType>();
+        priorityTypes.add(new TaskPriorityType(Task.Priority.LOW));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.MEDIUM));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.HIGH));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.VERY_HIGH));
+        priorityTypes.add(new TaskPriorityType(Task.Priority.EXTREME));
+
+        priorityTypes.removeIf(type -> type.getTaskList().size() == 0);
+
+        return priorityTypes;
     }
 
 }

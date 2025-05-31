@@ -59,7 +59,6 @@ public class CoursesFragment extends Fragment {
         View root = binding.getRoot();
 
         // Initializing list view with the custom adapter
-        Log.d("empty", MainActivity.getCourseList().toString());
         recyclerView = root.findViewById(R.id.recyclerView);
         CustomAdapter adapter = new CustomAdapter(MainActivity.getCourseList());
 
@@ -78,7 +77,7 @@ public class CoursesFragment extends Fragment {
                 courseNameText.setText("");
                 layout.addView(courseNameText);
             }
-            
+
             dialog.show();
         });
 
@@ -163,11 +162,14 @@ public class CoursesFragment extends Fragment {
                         try
                         {
                             pdfFile = copyUriToPdfFile(requireContext(), uri);
+                            MainActivity.saveCourseList();
                         }
+
                         catch (IOException e) {
                             Log.e("PDF", "Failed to copy PDF file", e);
                         }
                     }
+
                     else
                     {
                         Log.w("PDF", "No file selected");
