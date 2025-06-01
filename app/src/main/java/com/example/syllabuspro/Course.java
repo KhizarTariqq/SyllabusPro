@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 public class Course {
     private final String name;
-    private ArrayList<SyllabusItem> syllabusItems = new ArrayList<SyllabusItem>();
-    // add parameter color
+    private final ArrayList<SyllabusItem> syllabusItems;
+
+    // TODO add colour field
 
     public Course (String name)
     {
         this.name = name;
+        syllabusItems = new ArrayList<>();
     }
 
     public Course (String name, ArrayList<SyllabusItem> syllabusItems)
@@ -37,17 +39,16 @@ public class Course {
 
     public String toString()
     {
-        String string = "";
-        string += "Course: " + this.name + " ";
+        StringBuilder string = new StringBuilder();
+        string.append(String.format("Course: %s - Items: ", name));
 
-        int syllabusItemsIndex = 0;
 
         for (SyllabusItem item : this.syllabusItems)
         {
-            string += item.toString() + " " ;
+            string.append(item.toString()).append(" ");
         }
 
-        return string;
+        return string.toString();
     }
 
     public boolean equals(Course course)

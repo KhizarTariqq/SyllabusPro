@@ -48,55 +48,35 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
             {
-                Log.d("empty", String.valueOf(adapterView.getSelectedItemId()));
-                Log.d("Spinner", "testing");
-                Log.d("Spinner", adapterView.getItemAtPosition(position).getClass().getSimpleName());
-
                 String typeString = adapterView.getItemAtPosition(position).toString();
-                SyllabusItem.Type type = null;
+                SyllabusItem.Type type;
 
-                if (typeString.equals("Quiz"))
-                {
-                    type = SyllabusItem.Type.Quiz;
+                switch (typeString) {
+                    case "Quiz":
+                        type = SyllabusItem.Type.Quiz;
+                        break;
+
+                    case "Assignment":
+                        type = SyllabusItem.Type.Assignment;
+                        break;
+
+                    case "Term Test":
+                        type = SyllabusItem.Type.TermTest;
+                        break;
+
+                    case "Class Participation":
+                        type = SyllabusItem.Type.ClassParticipation;
+                        break;
+
+                    case "Final Exam":
+                        type = SyllabusItem.Type.FinalExam;
+                        break;
+
+                    default:
+                        type = null;
+                        break;
                 }
 
-                else if (typeString.equals("Assignment"))
-                {
-                    type = SyllabusItem.Type.Assignment;
-                }
-
-                else if (typeString.equals("Term Test"))
-                {
-                    type = SyllabusItem.Type.TermTest;
-                }
-
-                else if (typeString.equals("Class Participation"))
-                {
-                    type = SyllabusItem.Type.Quiz;
-                }
-
-                else if (typeString.equals("Assignment"))
-                {
-                    type = SyllabusItem.Type.Assignment;
-                }
-
-                else if (typeString.equals("Term Test"))
-                {
-                    type = SyllabusItem.Type.TermTest;
-                }
-
-                else if (typeString.equals("Class Participation"))
-                {
-                    type = SyllabusItem.Type.ClassParticipation;
-                }
-
-                else if (typeString.equals("Final Exam"))
-                {
-                    type = SyllabusItem.Type.FinalExam;
-                }
-
-                Log.d("Type: ", typeString);
-                Log.d("Type: ", String.valueOf(type));
                 // Get SyllabusItem
                 RecyclerView recyclerView = view.getRootView().findViewById(R.id.addCourseRecyclerView);
                 AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
