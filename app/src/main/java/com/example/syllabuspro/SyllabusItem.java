@@ -2,6 +2,8 @@ package com.example.syllabuspro;
 
 import android.util.Log;
 
+import java.time.LocalDate;
+
 public class SyllabusItem
 {
     public enum Type
@@ -15,11 +17,10 @@ public class SyllabusItem
 
     private SyllabusItem.Type type;
     private String name;
-    private Deadline deadline;
+    private LocalDate deadline;
     private int weight;
-    private boolean noDeadline;
 
-    public SyllabusItem(SyllabusItem.Type type, String name, int weight, Deadline deadline)
+    public SyllabusItem(SyllabusItem.Type type, String name, int weight, LocalDate deadline)
     {
         this.type = type;
         this.name = name;
@@ -27,26 +28,12 @@ public class SyllabusItem
         this.deadline = deadline;
     }
 
-    public SyllabusItem(SyllabusItem.Type type, String name, int weight)
-    {
-        this.type = type;
-        this.name = name;
-        this.weight = weight;
-        this.noDeadline = true;
-        this.deadline = new Deadline(2022,1,20);
-    }
-
-    public SyllabusItem()
-    {
-
-    }
-
     public void setType(SyllabusItem.Type type)
     {
         this.type = type;
     }
 
-    public void setDeadline(Deadline deadline)
+    public void setDeadline(LocalDate deadline)
     {
         this.deadline = deadline;
     }
@@ -88,7 +75,7 @@ public class SyllabusItem
         return this.type;
     }
 
-    public Deadline getDeadline()
+    public LocalDate getDeadline()
     {
         return this.deadline;
     }

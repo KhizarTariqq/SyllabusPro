@@ -25,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
@@ -199,6 +200,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
         SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
 
-        item.setDeadline(new Deadline(year, month, day));
+        item.setDeadline(LocalDate.of(year, month, day));
     }
 }
