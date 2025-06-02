@@ -38,9 +38,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder>
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
         SyllabusItem item = this.syllabusItems.get(position);
-        holder.displayName.setText((CharSequence) item.getName());
-        holder.displayWeight.setText((CharSequence) Integer.toString(item.getWeight()));
-        holder.displayDeadline.setText((CharSequence) item.getDeadline().toString());
+        holder.displayName.setText((CharSequence) item.getDescription());
+        holder.displayWeight.setText((CharSequence) Float.toString(item.getWeight()));
+        holder.displayDeadline.setText(
+                item.getDueDate() != null ? item.getDueDate().toString() : "None"
+        );
         holder.displayType.setText((CharSequence) item.getType().toString());
     }
 

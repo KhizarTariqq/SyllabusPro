@@ -25,8 +25,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.syllabuspro.ApiClient;
+import com.example.syllabuspro.ApiService;
 import com.example.syllabuspro.Course;
 import com.example.syllabuspro.R;
+import com.example.syllabuspro.SyllabusItem;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.databinding.FragmentCoursesBinding;
@@ -37,13 +40,23 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.MultipartBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CoursesFragment extends Fragment {
 
     private CoursesViewModel coursesViewModel;
     private FragmentCoursesBinding binding;
     private RecyclerView recyclerView;
-    private EditText courseNameText;
+    private Course newCourse;
+    private EditText courseNameTextBox;
     private LinearLayout layout;
     private File pdfFile;
 
@@ -80,12 +93,12 @@ public class CoursesFragment extends Fragment {
     {
         // Set up dialog
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
-        courseNameText = new EditText(requireContext());
+        courseNameTextBox = new EditText(requireContext());
         dialogBuilder.setTitle("Enter the course name: ");
-        dialogBuilder.setView(courseNameText);
+        dialogBuilder.setView(courseNameTextBox);
         layout = new LinearLayout(requireContext());
         layout.setOrientation(LinearLayout.VERTICAL);
-        layout.addView(courseNameText);
+        layout.addView(courseNameTextBox);
         dialogBuilder.setView(layout);
 
         // Continue button listener
@@ -93,8 +106,8 @@ public class CoursesFragment extends Fragment {
         {
             public void onClick(DialogInterface dialog, int whichButton)
             {
-                layout.removeView(courseNameText);
-                String courseName = courseNameText.getText().toString();
+                layout.removeView(courseNameTextBox);
+                String courseName = courseNameTextBox.getText().toString();
 
                 if (courseName.isEmpty())
                 {
@@ -103,11 +116,8 @@ public class CoursesFragment extends Fragment {
 
                 else
                 {
-                    Course course = new Course(courseName);
-                    RecyclerView recyclerView = view.getRootView().findViewById(R.id.recyclerView);
-                    CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
-                    MainActivity.addToCourseList(course);
-                    adapter.notifyDataSetChanged();
+                    // Make course a field and courseName local, use a setter for sylabus items
+                    newCourse = new Course(courseName);
 
                     // hide keyboard and start new fragment
                     InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -137,10 +147,10 @@ public class CoursesFragment extends Fragment {
     }
 
     private void showNewCourseDialog(AlertDialog dialog) {
-        if (layout.indexOfChild(courseNameText) == -1)
+        if (layout.indexOfChild(courseNameTextBox) == -1)
         {
-            courseNameText.setText("");
-            layout.addView(courseNameText);
+            courseNameTextBox.setText("");
+            layout.addView(courseNameTextBox);
         }
 
         dialog.show();
@@ -159,7 +169,7 @@ public class CoursesFragment extends Fragment {
                         try
                         {
                             pdfFile = copyUriToPdfFile(requireContext(), uri);
-                            MainActivity.saveCourseList();
+                            processPDF(pdfFile);
                         }
 
                         catch (IOException e) {
@@ -192,5 +202,53 @@ public class CoursesFragment extends Fragment {
         outputStream.close();
 
         return outputFile;
+    }
+
+    private void processPDF(File pdfFile) {
+        /**
+        This method takes in a PDF as a File object, and creates an API
+         POST request to run the two spacy NER models to extract all SyllabusItems
+         within the PDF
+        */
+        RequestBody requestBody = RequestBody.create(
+                MediaType.parse("application/pdf"), pdfFile
+        );
+
+        MultipartBody.Part filePart = MultipartBody.Part.createFormData(
+                "file", pdfFile.getName(), requestBody
+        );
+
+        ApiService apiService = ApiClient.getApiService();
+
+        Call<List<SyllabusItem>> call = apiService.uploadPdf(filePart);
+
+        call.enqueue(new Callback<List<SyllabusItem>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<SyllabusItem>> call, @NonNull Response<List<SyllabusItem>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ArrayList<SyllabusItem> items = new ArrayList<>(response.body());
+                    newCourse.setSyllabusItems(items);
+
+                    Log.d("API", "Response received");
+                    Log.d("API", newCourse.toString());
+                    RecyclerView recyclerView = binding.getRoot().getRootView().findViewById(R.id.recyclerView);
+                    CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+                    MainActivity.addToCourseList(newCourse);
+                    MainActivity.saveCourseList();
+                    adapter.notifyDataSetChanged();
+                }
+
+                else
+                {
+                    Log.d("API", "Error: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SyllabusItem>> call, Throwable t) {
+                Log.e("API", "Retrofit call failed", t);  // this shows cause
+                Toast.makeText(requireContext(), "API Call failed: " + t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

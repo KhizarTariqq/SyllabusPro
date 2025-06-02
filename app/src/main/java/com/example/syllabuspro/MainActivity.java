@@ -200,6 +200,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
         SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
 
-        item.setDeadline(LocalDate.of(year, month, day));
+        item.setDueDate(LocalDate.of(year, month, day));
     }
 }

@@ -6,14 +6,15 @@ import java.util.ArrayList;
 
 public class Course {
     private final String name;
-    private final ArrayList<SyllabusItem> syllabusItems;
+
+    // TODO reevaluate if syllabusItems should be an Array or ArrayList
+    private ArrayList<SyllabusItem> syllabusItems;
 
     // TODO add colour field
 
     public Course (String name)
     {
         this.name = name;
-        syllabusItems = new ArrayList<>();
     }
 
     public Course (String name, ArrayList<SyllabusItem> syllabusItems)
@@ -22,9 +23,9 @@ public class Course {
         this.syllabusItems = syllabusItems;
     }
 
-    public void addSyllabusItem(SyllabusItem item)
+    public void setSyllabusItems(ArrayList<SyllabusItem> syllabusItems)
     {
-        this.syllabusItems.add(item);
+        this.syllabusItems = syllabusItems;
     }
 
     public ArrayList<SyllabusItem> getSyllabusItems()

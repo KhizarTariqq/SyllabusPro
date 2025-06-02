@@ -1,6 +1,6 @@
 package com.example.syllabuspro;
 
-import android.util.Log;
+import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDate;
 
@@ -8,24 +8,33 @@ public class SyllabusItem
 {
     public enum Type
     {
-        TermTest,
-        Quiz,
-        Assignment,
-        ClassParticipation,
-        FinalExam
+        ASSIGNMENT,
+        LAB,
+        PARTICIPATION,
+        PRE_CLASS_ACTIVITY,
+        OTHER,
+        QUIZ,
+        MIDTERM,
+        EXAM,
+        UNKNOWN
     }
 
     private SyllabusItem.Type type;
-    private String name;
-    private LocalDate deadline;
-    private int weight;
+    private String description;
+    @SerializedName("due_date")
+    private LocalDate dueDate;
+    private float weight;
 
-    public SyllabusItem(SyllabusItem.Type type, String name, int weight, LocalDate deadline)
+    public SyllabusItem(SyllabusItem.Type type, String name, float weight, LocalDate deadline)
     {
         this.type = type;
-        this.name = name;
+        this.description = name;
         this.weight = weight;
-        this.deadline = deadline;
+        this.dueDate = deadline;
+    }
+
+    public SyllabusItem()
+    {
     }
 
     public void setType(SyllabusItem.Type type)
@@ -33,14 +42,14 @@ public class SyllabusItem
         this.type = type;
     }
 
-    public void setDeadline(LocalDate deadline)
+    public void setDueDate(LocalDate dueDate)
     {
-        this.deadline = deadline;
+        this.dueDate = dueDate;
     }
 
-    public void setName(String name)
+    public void setDescription(String description)
     {
-        this.name = name;
+        this.description = description;
     }
 
     public void setWeight(int weight)
@@ -50,24 +59,12 @@ public class SyllabusItem
 
     public boolean notNull()
     {
-        if (this.type == null || this.name == null || this.deadline == null || this.weight == 0)
-        {
-            Log.d("Item: type", String.valueOf(this.type == null));
-            Log.d("Item: name", String.valueOf(this.name == null));
-            Log.d("Item: Deadline", String.valueOf(this.deadline == null));
-            Log.d("Item: weight", String.valueOf(this.weight == 0));
-            return false;
-        }
-
-        else
-        {
-            return true;
-        }
+        return this.type != null && this.description != null && this.dueDate != null && this.weight != 0;
     }
 
-    public String getName()
+    public String getDescription()
     {
-        return this.name;
+        return this.description;
     }
 
     public Type getType()
@@ -75,12 +72,12 @@ public class SyllabusItem
         return this.type;
     }
 
-    public LocalDate getDeadline()
+    public LocalDate getDueDate()
     {
-        return this.deadline;
+        return this.dueDate;
     }
 
-    public int getWeight()
+    public float getWeight()
     {
         return this.weight;
     }
@@ -89,7 +86,7 @@ public class SyllabusItem
     {
         if (this.notNull())
         {
-            return "Name: " + name + "," + " Type: " + this.type.name() + "," + " Deadline: " + this.deadline + "," + " Weight: " + Integer.toString(weight);
+            return "Name: " + description + "," + " Type: " + this.type.name() + "," + " Deadline: " + this.dueDate + "," + " Weight: " + Float.toString(weight);
         }
 
         else

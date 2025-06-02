@@ -53,23 +53,35 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
 
                 switch (typeString) {
                     case "Quiz":
-                        type = SyllabusItem.Type.Quiz;
+                        type = SyllabusItem.Type.QUIZ;
                         break;
 
                     case "Assignment":
-                        type = SyllabusItem.Type.Assignment;
+                        type = SyllabusItem.Type.ASSIGNMENT;
                         break;
 
-                    case "Term Test":
-                        type = SyllabusItem.Type.TermTest;
+                    case "Lab":
+                        type = SyllabusItem.Type.LAB;
                         break;
 
-                    case "Class Participation":
-                        type = SyllabusItem.Type.ClassParticipation;
+                    case "Pre-class Activity":
+                        type = SyllabusItem.Type.PRE_CLASS_ACTIVITY;
+                        break;
+
+                    case "Midterm":
+                        type = SyllabusItem.Type.MIDTERM;
+                        break;
+
+                    case "Participation":
+                        type = SyllabusItem.Type.PARTICIPATION;
                         break;
 
                     case "Final Exam":
-                        type = SyllabusItem.Type.FinalExam;
+                        type = SyllabusItem.Type.EXAM;
+                        break;
+
+                    case "Other":
+                        type = SyllabusItem.Type.OTHER;
                         break;
 
                     default:
@@ -114,7 +126,7 @@ public class AddCourseAdapter extends RecyclerView.Adapter<AddCourseAdapter.View
             {
                 Log.d("empty", "textBoxChange");
                 SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
-                item.setName(editable.toString());
+                item.setDescription(editable.toString());
             }
         });
 

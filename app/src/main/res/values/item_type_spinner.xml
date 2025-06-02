@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="types_array">
-        <item>Term Test</item>
-        <item>Quiz</item>
         <item>Assignment</item>
-        <item>Class Participation</item>
+        <item>Lab</item>
+        <item>Participation</item>
+        <item>Pre-class Activity</item>
+        <item>Quiz</item>
+        <item>Midterm</item>
         <item>Final Exam</item>
+        <item>Other</item>
     </string-array>
 </resources>
