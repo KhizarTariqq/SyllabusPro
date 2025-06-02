@@ -1,7 +1,7 @@
 from .item_extractor import extract_items_from_file
 from dateutil.parser import parse
 import dateutil
-from flask_api.syllabus_item import SyllabusItem, ItemType
+from flask_api.syllabus_item import SyllabusItem
 import spacy
 import os
 
@@ -34,21 +34,16 @@ def extract_items_with_details(file):
 
         for ent in doc.ents:
             match ent.label_:
-                # "TYPE","DESCRIPTION","WEIGHT","DATE"
                 case "TYPE":
-                    type = ItemType.from_string(ent.text)
-                    print(f"type: {type}, type is {type.__class__}")
-                    print(f"Is type == ItemType.EXAM? {type == ItemType.EXAM}")
-                    print(f"ItemType.EXAM is {ItemType.EXAM}")
-                    if (type == ItemType.EXAM):
-                        print(f"type is exam, found")
+                    type = SyllabusItem.ItemType.from_string(ent.text)
+                    
+                    if (type == SyllabusItem.ItemType.EXAM):
                         found_exam = True
 
                 case "DESCRIPTION":
                     description = ent.text
                     if description.strip().lower() in {"exam", "final exam", "final", "final examination"}:
                         found_exam = True
-                        print("description contains exam, found")
                 
                 case "DATE":
                     # TODO create custom date type that can either be a date or "ongoing/tba"
@@ -66,15 +61,14 @@ def extract_items_with_details(file):
                             weight = float(ent.text[:-1])
                         except ValueError:
                             weight = None
-        print(f"\nItem information: type: {type}, description: {description}, due date: {due_date}, weight: {weight}, found_exam: {found_exam}, proccesed_exam: {processed_exam}")
+
         # Add the newly created item unless:
         #   # 1. It has no weight or due date (which means the first NER picked up something
         #        that isn't a Syllabus Item). 
         #   # 2. The item is an "exam" but we already processed an exam (In CS syllabi there is
         #        a 40% rule for exams which sometimes is picked up as a syllabus item)
         if not ((weight is None and due_date is None) or (processed_exam and description.strip().lower() in exam_descriptions)
-                or (processed_exam and type == ItemType.EXAM)):
-            print(f"added: {description}")
+                or (processed_exam and type == SyllabusItem.ItemType.EXAM)):
             syllabus_item = SyllabusItem(type=type, description=description, weight=weight, due_date=due_date)
             item_objects.append(syllabus_item)
 
