@@ -65,7 +65,6 @@ public class CoursesFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         coursesViewModel = new ViewModelProvider(this).get(CoursesViewModel.class);
-        Log.d("binding", "binding added");
         binding = FragmentCoursesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
