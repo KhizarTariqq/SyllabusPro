@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,24 +19,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.adapters.ItemsAdapter;
 import com.example.syllabuspro.SyllabusItem;
-import com.example.syllabuspro.databinding.ItemsViewFragmentBinding;
+import com.example.syllabuspro.databinding.SyllabusItemsViewFragmentBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 public class ItemsViewFragment extends Fragment {
 
     private ItemsViewViewModel mViewModel;
-    private ItemsViewFragmentBinding binding;
+    private SyllabusItemsViewFragmentBinding binding;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        binding = ItemsViewFragmentBinding.inflate(inflater, container, false);
+        binding = SyllabusItemsViewFragmentBinding.inflate(inflater, container, false);
         Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbar);
 
         // get items list
         RecyclerView courseRecyclerView = container.findViewById(R.id.recyclerView);
+        courseRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         Pair<String, ArrayList<SyllabusItem>> pair = (Pair<String, ArrayList<SyllabusItem>>) courseRecyclerView.getTag();
 
         ArrayList<SyllabusItem> itemsList = pair.second;
@@ -64,6 +69,20 @@ public class ItemsViewFragment extends Fragment {
         // Add adapter and layout
         itemsRecyclerView.setAdapter(adapter);
         itemsRecyclerView.setLayoutManager(mLayoutManager);
+
+        // Add padding to the toolbar
+        itemsRecyclerView.post(() -> {
+            BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
+            int bottomNavHeight = bottomNavigationView.getHeight();
+
+            itemsRecyclerView.setPadding(
+                    itemsRecyclerView.getPaddingLeft(),
+                    itemsRecyclerView.getPaddingTop(),
+                    itemsRecyclerView.getPaddingRight(),
+                    bottomNavHeight
+            );
+        });
+        
         return binding.getRoot();
     }
 }

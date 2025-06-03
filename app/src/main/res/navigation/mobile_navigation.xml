@@ -39,14 +39,14 @@
         android:id="@+id/navigation_view_items"
         android:name="com.example.syllabuspro.ui.view_items.ItemsViewFragment"
         android:label="@string/title_view_items"
-        tools:layout="@layout/items_view_fragment"
+        tools:layout="@layout/syllabus_items_view_fragment"
     />
 
     <fragment
         android:id="@+id/navigation_add_items"
         android:name="com.example.syllabuspro.ui.add_items.AddItemsFragment"
         android:label="@string/title_add_items"
-        tools:layout="@layout/items_view_fragment"
+        tools:layout="@layout/syllabus_items_view_fragment"
     />
 
     <fragment
