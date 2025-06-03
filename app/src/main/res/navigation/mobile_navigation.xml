@@ -38,14 +38,21 @@
     <fragment
         android:id="@+id/navigation_view_items"
         android:name="com.example.syllabuspro.ui.view_items.ItemsViewFragment"
-        android:label="@string/title_tasks"
+        android:label="@string/title_view_items"
         tools:layout="@layout/items_view_fragment"
     />
 
     <fragment
         android:id="@+id/navigation_add_items"
         android:name="com.example.syllabuspro.ui.add_items.AddItemsFragment"
-        android:label="@string/title_tasks"
+        android:label="@string/title_add_items"
         tools:layout="@layout/items_view_fragment"
     />
+
+    <fragment
+        android:id="@+id/navigation_waiting_api_response"
+        android:name="com.example.syllabuspro.ui.waiting_api_response.WaitingApiResponseFragment"
+        android:label="@string/title_waiting_api_response"
+        tools:layout="@layout/fragment_waiting_api_response"
+        />
 </navigation>

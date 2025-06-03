@@ -22,6 +22,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -62,6 +65,7 @@ public class CoursesFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         coursesViewModel = new ViewModelProvider(this).get(CoursesViewModel.class);
+        Log.d("binding", "binding added");
         binding = FragmentCoursesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -79,6 +83,11 @@ public class CoursesFragment extends Fragment {
         AlertDialog dialog = createNewCourseDialog(root);
         ExtendedFloatingActionButton button = binding.addCourseButton;
         button.setOnClickListener(v -> showNewCourseDialog(dialog));
+
+        // Setup LiveData for Courses Recyclerview
+        coursesViewModel.getCourseListUpdated().observe(getViewLifecycleOwner(), unused -> {
+            adapter.notifyDataSetChanged();
+        });
 
         return root;
     }
@@ -231,11 +240,12 @@ public class CoursesFragment extends Fragment {
 
                     Log.d("API", "Response received");
                     Log.d("API", newCourse.toString());
-                    RecyclerView recyclerView = binding.getRoot().getRootView().findViewById(R.id.recyclerView);
-                    CustomAdapter adapter = (CustomAdapter) recyclerView.getAdapter();
+
                     MainActivity.addToCourseList(newCourse);
                     MainActivity.saveCourseList();
-                    adapter.notifyDataSetChanged();
+                    coursesViewModel.notifyCourseListChanged();
+                    NavController navController = NavHostFragment.findNavController(CoursesFragment.this);
+                    navController.popBackStack();
                 }
 
                 else
@@ -250,5 +260,7 @@ public class CoursesFragment extends Fragment {
                 Toast.makeText(requireContext(), "API Call failed: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.navigation_waiting_api_response);
     }
 }

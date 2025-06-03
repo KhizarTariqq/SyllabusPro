@@ -10,7 +10,7 @@ import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.syllabuspro.DatePickerFragment;
+import com.example.syllabuspro.ui.add_items.DatePickerFragment;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.SyllabusItem;

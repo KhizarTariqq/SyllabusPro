@@ -6,14 +6,12 @@ import androidx.lifecycle.ViewModel;
 
 public class CoursesViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private final MutableLiveData<Void> courseListUpdated = new MutableLiveData<>();
 
-    public CoursesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is manage fragment");
+    public LiveData<Void> getCourseListUpdated() {
+        return courseListUpdated;
     }
-
-    public LiveData<String> getText() {
-        return mText;
+    public void notifyCourseListChanged() {
+        courseListUpdated.setValue(null);
     }
 }

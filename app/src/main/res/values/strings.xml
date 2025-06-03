@@ -6,6 +6,9 @@
     <string name="title_calendar">Calendar</string>
     <string name="title_courses">Courses</string>
     <string name="title_tasks">Tasks</string>
+    <string name="title_view_items">View Items</string>
+    <string name="title_add_items">Add Items</string>
+    <string name="title_waiting_api_response">Waiting for API Response</string>
 
     <!-- add object button -->
     <string name="button_add_course">Add Course</string>
@@ -28,4 +31,5 @@
     <string name="task_enter_description">Enter description:</string>
     <string name="task_enter_priority">Priority: </string>
     <string name="task_button">View Task</string>
+    <string name="extracting_syllabus_items">Extracting Syllabus Items…</string>
 </resources>

@@ -28,7 +28,7 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener
+public class MainActivity extends AppCompatActivity
 {
     public static ActivityMainBinding binding;
     private static ArrayList <Course> courseList;
@@ -183,23 +183,5 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
 
         return chosenCourse;
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int day)
-    {
-        Calendar mCalendar = Calendar.getInstance();
-        mCalendar.set(Calendar.YEAR, year);
-        mCalendar.set(Calendar.MONTH, month);
-        mCalendar.set(Calendar.DAY_OF_MONTH, day);
-        String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(mCalendar.getTime());
-        Log.d("Date", selectedDate);
-
-        RecyclerView recyclerView = binding.getRoot().findViewById(R.id.addCourseRecyclerView);
-        AddCourseAdapter adapter = (AddCourseAdapter) recyclerView.getAdapter();
-        ArrayList<SyllabusItem> syllabusItems = adapter.getSyllabusItems();
-        SyllabusItem item = syllabusItems.get(syllabusItems.size() - 1);
-
-        item.setDueDate(LocalDate.of(year, month, day));
     }
 }
