@@ -62,12 +62,13 @@ def extract_items_with_details(file):
                         except ValueError:
                             weight = None
 
-        # Add the newly created item unless:
-        #   # 1. It has no weight or due date (which means the first NER picked up something
-        #        that isn't a Syllabus Item). 
-        #   # 2. The item is an "exam" but we already processed an exam (In CS syllabi there is
+        # Add the newly created item unless ANY of the following cases are true:
+        #   1. It has no weight
+        #   2. It has no due date AND no weight (Case 1 or 2 means the first NER
+        #   picked up something that actually isn't a Syllabus Item). 
+        #   3. The item is an "exam" but we already processed an exam (In CS syllabi there is
         #        a 40% rule for exams which sometimes is picked up as a syllabus item)
-        if not ((weight is None and due_date is None) or (processed_exam and description.strip().lower() in exam_descriptions)
+        if not (weight is None or (due_date is None and weight is None) or (processed_exam and description.strip().lower() in exam_descriptions)
                 or (processed_exam and type == SyllabusItem.ItemType.EXAM)):
             syllabus_item = SyllabusItem(type=type, description=description, weight=weight, due_date=due_date)
             item_objects.append(syllabus_item)
