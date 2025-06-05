@@ -59,12 +59,6 @@ public class ItemsViewFragment extends Fragment {
         // Add adapter and layout
         itemsRecyclerView.setAdapter(adapter);
         itemsRecyclerView.setLayoutManager(mLayoutManager);
-
-        // Add padding to the toolbar
-        itemsRecyclerView.post(() -> {
-            BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
-            int bottomNavHeight = bottomNavigationView.getHeight();
-        });
         
         return binding.getRoot();
     }
