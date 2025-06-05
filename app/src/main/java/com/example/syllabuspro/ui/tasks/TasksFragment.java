@@ -60,12 +60,6 @@ public class TasksFragment extends Fragment
         // Set task recycler view
         RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
 
-        // Adapter for when sorting by course
-        TasksCourseAdapter courseAdapter = new TasksCourseAdapter(MainActivity.getCourseList());
-
-        // Adapter for when sorting by priority
-        TasksPriorityAdapter priorityAdapter = new TasksPriorityAdapter(getPriorityList());
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         // GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
 
@@ -106,9 +100,9 @@ public class TasksFragment extends Fragment
         ArrayAdapter<CharSequence> sortAdapter = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.sort_array,
-                android.R.layout.simple_spinner_item
+                R.layout.tasks_sort_spinner_item
         );
-        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sortAdapter.setDropDownViewResource(R.layout.tasks_sort_spinner_dropdown_item);
         spinner.setAdapter(sortAdapter);
 
         // Set listener
