@@ -13,10 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.syllabuspro.R;
-import com.example.syllabuspro.databinding.FragmentCoursesBinding;
 import com.example.syllabuspro.databinding.FragmentWaitingApiResponseBinding;
-import com.example.syllabuspro.ui.courses.CoursesViewModel;
 
 public class WaitingApiResponseFragment extends Fragment {
 
@@ -44,6 +41,7 @@ public class WaitingApiResponseFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().show();
     }
 
 }

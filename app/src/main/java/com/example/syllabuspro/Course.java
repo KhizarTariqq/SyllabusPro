@@ -1,7 +1,5 @@
 package com.example.syllabuspro;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
 public class Course {

@@ -3,7 +3,6 @@ package com.example.syllabuspro;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.FragmentManager;
@@ -16,9 +15,11 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity
         // On first time app installation create the directories to store courses, and tasks
         if(!prefs.getBoolean("firstTime", false))
         {
-            Log.d("first time", "1");
             SharedPreferences.Editor editor = prefs.edit();
 
             // Courses ArrayList
@@ -61,24 +61,24 @@ public class MainActivity extends AppCompatActivity
             editor.apply();
         }
 
-        // if it's not the first time installing the app, get the list of courses, and tasks.
+        // If it's not the first time installing the app, get the list of courses and
+        // tasks from storage
         else
         {
-            Log.d("first time", "2");
-
             // Get ArrayList of courses, and tasks
             SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
-            Gson gson = new Gson();
 
             String courseJson = prefs.getString("courses", null);
+            Gson courseGson = new GsonBuilder()
+                    .registerTypeAdapter(LocalDate.class, new GsonLocalDateAdapter())
+                    .create();
             Type typeCourse = new TypeToken<ArrayList<Course>>() {}.getType();
-            courseList = gson.fromJson(courseJson, typeCourse);
-            Log.d("first: courses", courseList.toString());
+            courseList = courseGson.fromJson(courseJson, typeCourse);
 
+            Gson taskGson = new Gson();
             String tasksJson = prefs.getString("tasks", null);
             Type typeTask = new TypeToken<ArrayList<Task>>() {}.getType();
-            taskList = gson.fromJson(tasksJson, typeTask);
-            Log.d("first: tasks", taskList.toString());
+            taskList = taskGson.fromJson(tasksJson, typeTask);
         }
 
         fragmentManager = getSupportFragmentManager();
@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity
 
     public static void saveCourseList(){
         SharedPreferences.Editor editor = prefs.edit();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new GsonLocalDateAdapter())
+                .create();
         String json = gson.toJson(courseList);
         editor.putString("courses", json);
         editor.apply();
