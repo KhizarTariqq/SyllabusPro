@@ -25,10 +25,10 @@ public class SyllabusItem
     private LocalDate dueDate;
     private float weight;
 
-    public SyllabusItem(SyllabusItem.Type type, String name, float weight, LocalDate deadline)
+    public SyllabusItem(SyllabusItem.Type type, String description, float weight, LocalDate deadline)
     {
         this.type = type;
-        this.description = name;
+        this.description = description;
         this.weight = weight;
         this.dueDate = deadline;
     }
@@ -67,9 +67,10 @@ public class SyllabusItem
         return this.description;
     }
 
-    public Type getType()
+    public String getType()
     {
-        return this.type;
+        String typeString = type.toString();
+        return typeString.charAt(0) + this.type.toString().substring(1).toLowerCase();
     }
 
     public LocalDate getDueDate()

@@ -3,6 +3,8 @@ package com.example.syllabuspro;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.FragmentManager;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         prefs = this.getPreferences(Context.MODE_PRIVATE);
 
         // On first time app installation create the directories to store courses, and tasks
-        if(!prefs.getBoolean("firstTime", false))
+        if (prefs.getBoolean("firstTime", true))
         {
             SharedPreferences.Editor editor = prefs.edit();
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity
             saveTaskList();
 
             // set first time boolean
-            editor.putBoolean("firstTime", true);
+            editor.putBoolean("firstTime", false);
             editor.apply();
         }
 
