@@ -31,7 +31,7 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
     @Override
     public TasksCourseAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType)
     {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.task_course_row_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_course_row_item, parent, false));
     }
 
     @Override

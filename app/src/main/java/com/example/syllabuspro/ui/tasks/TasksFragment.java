@@ -30,6 +30,7 @@ import com.example.syllabuspro.Course;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.Task;
 import com.example.syllabuspro.MainActivity;
+import com.example.syllabuspro.Utils;
 import com.example.syllabuspro.adapters.TasksCourseAdapter;
 import com.example.syllabuspro.adapters.TasksPriorityAdapter;
 import com.example.syllabuspro.databinding.FragmentTasksBinding;
@@ -77,7 +78,6 @@ public class TasksFragment extends Fragment
 
         ExtendedFloatingActionButton button = binding.addTaskButton;
         button.setOnClickListener(v-> showTaskDialog(dialog, view));
-
     }
 
     @Override
@@ -113,6 +113,17 @@ public class TasksFragment extends Fragment
                         new TasksPriorityAdapter(getPriorityList())
                 )
         );
+
+        // Set dropdown menu to be a little lower
+        //spinner.setDropDownVerticalOffset(Utils.dpToPx(requireContext(),10));
+
+        // Alternative: Make the drop down under the spinner:
+        spinner.post(() -> {
+            int offset = spinner.getHeight(); // exact height of spinner
+            spinner.setDropDownVerticalOffset(offset);
+        });
+
+
     }
 
 

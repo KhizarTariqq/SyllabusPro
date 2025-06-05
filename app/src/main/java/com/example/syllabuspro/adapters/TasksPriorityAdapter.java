@@ -27,7 +27,7 @@ public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdap
     @Override
     public TasksPriorityAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType)
     {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.task_priority_row_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_priority_row_item, parent, false));
     }
 
     @Override
