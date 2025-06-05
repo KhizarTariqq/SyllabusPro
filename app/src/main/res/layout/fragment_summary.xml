@@ -13,7 +13,7 @@
         android:text="Daily Goals: "
         android:textColor="@color/black"
         android:textSize="28sp"
-        app:layout_constraintTop_toBottomOf="@id/manage_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
     />
 
@@ -79,30 +79,6 @@
         app:layout_constraintBottom_toBottomOf="@id/weekly_progress_bar"
         app:layout_constraintStart_toStartOf="@id/weekly_progress_bar"
         app:layout_constraintEnd_toEndOf="@id/weekly_progress_bar"
-    />
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/appBarLayout"
-        android:layout_marginTop="16dp">
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/manage_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:theme="?attr/actionBarTheme"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:titleTextColor = "#fff"
-        app:title="Summary"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,22 +1,17 @@
 package com.example.syllabuspro;
 
-import android.app.DatePickerDialog;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.DatePicker;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.syllabuspro.adapters.*;
+import androidx.navigation.fragment.NavHostFragment;
 import com.example.syllabuspro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationBarView;
@@ -24,8 +19,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 public class MainActivity extends AppCompatActivity
@@ -45,15 +38,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
-        getSupportActionBar().hide();
-
-         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-         WindowManager.LayoutParams.FLAG_FULLSCREEN);
-         prefs = this.getPreferences(Context.MODE_PRIVATE);
-
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-        WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        super.onCreate(savedInstanceState);
 
         prefs = this.getPreferences(Context.MODE_PRIVATE);
 
@@ -98,10 +83,12 @@ public class MainActivity extends AppCompatActivity
 
         fragmentManager = getSupportFragmentManager();
 
-        super.onCreate(savedInstanceState);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // Setup ActionBar
+        Toolbar toolbar = binding.mainToolbar;
+        setSupportActionBar(toolbar);
 
         // Make bottom navigation bar titles static
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -111,7 +98,10 @@ public class MainActivity extends AppCompatActivity
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_summary, R.id.navigation_calendar, R.id.navigation_courses, R.id.navigation_tasks)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        NavController navController = ((NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment_activity_main))
+                .getNavController();
+
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }

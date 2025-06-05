@@ -4,6 +4,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,7 +15,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -43,12 +45,17 @@ public class TasksFragment extends Fragment
     private Task.Priority priority = null;
     private EditText nameEditText;
     private EditText descriptionEditText;
+    private Spinner spinner;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         binding = FragmentTasksBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        // Set action bar title and buttons
+        requireActivity().setTitle("Tasks");
+        setHasOptionsMenu(true);
 
         // Set task recycler view
         RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
@@ -62,56 +69,8 @@ public class TasksFragment extends Fragment
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         // GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
 
-        // Set adapter and layout manager
-        // recyclerView.setAdapter(adapter);
+        // Set layout manager
         recyclerView.setLayoutManager(mLayoutManager);
-
-        // set sort spinner
-        // this sets the display mode from sorting with respect to courses or priority
-        Spinner spinner = root.findViewById(R.id.tasks_sort_spinner);
-        ArrayAdapter<CharSequence> sortAdapter = ArrayAdapter.createFromResource(inflater.getContext(),
-        R.array.sort_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(sortAdapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                String choice = (String) adapterView.getItemAtPosition(position);
-
-                // If user chooses to sort by courses
-                if (choice.equals("Courses"))
-                {
-                    recyclerView.setAdapter(courseAdapter);
-                }
-
-                // Else if user chooses to sort by priority
-                else
-                {
-                    recyclerView.setAdapter(priorityAdapter);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
-
-            }
-        });
-
-        // set edit button
-        ImageButton editButton = root.findViewById(R.id.tasks_edit_button);
-        editButton.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-
-            }
-        });
 
         return root;
     }
@@ -134,6 +93,66 @@ public class TasksFragment extends Fragment
         binding = null;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_tasks, menu);
+
+        MenuItem item = menu.findItem(R.id.action_sort_controls);
+        View actionView = item.getActionView();
+
+        // Access spinner from custom layout
+        spinner = actionView.findViewById(R.id.tasks_sort_spinner);
+
+        ArrayAdapter<CharSequence> sortAdapter = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.sort_array,
+                android.R.layout.simple_spinner_item
+        );
+        sortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(sortAdapter);
+
+        // Set listener
+        spinner.setOnItemSelectedListener(
+                getSortSpinnerListener(
+                        binding.tasksRecyclerview,
+                        new TasksCourseAdapter(MainActivity.getCourseList()),
+                        new TasksPriorityAdapter(getPriorityList())
+                )
+        );
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_edit) {
+            // handle edit button click here
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private AdapterView.OnItemSelectedListener getSortSpinnerListener(RecyclerView recyclerView,
+                                                                      RecyclerView.Adapter<?> courseAdapter,
+                                                                      RecyclerView.Adapter<?> priorityAdapter) {
+        return new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+                String choice = (String) adapterView.getItemAtPosition(position);
+
+                if (choice.equals("Courses")) {
+                    recyclerView.setAdapter(courseAdapter);
+                } else {
+                    recyclerView.setAdapter(priorityAdapter);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // Optional: handle case where nothing is selected
+            }
+        };
+    }
+
     public AlertDialog createTaskDialog()
     {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(requireContext());
@@ -150,7 +169,7 @@ public class TasksFragment extends Fragment
         descriptionEditText = layout.findViewById(R.id.input_description);
 
         // Setup buttons
-        setupButtons(dialogBuilder);
+        setupDialogButtons(dialogBuilder);
 
         AlertDialog dialog = dialogBuilder.create();
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -218,7 +237,7 @@ public class TasksFragment extends Fragment
         });
     }
 
-    private void setupButtons(AlertDialog.Builder dialogBuilder)
+    private void setupDialogButtons(AlertDialog.Builder dialogBuilder)
     {
         // Continue button listener implemented later to not automatically close the dialog
         dialogBuilder.setPositiveButton("Continue", new DialogInterface.OnClickListener()

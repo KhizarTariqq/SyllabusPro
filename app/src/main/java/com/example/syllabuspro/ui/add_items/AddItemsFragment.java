@@ -44,7 +44,7 @@ public class AddItemsFragment extends Fragment {
         // set toolbar name and back arrow
         Toolbar toolbar = binding.getRoot().findViewById(R.id.manage_toolbar);
         toolbar.setTitle("Enter syllabus items: ");
-        toolbar.setNavigationIcon(R.drawable.ic_action_name);
+        toolbar.setNavigationIcon(R.drawable.ic_back_arrow);
         toolbar.setNavigationOnClickListener(new View.OnClickListener()
         {
             @Override

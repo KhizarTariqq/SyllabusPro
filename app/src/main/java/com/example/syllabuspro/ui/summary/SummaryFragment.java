@@ -3,7 +3,6 @@ package com.example.syllabuspro.ui.summary;
 import android.os.Handler;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +25,9 @@ public class SummaryFragment extends Fragment
     {
         binding = FragmentSummaryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        // Set action bar title
+        requireActivity().setTitle("Summary");
 
         // set the id for the progressbar and progress text
         progressBar = root.findViewById(R.id.daily_progress_bar);

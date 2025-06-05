@@ -1,5 +1,6 @@
 package com.example.syllabuspro.ui.waiting_api_response;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -33,6 +34,8 @@ public class WaitingApiResponseFragment extends Fragment {
         waitingApiResponseViewModel = new ViewModelProvider(this).get(WaitingApiResponseViewModel.class);
         binding = FragmentWaitingApiResponseBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().hide();
 
         return root;
     }

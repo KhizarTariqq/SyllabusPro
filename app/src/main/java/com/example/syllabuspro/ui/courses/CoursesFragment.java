@@ -18,7 +18,9 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -33,10 +35,16 @@ import com.example.syllabuspro.ApiService;
 import com.example.syllabuspro.Course;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.SyllabusItem;
+import com.example.syllabuspro.Utils;
 import com.example.syllabuspro.adapters.CustomAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.databinding.FragmentCoursesBinding;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -68,6 +76,10 @@ public class CoursesFragment extends Fragment {
         binding = FragmentCoursesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // Set action bar title and edit button
+        requireActivity().setTitle("Courses");
+        setHasOptionsMenu(true);
+
         // Initializing list view with the custom adapter
         recyclerView = root.findViewById(R.id.recyclerView);
         CustomAdapter adapter = new CustomAdapter(MainActivity.getCourseList());
@@ -97,6 +109,26 @@ public class CoursesFragment extends Fragment {
         binding = null;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Delay transition until toolbar padding is set
+        postponeEnterTransition();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Add some padding between the filter button and the right edge of the toolbar
+        Toolbar tb = requireActivity().findViewById(R.id.main_toolbar);
+        tb.setPaddingRelative(tb.getPaddingStart(), tb.getPaddingTop(), Utils.dpToPx(requireContext(), 8), tb.getPaddingBottom());
+
+        // Start rendering after layout is done
+        view.post(() -> startPostponedEnterTransition());
+    }
+
     private AlertDialog createNewCourseDialog(View view)
     {
         // Set up dialog
@@ -124,7 +156,7 @@ public class CoursesFragment extends Fragment {
 
                 else
                 {
-                    // Make course a field and courseName local, use a setter for sylabus items
+                    // Make course a field and courseName local, use a setter for syllabus items
                     newCourse = new Course(courseName);
 
                     // hide keyboard and start new fragment
@@ -261,5 +293,20 @@ public class CoursesFragment extends Fragment {
         });
 
         Navigation.findNavController(binding.getRoot()).navigate(R.id.navigation_waiting_api_response);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_courses, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_edit) {
+            Log.d("Button", "Edit clicked");
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
