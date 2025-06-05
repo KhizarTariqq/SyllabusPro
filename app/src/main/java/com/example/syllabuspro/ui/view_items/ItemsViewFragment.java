@@ -64,13 +64,6 @@ public class ItemsViewFragment extends Fragment {
         itemsRecyclerView.post(() -> {
             BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.nav_view);
             int bottomNavHeight = bottomNavigationView.getHeight();
-
-            itemsRecyclerView.setPadding(
-                    itemsRecyclerView.getPaddingLeft(),
-                    itemsRecyclerView.getPaddingTop(),
-                    itemsRecyclerView.getPaddingRight(),
-                    bottomNavHeight
-            );
         });
         
         return binding.getRoot();
