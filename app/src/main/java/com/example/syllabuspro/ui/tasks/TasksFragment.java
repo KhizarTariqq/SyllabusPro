@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,15 +70,32 @@ public class TasksFragment extends Fragment
 
         return root;
     }
+
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Delay transition until toolbar padding is set
+        postponeEnterTransition();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set padding as zero between the sort spinner and the toolbar
+        Toolbar tb = requireActivity().findViewById(R.id.main_toolbar);
+        int padding = Utils.dpToPx(requireContext(), 0);
+        tb.setPaddingRelative(padding, padding, padding, padding);
+
+        // Setup dialog
         AlertDialog dialog = createTaskDialog();
 
         ExtendedFloatingActionButton button = binding.addTaskButton;
         button.setOnClickListener(v-> showTaskDialog(dialog, view));
+
+        // Start rendering after layout is done
+        view.post(() -> startPostponedEnterTransition());
     }
 
     @Override
