@@ -59,7 +59,7 @@ public class ItemsViewFragment extends Fragment {
         // Add adapter and layout
         itemsRecyclerView.setAdapter(adapter);
         itemsRecyclerView.setLayoutManager(mLayoutManager);
-        
+
         return binding.getRoot();
     }
 

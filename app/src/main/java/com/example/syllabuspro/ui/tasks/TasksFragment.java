@@ -3,6 +3,7 @@ package com.example.syllabuspro.ui.tasks;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -137,9 +138,23 @@ public class TasksFragment extends Fragment
 
         // Alternative: Make the drop down under the spinner:
         spinner.post(() -> {
-            int offset = spinner.getHeight(); // exact height of spinner
+            int[] spinnerLocation = new int[2];
+            spinner.getLocationOnScreen(spinnerLocation);
+            int spinnerY = spinnerLocation[1];
+
+            // Get the height of the action bar (toolbar)
+            TypedValue tv = new TypedValue();
+            int actionBarHeight = 0;
+            if (spinner.getContext().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+                actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, spinner.getResources().getDisplayMetrics());
+            }
+
+            // Calculate offset from the spinner's position to the bottom of the action bar
+            int offset = actionBarHeight - spinnerY + (spinner.getHeight() / 2);
+
             spinner.setDropDownVerticalOffset(offset);
         });
+
 
 
     }
