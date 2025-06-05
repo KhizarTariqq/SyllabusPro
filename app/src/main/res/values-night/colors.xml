@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="icon_toolbar_color">#FFFFFF</color>
+
     <color name="button_color">#939393</color>
     <color name="button_text_color">#FFFFFF</color>
+
     <color name="recycler_item_bg">#353535</color>
     <color name="recycler_item_text">#FFFFFFFF</color>
+
+    <color name="nav_item_selected">#FFFFFFFF</color>
+    <color name="nav_item_unselected">#757575</color>
 </resources>
