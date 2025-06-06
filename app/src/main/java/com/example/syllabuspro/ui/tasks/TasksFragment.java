@@ -1,5 +1,6 @@
 package com.example.syllabuspro.ui.tasks;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -198,12 +200,12 @@ public class TasksFragment extends Fragment
         View layout = getLayoutInflater().inflate(R.layout.add_task_dialog, null);
         dialogBuilder.setView(layout);
 
+        // EditText for name and description
+        descriptionEditText = layout.findViewById(R.id.input_description);
+
         // Setup spinners
         setupCourseSpinner(layout);
         setupPrioritySpinner(layout);
-
-        // EditText for name and description
-        descriptionEditText = layout.findViewById(R.id.input_description);
 
         // Setup buttons
         setupDialogButtons(dialogBuilder);
@@ -242,6 +244,10 @@ public class TasksFragment extends Fragment
 
             }
         });
+
+        // Make it so tapping the spinner makes EditText lose focus and hides the keyboard
+        courseSpinner.setOnTouchListener(getClearFocusAndHideKeyboardListener(descriptionEditText));
+
     }
 
     private void setupPrioritySpinner(View layout)
@@ -261,8 +267,6 @@ public class TasksFragment extends Fragment
             public void onItemSelected(AdapterView<?> adapterView, View itemView, int position, long l)
             {
                 String priorityName = (String) adapterView.getItemAtPosition(position);
-                Log.d("task", priorityName);
-
                 priority = mapPriority(priorityName);
             }
 
@@ -272,6 +276,9 @@ public class TasksFragment extends Fragment
 
             }
         });
+
+        // Make it so tapping the spinner makes EditText lose focus and hides the keyboard
+        prioritySpinner.setOnTouchListener(getClearFocusAndHideKeyboardListener(descriptionEditText));
     }
 
     private void setupDialogButtons(AlertDialog.Builder dialogBuilder)
@@ -348,10 +355,6 @@ public class TasksFragment extends Fragment
                 return Task.Priority.MEDIUM;
             case "High":
                 return Task.Priority.HIGH;
-            case "Very High":
-                return Task.Priority.VERY_HIGH;
-            case "Extreme":
-                return Task.Priority.EXTREME;
             default:
                 throw new IllegalArgumentException("Unknown priority: " + name);
         }
@@ -363,12 +366,31 @@ public class TasksFragment extends Fragment
         priorityTypes.add(new TaskPriorityType(Task.Priority.LOW));
         priorityTypes.add(new TaskPriorityType(Task.Priority.MEDIUM));
         priorityTypes.add(new TaskPriorityType(Task.Priority.HIGH));
-        priorityTypes.add(new TaskPriorityType(Task.Priority.VERY_HIGH));
-        priorityTypes.add(new TaskPriorityType(Task.Priority.EXTREME));
 
         priorityTypes.removeIf(type -> type.getTaskList().isEmpty());
 
         return priorityTypes;
     }
 
+    private View.OnTouchListener getClearFocusAndHideKeyboardListener(EditText editText) {
+        // When a spinner is tapped:
+        // 1. Clear focus from the descriptionEditText, to remove the highlighted border when focused
+        // 2. Hide keyboard
+
+        return (v, event) -> {
+            if (editText != null) {
+                // Hide the keyboard before clearing focus
+                InputMethodManager imm = (InputMethodManager) requireContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+
+                // Then clear focus to trigger drawable change
+                editText.clearFocus();
+            }
+
+            // Accessibility compliance
+            v.performClick();
+
+            return false;
+        };
+    }
 }

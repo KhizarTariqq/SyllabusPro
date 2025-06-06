@@ -4,7 +4,5 @@
         <item>Low</item>
         <item>Medium</item>
         <item>High</item>
-        <item>Very High</item>
-        <item>Extreme</item>
     </string-array>
 </resources>

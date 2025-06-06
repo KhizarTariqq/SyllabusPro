@@ -12,8 +12,6 @@ Task
         LOW,
         MEDIUM,
         HIGH,
-        VERY_HIGH,
-        EXTREME
     }
 
     public Task(String description, Task.Priority priority, Course course)
