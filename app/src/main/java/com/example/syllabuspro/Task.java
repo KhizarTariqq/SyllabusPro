@@ -3,7 +3,6 @@ package com.example.syllabuspro;
 public class
 Task
 {
-    private String name;
     private Task.Priority priority;
     private String description;
     private Course course;
@@ -17,9 +16,8 @@ Task
         EXTREME
     }
 
-    public Task(String name, String description, Task.Priority priority, Course course)
+    public Task(String description, Task.Priority priority, Course course)
     {
-        this.name = name;
         this.description = description;
         this.priority = priority;
         this.course = course;
@@ -28,11 +26,6 @@ Task
     public Course getCourse()
     {
         return this.course;
-    }
-
-    public String getName()
-    {
-        return this.name;
     }
 
     public String getDescription()
@@ -47,6 +40,6 @@ Task
 
     public boolean equals(Task task)
     {
-        return this.name.equals(task.getName()) && this.description.equals(task.getDescription()) && this.course.equals(task.getCourse()) && this.priority == task.getPriority();
+        return this.description.equals(task.getDescription()) && this.course.equals(task.getCourse()) && this.priority == task.getPriority();
     }
 }

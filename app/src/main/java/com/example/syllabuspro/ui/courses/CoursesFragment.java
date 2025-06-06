@@ -36,7 +36,7 @@ import com.example.syllabuspro.Course;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.SyllabusItem;
 import com.example.syllabuspro.Utils;
-import com.example.syllabuspro.adapters.CustomAdapter;
+import com.example.syllabuspro.adapters.CoursesAdapter;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.databinding.FragmentCoursesBinding;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -82,7 +82,7 @@ public class CoursesFragment extends Fragment {
 
         // Initializing list view with the custom adapter
         recyclerView = root.findViewById(R.id.recyclerView);
-        CustomAdapter adapter = new CustomAdapter(MainActivity.getCourseList());
+        CoursesAdapter adapter = new CoursesAdapter(MainActivity.getCourseList());
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
 

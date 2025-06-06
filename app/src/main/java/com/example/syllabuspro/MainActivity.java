@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity
         // tasks from storage
         else
         {
+            /**
+            // Remove everything from storage (FOR TESTING PURPOSES)
+            SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.clear().apply();
+             **/
+
             // Get ArrayList of courses, and tasks
             SharedPreferences prefs = this.getPreferences(Context.MODE_PRIVATE);
 

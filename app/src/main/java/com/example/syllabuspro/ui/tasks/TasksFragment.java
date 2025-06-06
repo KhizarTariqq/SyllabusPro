@@ -203,7 +203,6 @@ public class TasksFragment extends Fragment
         setupPrioritySpinner(layout);
 
         // EditText for name and description
-        nameEditText = layout.findViewById(R.id.input_name);
         descriptionEditText = layout.findViewById(R.id.input_description);
 
         // Setup buttons
@@ -300,13 +299,15 @@ public class TasksFragment extends Fragment
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View innerView) {
-                String taskName = nameEditText.getText().toString().trim();
                 String taskDescription = descriptionEditText.getText().toString().trim();
-                if (course != null && priority != null && !taskName.isEmpty() && !taskDescription.isEmpty()) {
-                    collectTaskInput(taskName, taskDescription, priority, course, view);
+                if (course != null && priority != null && !taskDescription.isEmpty())
+                {
+                    collectTaskInput(taskDescription, priority, course, view);
                     dialog.dismiss();
                 }
-                else {
+
+                else
+                {
                     // TODO Give more detailed response
                     Toast toast = Toast.makeText(view.getContext(), "Input all information before proceeding", Toast.LENGTH_SHORT);
                     toast.show();
@@ -315,13 +316,13 @@ public class TasksFragment extends Fragment
         });
     }
 
-    private void collectTaskInput(String name, String description, Task.Priority priority, Course course, View view)
+    private void collectTaskInput(String description, Task.Priority priority, Course course, View view)
     {
         // Get task list and update it
         RecyclerView recyclerView = view.getRootView().findViewById(R.id.tasksRecyclerview);
 
         // Add the task to the task list and save it to storage
-        MainActivity.addToTaskList(new Task(name, description, priority, course));
+        MainActivity.addToTaskList(new Task(description, priority, course));
         MainActivity.saveTaskList();
 
         if (recyclerView.getAdapter().getClass() == TasksCourseAdapter.class)

@@ -1,5 +1,6 @@
 package com.example.syllabuspro.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,13 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-        holder.name.setText(this.taskList.get(position).getName());
+        holder.description.setText(this.taskList.get(position).getDescription());
+        holder.course.setText(this.taskList.get(position).getCourse().getName());
+
+        // Show priority with uppercase first letter and rest lowercase
+        String priorityString = this.taskList.get(position).getPriority().toString();
+        String cleanedPriorityString = priorityString.charAt(0) + priorityString.substring(1).toLowerCase();
+        holder.priority.setText(cleanedPriorityString);
     }
 
     @Override
@@ -48,12 +55,15 @@ public class TasksAdapter extends RecyclerView.Adapter<TasksAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView name;
+        TextView description;
+        TextView course;
+        TextView priority;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            name = itemView.findViewById(R.id.task_display_name);
-            // age = itemView.findViewById(R.id.item_age);
+            description = itemView.findViewById(R.id.task_display_description);
+            course = itemView.findViewById(R.id.task_display_course);
+            priority = itemView.findViewById(R.id.task_display_priority);
         }
     }
 }

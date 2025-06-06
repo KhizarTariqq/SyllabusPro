@@ -17,11 +17,11 @@ import com.example.syllabuspro.SyllabusItem;
 import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder>
+public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.ViewHolder>
 {
     private ArrayList<Course> courseList = new ArrayList<Course>();
 
-    public CustomAdapter(ArrayList<Course> courseList)
+    public CoursesAdapter(ArrayList<Course> courseList)
     {
         this.courseList = courseList;
         Log.d("Adapter", courseList.toString());
