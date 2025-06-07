@@ -40,4 +40,5 @@
 
     <color name="dialog_text_color">#FF000000</color>
 
+    <color name="summary_fragment_text_color">#FF000000</color>
 </resources>

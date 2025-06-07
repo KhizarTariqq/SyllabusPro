@@ -16,4 +16,6 @@
     <color name="editTextFocusedStroke">#90CAF9</color>
 
     <color name="dialog_text_color">#FFFFFFFF</color>
+
+    <color name="summary_fragment_text_color">#FFFFFFFF</color>
 </resources>
