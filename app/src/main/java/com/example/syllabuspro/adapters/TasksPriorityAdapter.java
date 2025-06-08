@@ -27,16 +27,17 @@ public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdap
     @Override
     public TasksPriorityAdapter.ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType)
     {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_priority_row_item, parent, false));
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_row_priority_mode, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-        holder.priorityType.setText(this.taskPriorityList.get(position).getPriority().toString());
+        String priority = "Priority: " + this.taskPriorityList.get(position).getPriority().toString();
+        holder.priorityType.setText(priority);
 
         // Add adapter and layout
-        holder.taskRecyclerView.setAdapter(new TasksAdapter(this.taskPriorityList.get(position).getTaskList()));
+        holder.taskRecyclerView.setAdapter(new TasksPriorityItemAdapter(this.taskPriorityList.get(position).getTaskList()));
         holder.taskRecyclerView.setLayoutManager(
                 new LinearLayoutManager(holder.taskRecyclerView.getContext(), RecyclerView.HORIZONTAL, false)
         );

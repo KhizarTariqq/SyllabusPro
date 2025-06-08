@@ -1,5 +1,7 @@
 package com.example.syllabuspro;
 
+import androidx.annotation.NonNull;
+
 public class
 Task
 {
@@ -11,7 +13,15 @@ Task
     {
         LOW,
         MEDIUM,
-        HIGH,
+        HIGH;
+
+        @NonNull
+        @Override
+        public String toString()
+        {
+            String priorityString = super.toString();
+            return priorityString.charAt(0) + priorityString.substring(1).toLowerCase();
+        }
     }
 
     public Task(String description, Task.Priority priority, Course course)
