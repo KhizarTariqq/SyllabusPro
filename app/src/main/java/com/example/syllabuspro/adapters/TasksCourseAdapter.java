@@ -1,5 +1,6 @@
 package com.example.syllabuspro.adapters;
 
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.Course;
+import com.example.syllabuspro.HorizontalSpaceItemDecoration;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.Task;
@@ -40,11 +42,15 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
         String name = "Course: " + this.courseList.get(position).getName();
         holder.name.setText(name);
 
-        // Add adapter and layout
+        // Add adapter, layout and ItemDecoration (to separate items)
         holder.taskRecyclerView.setAdapter(new TasksCourseItemAdapter(getTaskList(position)));
         holder.taskRecyclerView.setLayoutManager(
                 new LinearLayoutManager(holder.taskRecyclerView.getContext(), RecyclerView.HORIZONTAL, false)
         );
+        int spacingInPx = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 12, holder.taskRecyclerView.getContext().getResources().getDisplayMetrics());
+
+        holder.taskRecyclerView.addItemDecoration(new HorizontalSpaceItemDecoration(spacingInPx));
     }
 
     @Override

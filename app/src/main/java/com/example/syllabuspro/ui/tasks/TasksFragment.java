@@ -65,10 +65,8 @@ public class TasksFragment extends Fragment
         // Set task recycler view
         RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
-        // GridLayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2, RecyclerView.VERTICAL, false);
-
         // Set layout manager
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
 
         return root;
