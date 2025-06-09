@@ -135,6 +135,9 @@ public class TasksFragment extends Fragment
         sortAdapter.setDropDownViewResource(R.layout.tasks_sort_spinner_dropdown_item);
         spinner.setAdapter(sortAdapter);
 
+        int savedIndex = viewModel.getSelectedSpinnerIndex();
+        spinner.setSelection(savedIndex);
+
         // Set listener
         spinner.setOnItemSelectedListener(
                 getSortSpinnerListener(binding.tasksRecyclerview, courseAdapter, priorityAdapter));
@@ -211,9 +214,15 @@ public class TasksFragment extends Fragment
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String choice = (String) adapterView.getItemAtPosition(position);
 
-                if (choice.equals("Courses")) {
+                if (choice.equals("Courses"))
+                {
+                    viewModel.setSelectedSpinnerIndex(position);
                     recyclerView.setAdapter(courseAdapter);
-                } else {
+                }
+
+                else
+                {
+                    viewModel.setSelectedSpinnerIndex(position);
                     recyclerView.setAdapter(priorityAdapter);
                 }
             }
