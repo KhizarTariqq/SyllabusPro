@@ -17,7 +17,7 @@
     <string name="course_item_button">Syllabus Items</string>
     <string name="custom_dialog">Syllabus Items</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="course_name"/>
+    <string name="course_name" />
 
     <!-- create syllabus item -->
     <string name="new_item">New Syllabus Item: </string>

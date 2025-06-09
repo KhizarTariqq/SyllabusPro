@@ -1,11 +1,14 @@
 package com.example.syllabuspro.adapters;
 
+import android.os.Parcelable;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.Course;
@@ -13,6 +16,7 @@ import com.example.syllabuspro.HorizontalSpaceItemDecoration;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.Task;
+import com.example.syllabuspro.ui.tasks.TasksSharedViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,11 +25,17 @@ import java.util.ArrayList;
 
 public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.ViewHolder>
 {
+    private Fragment fragment;
     private ArrayList<Course> courseList;
+    private TasksSharedViewModel viewModel;
 
-    public TasksCourseAdapter(ArrayList<Course> courseList)
+    public TasksCourseAdapter(Fragment fragment, ArrayList<Course> courseList, TasksSharedViewModel viewModel)
     {
+        this.fragment = fragment;
         this.courseList = courseList;
+        this.viewModel = viewModel;
+
+        setHasStableIds(true);
     }
 
     @NonNull
@@ -43,14 +53,26 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
         holder.name.setText(name);
 
         // Add adapter, layout and ItemDecoration (to separate items)
-        holder.taskRecyclerView.setAdapter(new TasksCourseItemAdapter(getTaskList(position)));
-        holder.taskRecyclerView.setLayoutManager(
-                new LinearLayoutManager(holder.taskRecyclerView.getContext(), RecyclerView.HORIZONTAL, false)
-        );
+        holder.tasksRecyclerView.setAdapter(new TasksCourseItemAdapter(getTaskList(position), this::onTaskClick));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(holder.tasksRecyclerView.getContext(), RecyclerView.HORIZONTAL, false);
+        holder.tasksRecyclerView.setLayoutManager(layoutManager);
         int spacingInPx = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 12, holder.taskRecyclerView.getContext().getResources().getDisplayMetrics());
+                TypedValue.COMPLEX_UNIT_DIP, 12, holder.tasksRecyclerView.getContext().getResources().getDisplayMetrics());
 
-        holder.taskRecyclerView.addItemDecoration(new HorizontalSpaceItemDecoration(spacingInPx));
+        // Restore scroll state in the recyclerview
+        long courseId = getItemId(position);
+        Parcelable state = viewModel.getScrollState(courseId);
+
+        if (state != null) {
+            layoutManager.onRestoreInstanceState(state);
+        }
+
+        holder.tasksRecyclerView.addItemDecoration(new HorizontalSpaceItemDecoration(spacingInPx));
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return courseList.get(position).getName().hashCode();
     }
 
     @Override
@@ -78,12 +100,23 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder
     {
         TextView name;
-        RecyclerView taskRecyclerView;
+        RecyclerView tasksRecyclerView;
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
             name = itemView.findViewById(R.id.task_course_name);
-            taskRecyclerView = itemView.findViewById(R.id.task_course_recyclerView);
+            tasksRecyclerView = itemView.findViewById(R.id.task_course_recyclerView);
         }
+
+        public RecyclerView getTasksRecyclerView()
+        {
+            return tasksRecyclerView;
+        }
+    }
+
+    private void onTaskClick(Task task) {
+        viewModel.setSelectedTask(task);
+        NavHostFragment.findNavController(fragment)
+                .navigate(R.id.navigation_view_task_details);
     }
 }

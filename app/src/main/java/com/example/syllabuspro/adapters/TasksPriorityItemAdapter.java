@@ -11,14 +11,17 @@ import com.example.syllabuspro.Task;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.function.Consumer;
 
 public class TasksPriorityItemAdapter extends RecyclerView.Adapter<TasksPriorityItemAdapter.ViewHolder>
 {
     private ArrayList<Task> taskList;
+    private final Consumer<Task> onItemClick;
 
-    public TasksPriorityItemAdapter(ArrayList<Task> taskList)
+    public TasksPriorityItemAdapter(ArrayList<Task> taskList, Consumer<Task> onItemClick)
     {
         this.taskList = taskList;
+        this.onItemClick = onItemClick;
     }
 
     @NonNull
@@ -57,6 +60,16 @@ public class TasksPriorityItemAdapter extends RecyclerView.Adapter<TasksPriority
             super(itemView);
             description = itemView.findViewById(R.id.task_display_description);
             course = itemView.findViewById(R.id.task_display_course);
+            setupClickListener(itemView);
+        }
+
+        private void setupClickListener(View itemView) {
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick.accept(taskList.get(position));
+                }
+            });
         }
     }
 }

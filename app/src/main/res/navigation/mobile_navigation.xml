@@ -55,4 +55,11 @@
         android:label="@string/title_waiting_api_response"
         tools:layout="@layout/fragment_waiting_api_response"
         />
+
+    <fragment
+        android:id="@+id/navigation_view_task_details"
+        android:name="com.example.syllabuspro.ui.tasks.TasksViewDetailsFragment"
+        android:label="View Task Details"
+        tools:layout="@layout/fragment_tasks_view_details"
+        />
 </navigation>

@@ -2,8 +2,7 @@ package com.example.syllabuspro;
 
 import androidx.annotation.NonNull;
 
-public class
-Task
+public class Task
 {
     private Task.Priority priority;
     private String description;

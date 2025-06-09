@@ -3,6 +3,7 @@ package com.example.syllabuspro.ui.tasks;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -27,6 +28,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +37,7 @@ import com.example.syllabuspro.R;
 import com.example.syllabuspro.Task;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.Utils;
+import com.example.syllabuspro.adapters.CoursesAdapter;
 import com.example.syllabuspro.adapters.TasksCourseAdapter;
 import com.example.syllabuspro.adapters.TasksPriorityAdapter;
 import com.example.syllabuspro.databinding.FragmentTasksBinding;
@@ -48,7 +51,10 @@ public class TasksFragment extends Fragment
 
     private Course course = null;
     private Task.Priority priority = null;
-    private EditText nameEditText;
+    private RecyclerView recyclerView;
+    private TasksSharedViewModel viewModel;
+    private TasksCourseAdapter courseAdapter;
+    private TasksPriorityAdapter priorityAdapter;
     private EditText descriptionEditText;
     private Spinner spinner;
 
@@ -62,8 +68,13 @@ public class TasksFragment extends Fragment
         requireActivity().setTitle("Tasks");
         setHasOptionsMenu(true);
 
+        // Setup shared view model between TasksAdapters and ViewDetailsFragment
+        viewModel = new ViewModelProvider(requireActivity()).get(TasksSharedViewModel.class);
+        courseAdapter = new TasksCourseAdapter(this, MainActivity.getCourseList(), viewModel);
+        priorityAdapter = new TasksPriorityAdapter(this, getPriorityList(), viewModel);
+
         // Set task recycler view
-        RecyclerView recyclerView = root.findViewById(R.id.tasksRecyclerview);
+        recyclerView = root.findViewById(R.id.tasksRecyclerview);
 
         // Set layout manager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
@@ -126,12 +137,7 @@ public class TasksFragment extends Fragment
 
         // Set listener
         spinner.setOnItemSelectedListener(
-                getSortSpinnerListener(
-                        binding.tasksRecyclerview,
-                        new TasksCourseAdapter(MainActivity.getCourseList()),
-                        new TasksPriorityAdapter(getPriorityList())
-                )
-        );
+                getSortSpinnerListener(binding.tasksRecyclerview, courseAdapter, priorityAdapter));
 
         // Set dropdown menu to be a little lower
         //spinner.setDropDownVerticalOffset(Utils.dpToPx(requireContext(),10));
@@ -157,6 +163,34 @@ public class TasksFragment extends Fragment
 
 
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        for (int i = 0; i < recyclerView.getChildCount(); i++) {
+            View outerChild = recyclerView.getChildAt(i);
+            RecyclerView.ViewHolder holder = recyclerView.getChildViewHolder(outerChild);
+
+            if (holder instanceof TasksCourseAdapter.ViewHolder ||
+                holder instanceof TasksPriorityAdapter.ViewHolder) {
+
+                RecyclerView innerRv = holder instanceof TasksCourseAdapter.ViewHolder ?
+                        ((TasksCourseAdapter.ViewHolder) holder).getTasksRecyclerView() :
+                        ((TasksPriorityAdapter.ViewHolder) holder).getTasksRecyclerView();
+                long id = holder instanceof TasksCourseAdapter.ViewHolder ?
+                        courseAdapter.getItemId(holder.getAdapterPosition()) :
+                        priorityAdapter.getItemId(holder.getAdapterPosition());
+
+                LinearLayoutManager layout = (LinearLayoutManager) innerRv.getLayoutManager();
+
+                if (layout != null) {
+                    Parcelable state = layout.onSaveInstanceState();
+                    viewModel.saveScrollState(id, state);
+                }
+            }
+        }
     }
 
 
