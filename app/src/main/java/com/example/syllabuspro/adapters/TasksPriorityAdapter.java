@@ -1,5 +1,6 @@
 package com.example.syllabuspro.adapters;
 
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.syllabuspro.HorizontalSpaceItemDecoration;
 import com.example.syllabuspro.R;
 import com.example.syllabuspro.ui.tasks.TaskPriorityType;
 import org.jetbrains.annotations.NotNull;
@@ -36,11 +39,15 @@ public class TasksPriorityAdapter extends RecyclerView.Adapter<TasksPriorityAdap
         String priority = "Priority: " + this.taskPriorityList.get(position).getPriority().toString();
         holder.priorityType.setText(priority);
 
-        // Add adapter and layout
+        // Add adapter, layout and ItemDecoration (to separate items)
         holder.taskRecyclerView.setAdapter(new TasksPriorityItemAdapter(this.taskPriorityList.get(position).getTaskList()));
         holder.taskRecyclerView.setLayoutManager(
                 new LinearLayoutManager(holder.taskRecyclerView.getContext(), RecyclerView.HORIZONTAL, false)
         );
+        int spacingInPx = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 12, holder.taskRecyclerView.getContext().getResources().getDisplayMetrics());
+
+        holder.taskRecyclerView.addItemDecoration(new HorizontalSpaceItemDecoration(spacingInPx));
     }
 
     @Override
