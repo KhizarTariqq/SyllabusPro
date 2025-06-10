@@ -6,6 +6,7 @@
     <color name="button_text_color">#FFFFFF</color>
 
     <color name="recycler_item_bg">#353535</color>
+    <color name="recycler_item_bg_alt">#4B4B4B</color>
     <color name="recycler_item_text">#FFFFFFFF</color>
 
     <color name="nav_item_selected">#FFFFFFFF</color>

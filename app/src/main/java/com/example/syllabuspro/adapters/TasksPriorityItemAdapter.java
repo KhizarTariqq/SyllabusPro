@@ -1,5 +1,8 @@
 package com.example.syllabuspro.adapters;
 
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +38,17 @@ public class TasksPriorityItemAdapter extends RecyclerView.Adapter<TasksPriority
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position)
     {
-        holder.description.setText(this.taskList.get(position).getDescription());
+        // Set the description string with a smaller font on the text after the colon
+        String descriptionString = "Description: " + this.taskList.get(position).getDescription();
+        SpannableString spannableDescription = new SpannableString(descriptionString);
+
+        spannableDescription.setSpan(
+                new AbsoluteSizeSpan(15, true),
+                13,
+                descriptionString.length(),
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        );
+        holder.description.setText(spannableDescription);
         holder.course.setText(this.taskList.get(position).getCourse().getName());
     }
 
@@ -58,7 +71,7 @@ public class TasksPriorityItemAdapter extends RecyclerView.Adapter<TasksPriority
         public ViewHolder(@NonNull View itemView)
         {
             super(itemView);
-            description = itemView.findViewById(R.id.task_display_description);
+            description = itemView.findViewById(R.id.task_description);
             course = itemView.findViewById(R.id.task_display_course);
             setupClickListener(itemView);
         }

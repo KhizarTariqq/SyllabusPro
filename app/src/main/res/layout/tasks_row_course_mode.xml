@@ -9,6 +9,7 @@
         cardView:cardCornerRadius="8dp"
         cardView:cardElevation="8dp"
         android:layout_margin="8dp"
+        android:backgroundTint="@color/recycler_item_bg"
 >
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -10,36 +10,28 @@
     cardView:cardElevation="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
+    android:backgroundTint="@color/recycler_item_bg_alt"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         >
-        <TextView
-            android:id="@+id/task_description"
-            android:text="Description: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:padding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
 
         <TextView
-            android:id="@+id/task_display_description"
+            android:id="@+id/task_description"
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:textSize="14sp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
+            android:textSize="16sp"
             android:paddingBottom="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
             android:maxLines="3"
             android:ellipsize="end"
             android:singleLine="false"
-            app:layout_constraintStart_toStartOf="@id/task_description"
-            app:layout_constraintTop_toBottomOf="@id/task_description"
+            android:lineSpacingMultiplier="1.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/task_course"
             app:layout_constraintEnd_toEndOf="parent"
             />
 
@@ -53,7 +45,9 @@
             android:textSize="16sp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            app:layout_constraintEnd_toStartOf="@id/task_display_course"
+            android:paddingStart="12dp"
+            android:paddingEnd="2dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />
 
@@ -64,9 +58,8 @@
             android:textSize="16sp"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:paddingStart="5dp"
-            android:paddingEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingEnd="12dp"
+            app:layout_constraintStart_toEndOf="@id/task_course"
             app:layout_constraintTop_toTopOf="@id/task_course"
             app:layout_constraintBottom_toBottomOf="@id/task_course"
             />
