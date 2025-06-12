@@ -12,9 +12,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.syllabuspro.Course;
-import com.example.syllabuspro.HorizontalSpaceItemDecoration;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.R;
+import com.example.syllabuspro.SpacingItemDecoration;
 import com.example.syllabuspro.Task;
 import com.example.syllabuspro.ui.tasks.TasksSharedViewModel;
 
@@ -59,6 +59,8 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
         int spacingInPx = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 12, holder.tasksRecyclerView.getContext().getResources().getDisplayMetrics());
 
+        holder.tasksRecyclerView.addItemDecoration(new SpacingItemDecoration(spacingInPx, LinearLayoutManager.HORIZONTAL));
+
         // Restore scroll state in the recyclerview
         long courseId = getItemId(position);
         Parcelable state = viewModel.getScrollState(courseId);
@@ -66,8 +68,6 @@ public class TasksCourseAdapter extends RecyclerView.Adapter<TasksCourseAdapter.
         if (state != null) {
             layoutManager.onRestoreInstanceState(state);
         }
-
-        holder.tasksRecyclerView.addItemDecoration(new HorizontalSpaceItemDecoration(spacingInPx));
     }
 
     @Override

@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.syllabuspro.Course;
 import com.example.syllabuspro.R;
+import com.example.syllabuspro.SpacingItemDecoration;
 import com.example.syllabuspro.Task;
 import com.example.syllabuspro.MainActivity;
 import com.example.syllabuspro.Utils;
@@ -75,7 +76,9 @@ public class TasksFragment extends Fragment
 
         // Set task recycler view
         recyclerView = root.findViewById(R.id.tasksRecyclerview);
-
+        int spacingInPx = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 14, recyclerView.getContext().getResources().getDisplayMetrics());
+        recyclerView.addItemDecoration(new SpacingItemDecoration(spacingInPx, LinearLayoutManager.VERTICAL));
         // Set layout manager
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this.getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
