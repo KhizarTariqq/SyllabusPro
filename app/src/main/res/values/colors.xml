@@ -31,7 +31,7 @@
     <color name="button_text_color">#FFFFFF</color>
 
     <color name="recycler_item_bg">#FFFFFF</color>
-    <color name="recycler_item_bg_alt">#FFFFFF</color>
+    <color name="recycler_item_bg_alt">#EEEEEE</color>
     <color name="recycler_item_text">#FF000000</color>
 
     <color name="nav_item_selected">#FF000000</color>
