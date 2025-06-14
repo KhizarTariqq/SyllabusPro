@@ -1,4 +1,4 @@
-package com.example.syllabuspro.ui.waiting_api_response;
+package com.example.syllabuspro.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,23 +13,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.syllabuspro.databinding.FragmentWaitingApiResponseBinding;
+import com.example.syllabuspro.R;
+import com.example.syllabuspro.databinding.FragmentLoginBinding;
+import com.example.syllabuspro.ui.waiting_api_response.WaitingApiResponseViewModel;
 
-public class WaitingApiResponseFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
-    private FragmentWaitingApiResponseBinding binding;
-    private WaitingApiResponseViewModel waitingApiResponseViewModel;
+    private LoginViewModel mViewModel;
+    private FragmentLoginBinding binding;
 
-    public static WaitingApiResponseFragment newInstance() {
-        return new WaitingApiResponseFragment();
+    public static LoginFragment newInstance() {
+        return new LoginFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
-        waitingApiResponseViewModel = new ViewModelProvider(this).get(WaitingApiResponseViewModel.class);
-        binding = FragmentWaitingApiResponseBinding.inflate(inflater, container, false);
+        binding = FragmentLoginBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         // Hide the taskbar
